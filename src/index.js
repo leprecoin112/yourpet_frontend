@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@emotion/react';
 import { theme } from './shared/styled/theme/lightTheme.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
