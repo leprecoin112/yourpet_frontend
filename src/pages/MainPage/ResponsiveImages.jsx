@@ -22,7 +22,7 @@ export const ResponsiveImageFirst = () => {
     <PetFirst>
       <source
         srcSet={`${petFirstDesk} 1x, ${petFirstXDesk} 2x`}
-        media="(min-width:1200px)"
+        media="(min-width:1280px)"
       />
       <source
         srcSet={`${petFirstTab} 1x, ${petFirstXTab} 2x`}
@@ -30,7 +30,11 @@ export const ResponsiveImageFirst = () => {
       />
       <source
         srcSet={`${petFirstMob} 1x, ${petFirstXMob} 2x`}
-        media="(max-width: 767px)"
+        media="(min-width: 321px)"
+      />
+      <source
+        srcSet={`${petFirstMob} 1x, ${petFirstXMob} 2x`}
+        media="(max-width: 320px)"
       />
       <img src={petFirstDesk} alt="pet" />
     </PetFirst>
@@ -41,7 +45,7 @@ export const ResponsiveImageSecond = () => {
     <PetSecond>
       <source
         srcSet={`${petSecondDesk} 1x, ${petSecondXDesk} 2x`}
-        media="(min-width:1200px)"
+        media="(min-width:1280px)"
       />
       <source
         srcSet={`${petSecondTab} 1x, ${petSecondXTab} 2x`}
@@ -49,7 +53,11 @@ export const ResponsiveImageSecond = () => {
       />
       <source
         srcSet={`${petSecondMob} 1x, ${petSecondXMob} 2x`}
-        media="(max-width: 767px)"
+        media="(min-width: 321px)"
+      />
+      <source
+        srcSet={`${petSecondMob} 1x, ${petSecondXMob} 2x`}
+        media="(max-width: 320px)"
       />
       <img src={petSecondDesk} alt="pet" />
     </PetSecond>
@@ -60,7 +68,7 @@ export const ResponsiveImageThird = () => {
     <PetThird>
       <source
         srcSet={`${petThirdDesk} 1x, ${petThirdXDesk} 2x`}
-        media="(min-width:1200px)"
+        media="(min-width:1280px)"
       />
       <source
         srcSet={`${petThirdTab} 1x, ${petThirdXTab} 2x`}
@@ -68,7 +76,11 @@ export const ResponsiveImageThird = () => {
       />
       <source
         srcSet={`${petThirdMob} 1x, ${petThirdXMob} 2x`}
-        media="(max-width: 767px)"
+        media="(min-width: 321px)"
+      />
+      <source
+        srcSet={`${petThirdMob} 1x, ${petThirdXMob} 2x`}
+        media="(max-width: 320px)"
       />
       <img src={petThirdDesk} alt="pet" />
     </PetThird>

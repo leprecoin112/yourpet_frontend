@@ -1,4 +1,4 @@
-import { PageContainer, PageTitle, ImgWrapper } from './MainPage.styled';
+import { PageContainer, PageTitle, ImageWrapper } from './MainPage.styled';
 import {
   ResponsiveImageFirst,
   ResponsiveImageSecond,
@@ -8,13 +8,13 @@ const MainPage = () => {
   return (
     <PageContainer>
       <PageTitle>Take good care of your small pets</PageTitle>
-      <ImgWrapper>
+      <ImageWrapper>
         <ResponsiveImageFirst />
 
         <ResponsiveImageSecond />
 
         <ResponsiveImageThird />
-      </ImgWrapper>
+      </ImageWrapper>
     </PageContainer>
   );
 };
