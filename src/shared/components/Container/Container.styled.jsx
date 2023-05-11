@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/react';
 
 const Wrapper = styled.div`
   padding: 0 ${({ theme }) => theme.space[2] * 5 + 'px'};

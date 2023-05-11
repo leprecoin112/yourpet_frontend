@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/react';
 
 const Wrapper = styled.section`
   display: flex;
