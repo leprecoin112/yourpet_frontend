@@ -10,7 +10,7 @@ export const LogoContainer = styled.div`
   position: relative;
 `;
 
-export const SvgText1 = styled.svg`
+export const LogoTextLeft = styled.svg`
   width: 61px;
   height: 19px;
   fill: ${({ theme }) => theme.colors.black};
@@ -20,7 +20,7 @@ export const SvgText1 = styled.svg`
   }
 `;
 
-export const SvgText2 = styled.svg`
+export const LogoTextRight = styled.svg`
   width: 45px;
   height: 19px;
   margin-left: 10px;
@@ -32,7 +32,7 @@ export const SvgText2 = styled.svg`
   }
 `;
 
-export const SvgPaw = styled.svg`
+export const LogoPaw = styled.svg`
   top: 0;
   left: 0;
   width: 17px;

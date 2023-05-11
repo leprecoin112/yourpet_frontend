@@ -1,21 +1,25 @@
 import logo from "../../images/logo.svg";
-import { LogoContainer, SvgText1, SvgText2, SvgPaw } from "./Logo.styled";
+import {
+  LogoContainer,
+  LogoTextLeft,
+  LogoTextRight,
+  LogoPaw,
+} from "./Logo.styled";
 
 const Logo = () => {
   return (
-    <LogoNavLink to="/">
+    <LogoNavLink to="/main">
       <LogoContainer>
-        <SvgText1>
+        <LogoTextLeft>
           <use href={logo + "#logo_1"} />
-        </SvgText1>
-        <SvgPaw>
+        </LogoTextLeft>
+        <LogoPaw>
           <use href={logo + "#logo_2"} />
-        </SvgPaw>
-        <SvgText2>
+        </LogoPaw>
+        <LogoTextRight>
           <use href={logo + "#logo_3"} />
-        </SvgText2>
+        </LogoTextRight>
       </LogoContainer>
-      //{" "}
     </LogoNavLink>
   );
 };
