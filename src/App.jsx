@@ -1,8 +1,10 @@
+import SharedLayout from './shared/SharedLayout/SharedLayout';
+import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
-    <div>
-      <p>Test</p>
-    </div>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}></Route>
+    </Routes>
   );
 }
 
