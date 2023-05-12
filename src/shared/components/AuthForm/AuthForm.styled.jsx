@@ -18,8 +18,8 @@ const FormInput = styled(Field)`
   font-weight: 400;
   line-height: 150%;
   letter-spacing: 0.04em;
-  width: 224px;
-  height: 22px;
+  width: 256px;
+  height: 48px;
   border: 1px solid ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   padding: 12px 16px;
@@ -38,9 +38,7 @@ const FormInput = styled(Field)`
     color: ${({ theme }) => theme.colors.gray};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 426px;
-    &:not(:last-child) {
-    }
+    width: 458px;
   }
 `;
 
