@@ -23,6 +23,9 @@ const FormInput = styled(Field)`
   border: 1px solid ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   padding: 12px 16px;
+  &:focus {
+    border: 2px solid ${({ theme }) => theme.colors.blue};
+  }
   &:not(:last-child) {
     margin-bottom: 24px;
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
