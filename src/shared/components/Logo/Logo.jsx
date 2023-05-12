@@ -4,7 +4,7 @@ import {
   LogoTextLeft,
   LogoTextRight,
   LogoPaw,
-  LogoNavLink,
+  LogoNavLink
 } from "./Logo.styled";
 
 const Logo = () => {
