@@ -1,6 +1,7 @@
 import SharedLayout from './shared/SharedLayout/SharedLayout';
 import RegisterPage from './pages/RegisterPage';
 import { Routes, Route } from 'react-router-dom';
+
 function App() {
   return (
     <Routes>
