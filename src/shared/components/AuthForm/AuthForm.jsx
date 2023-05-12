@@ -15,6 +15,31 @@ const schema = yup.object().shape({
     .required('Required'),
   confirm: yup
     .string()
-    .oneOf([yup.ref('pass'), null], 'Must match "password" field value')
+    .oneOf([yup.ref('password'), null], 'Must match "password" field value')
     .required('Required'),
 });
+
+export default function RegisterForm() {
+  //   const dispatch = useDispatch();
+  const handleSubmit = () => {
+    console.log('submit');
+  };
+  return (
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+        confirm: '',
+      }}
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+    >
+      <Form>
+        <Field type="email" name="email" placeholder="Email" />
+        <Field type="password" name="password" placeholder="Password" />
+        <Field type="password" name="confirm" placeholder="Confirm Password" />
+        <button type="submit">Registration</button>
+      </Form>
+    </Formik>
+  );
+}
