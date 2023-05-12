@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-
+import { FormContainer, FormInput, Btn } from './AuthForm.styled';
 const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Required'),
   password: yup
@@ -34,12 +34,16 @@ export default function RegisterForm() {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <Field type="email" name="email" placeholder="Email" />
-        <Field type="password" name="password" placeholder="Password" />
-        <Field type="password" name="confirm" placeholder="Confirm Password" />
-        <button type="submit">Registration</button>
-      </Form>
+      <FormContainer>
+        <FormInput type="email" name="email" placeholder="Email" />
+        <FormInput type="password" name="password" placeholder="Password" />
+        <FormInput
+          type="password"
+          name="confirm"
+          placeholder="Confirm Password"
+        />
+        <Btn type="submit">Registration</Btn>
+      </FormContainer>
     </Formik>
   );
 }

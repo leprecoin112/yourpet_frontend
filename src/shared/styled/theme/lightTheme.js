@@ -19,12 +19,13 @@ const lightTheme = {
   fontSizes: ['12px', '14px', '16px', '20px', '24px', '28px', '48px', '68px'],
   colors: {
     yellow: '#FFC107',
-    white: '#FDF7F2',
+    white: '#FFFFFF',
     black: '#111111',
     blue: '#54ADFF',
     lightBlue: '#CCE4FB',
     green: '#00C3AD',
     red: '#F43F5E',
+    gray: '#888888',
     gradientBlue: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
   },
   boxShadows: {
