@@ -1,13 +1,11 @@
-import Section from '../../shared/components/Section/Section';
-import Container from '../../shared/components/Container/Container';
-// import AuthForm from '../../shared/components/'
+import AuthForm from '../../shared/components/AuthForm';
 
 const RegisterPage = () => {
   return (
     <>
-      <Section>
-        <Container>{/* <AuthForm/> */}</Container>
-      </Section>
+      <AuthForm />
     </>
   );
 };
+
+export default RegisterPage;
