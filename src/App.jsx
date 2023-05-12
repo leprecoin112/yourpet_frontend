@@ -1,5 +1,5 @@
-import SharedLayout from './shared/SharedLayout/SharedLayout';
-import { Routes, Route } from 'react-router-dom';
+import SharedLayout from "./shared/SharedLayout/SharedLayout";
+import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <Routes>
