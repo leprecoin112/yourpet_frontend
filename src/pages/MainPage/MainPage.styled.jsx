@@ -23,6 +23,7 @@ const PageTitle = styled.h1`
   font-size: 32px;
   line-height: 44px;
   margin: 0;
+  max-width: 320px;
   color: ${({ theme }) => theme.colors.black};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 68px;

@@ -4,18 +4,21 @@ import {
   ResponsiveImageSecond,
   ResponsiveImageThird,
 } from './ResponsiveImages';
+import Container from '../../shared/components/Container/Container';
 const MainPage = () => {
   return (
-    <PageContainer>
-      <PageTitle>Take good care of your small pets</PageTitle>
-      <ImageWrapper>
-        <ResponsiveImageFirst />
+    <Container>
+      <PageContainer>
+        <PageTitle>Take good care of your small pets</PageTitle>
+        <ImageWrapper>
+          <ResponsiveImageFirst />
 
-        <ResponsiveImageSecond />
+          <ResponsiveImageSecond />
 
-        <ResponsiveImageThird />
-      </ImageWrapper>
-    </PageContainer>
+          <ResponsiveImageThird />
+        </ImageWrapper>
+      </PageContainer>
+    </Container>
   );
 };
 
