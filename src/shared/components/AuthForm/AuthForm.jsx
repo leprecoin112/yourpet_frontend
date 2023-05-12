@@ -1,8 +1,8 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-import { FormContainer, FormInput, Btn } from './AuthForm.styled';
+import { FormContainer, FormInput, Btn, InputWrapper } from './AuthForm.styled';
 const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Required'),
   password: yup
@@ -35,13 +35,15 @@ export default function RegisterForm() {
       onSubmit={handleSubmit}
     >
       <FormContainer>
-        <FormInput type="email" name="email" placeholder="Email" />
-        <FormInput type="password" name="password" placeholder="Password" />
-        <FormInput
-          type="password"
-          name="confirm"
-          placeholder="Confirm Password"
-        />
+        <InputWrapper>
+          <FormInput type="email" name="email" placeholder="Email" />
+          <FormInput type="password" name="password" placeholder="Password" />
+          <FormInput
+            type="password"
+            name="confirm"
+            placeholder="Confirm Password"
+          />
+        </InputWrapper>
         <Btn type="submit">Registration</Btn>
       </FormContainer>
     </Formik>
