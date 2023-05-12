@@ -1,7 +1,7 @@
-import Section from './../components/Section/Section';
-import Container from './../components/Container/Container';
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import Section from "./../components/Section/Section";
+import Container from "./../components/Container/Container";
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 
 const SharedLayout = () => {
   return (
