@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Friends = () => {
+const OurFriendsPage = () => {
   return (
-    <div>Friends</div>
+    <div>OurFriendsPage</div>
   )
 }
 
-export default Friends
+export default OurFriendsPage

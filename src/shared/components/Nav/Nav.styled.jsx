@@ -10,7 +10,7 @@ color: ${({ theme }) => theme.colors.black};
 text-decoration: none;
 font-size: 20px;
 line-height: 1.35;
-font-family: ${({ theme }) => theme.fonts.main.extraBold};
+font-family: ${({ theme }) => theme.fonts.main.regular};
 &.active {
     color: ${({ theme }) => theme.colors.yellow};
 }
