@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Box>
       <LogoWrapper>
-        <Logo />
+        <Logo  />
       </LogoWrapper>
       <NavigationWrapper>
         <Navigation />
