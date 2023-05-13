@@ -8,9 +8,9 @@ import bgDesk2x from '../../shared/images/mainPage/pets-desk-2x-min.png';
 
 const PageContainer = styled.div`
   padding-top: 60px;
-  width: 100%;
-  height: 100vh;
-  background-position: left 100px;
+  min-width: 320px;
+  height: 600px;
+  background-position: right bottom;
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url(${bgMob});
@@ -21,6 +21,9 @@ const PageContainer = styled.div`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     background-image: url(${bgTab});
+    min-width: 480px;
+    height: 800px;
+    background-position: right 100px;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -29,12 +32,15 @@ const PageContainer = styled.div`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-top: 80px;
-    background-position: left 400px;
+    min-width: 678px;
+    height: 1100px;
+    background-position: right 200px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    background-position: 330px -50px;
     padding-top: 188px;
+    min-width: 1280px;
     background-image: url(${bgDesk});
+    background-position: right bottom;
     opacity: 0.7;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
