@@ -33,6 +33,7 @@ const lightTheme = {
     secondary: '7px 13px 14px rgba(116, 177, 232, 0.24)',
   },
   transition: { main: 'cubic-bezier(0.4, 0, 0.2, 1)' },
+  duration: { main: '250ms' },
 };
 
 export default lightTheme;
