@@ -4,18 +4,21 @@ import {
   FormTitle,
   RedirectLink,
   Link,
+  PageContainer,
 } from './RegisterPage.styled';
 
 const RegisterPage = () => {
   return (
-    <FormWrapper>
-      <FormTitle>Registration</FormTitle>
-      <AuthForm />
-      <RedirectLink>
-        Already have an account?
-        <Link to="/login">Login</Link>
-      </RedirectLink>
-    </FormWrapper>
+    <PageContainer>
+      <FormWrapper>
+        <FormTitle>Registration</FormTitle>
+        <AuthForm />
+        <RedirectLink>
+          Already have an account?
+          <Link to="/login">Login</Link>
+        </RedirectLink>
+      </FormWrapper>
+    </PageContainer>
   );
 };
 
