@@ -22,7 +22,7 @@ const PageContainer = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     background-image: url(${bgTab});
     min-width: 480px;
-    height: 800px;
+    height: 900px;
     background-position: right 100px;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),

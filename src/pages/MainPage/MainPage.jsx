@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageContainer, PageTitle, ImageWrapper } from './MainPage.styled';
+import { PageContainer, PageTitle } from './MainPage.styled';
 
 const MainPage = () => {
   return (
