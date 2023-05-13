@@ -6,4 +6,4 @@ const OurFriendsPage = () => {
   )
 }
 
-export default OurFriendsPage
+export default OurFriendsPage;

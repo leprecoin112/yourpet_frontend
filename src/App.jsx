@@ -1,9 +1,11 @@
 import SharedLayout from './shared/SharedLayout/SharedLayout';
-import { Routes, Route } from 'react-router-dom';
-import Main from './pages/Main/Main';
+import RegisterPage from './pages/RegisterPage';
+import MainPage from './pages/Main/MainPage';
 import NewsPage from './pages/NewsPage/NewsPage';
-import NoticesPage from './pages/NoticesPage/NoticesPage';
 import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
+import NoticesPage from './pages/NoticesPage/NoticesPage';
+import { Routes, Route } from 'react-router-dom';
+
 function App() {
   return (
     <Routes>
@@ -11,10 +13,11 @@ function App() {
         path="*"
         element={
           <SharedLayout>
-            <Route path="/main" element={<Main />} />
+            <Route path="/main" element={<MainPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />} />
             <Route path="/friends" element={<OurFriendsPage />} />
+            <Route path="/register" element={<RegisterPage />} />
              {/* <Route path="*" element={<NotFound />} /> */}
           </SharedLayout>
         }
