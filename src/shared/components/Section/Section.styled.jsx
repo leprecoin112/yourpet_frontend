@@ -9,7 +9,7 @@ const Wrapper = styled.section`
   background-size: cover;
   width: 100vw;
   background-image: url(${backgroundMob});
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     background-image: url(${backgroundTab});
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {

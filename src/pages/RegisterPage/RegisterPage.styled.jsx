@@ -6,6 +6,12 @@ const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 44px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding-top: 80px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding-top: 45px;
+  }
 `;
 const FormWrapper = styled.div`
   display: flex;
