@@ -1,26 +1,27 @@
-import logo from "../../images/logo.svg";
-import {
-  LogoContainer,
-  LogoTextLeft,
-  LogoTextRight,
-  LogoPaw,
-} from "./Logo.styled";
+import { NavLink } from "react-router-dom";
+
+import logoSmall1x from '../../images/logo/logoSmall@1x-min.png';
+import logoSmall2x from '../../images/logo/logoSmall@2x-min.png';
+import logoBig1x from '../../images/logo/logoBig@1x-min.png';
+import logoBig2x from '../../images/logo/logoBig@2x-min.png';
+
+import { StyledLogo } from "./Logo.styled";
 
 const Logo = () => {
   return (
-    <LogoNavLink to="/main">
-      <LogoContainer>
-        <LogoTextLeft>
-          <use href={logo + "#logo_1"} />
-        </LogoTextLeft>
-        <LogoPaw>
-          <use href={logo + "#logo_2"} />
-        </LogoPaw>
-        <LogoTextRight>
-          <use href={logo + "#logo_3"} />
-        </LogoTextRight>
-      </LogoContainer>
-    </LogoNavLink>
+    <NavLink to="/main">
+      <picture>
+        <source
+            srcSet={`${logoBig1x} 1x, ${logoBig2x} 2x`}
+            media="(min-width: 768px)"
+        />
+        <source
+            srcSet={`${logoSmall1x} 1x, ${logoSmall2x} 2x`}
+            media="(max-width: 767px)"
+        />
+        <StyledLogo src={logoSmall1x} alt="Logo" />
+      </picture>
+    </NavLink>
   );
 };
 

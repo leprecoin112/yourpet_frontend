@@ -1,19 +1,24 @@
-import Section from './../components/Section/Section';
-import Container from './../components/Container/Container';
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import Section from "./../components/Section/Section";
+import Container from "./../components/Container/Container";
+import { Suspense, Fragment } from "react";
+import { Routes } from "react-router-dom";
+import Header from "../components/Header/Header";
 
-const SharedLayout = () => {
+const SharedLayout = ({ children }) => {
   return (
-    <>
+    <Fragment>
       <header>
-        <p>Header</p>
+        <Section>
+          <Container>
+            <Header />
+          </Container>
+        </Section>
       </header>
       <main>
         <Section>
           <Container>
             <Suspense fallback={<p>Loading...</p>}>
-              <Outlet />
+              <Routes>{children}</Routes>
             </Suspense>
           </Container>
         </Section>
@@ -21,7 +26,7 @@ const SharedLayout = () => {
       <footer>
         <p>Footer</p>
       </footer>
-    </>
+    </Fragment>
   );
 };
 
