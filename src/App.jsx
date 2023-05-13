@@ -5,13 +5,19 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route path="/register" element={<RegisterPage />} />
-         <Route path="/main" element={<Main />} />
-         <Route path="/news" element={<NewsPage />} />
-         <Route path="/notices" element={<NoticesPage />} />
-         <Route path="/friends" element={<OurFriendsPage />} />
-      </Route>
+      <Route 
+        path="*"
+        element={
+          <SharedLayout>
+            <Route path="/main" element={<Main />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/notices" element={<NoticesPage />} />
+            <Route path="/friends" element={<OurFriendsPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+             {/* <Route path="*" element={<NotFound />} /> */}
+          </SharedLayout>
+        }
+      />
     </Routes>
   );
 }
