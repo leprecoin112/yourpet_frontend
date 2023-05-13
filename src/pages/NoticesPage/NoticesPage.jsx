@@ -6,4 +6,4 @@ const NoticesPage = () => {
   )
 }
 
-export default NoticesPage
+export default NoticesPage;
