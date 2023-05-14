@@ -1,15 +1,17 @@
+import { Routes, Route } from 'react-router-dom';
 import SharedLayout from './shared/SharedLayout/SharedLayout';
 import RegisterPage from './pages/RegisterPage';
 import MainPage from './pages/Main/MainPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
 import NoticesPage from './pages/NoticesPage/NoticesPage';
-import { Routes, Route } from 'react-router-dom';
+import { PrivateRoute } from './router/PrivateRoute';
+import { RestrictedRoute } from './router/RestrictedRoute';
 
 function App() {
   return (
     <Routes>
-      <Route 
+      <Route
         path="*"
         element={
           <SharedLayout>
@@ -18,7 +20,7 @@ function App() {
             <Route path="/notices" element={<NoticesPage />} />
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route path="/register" element={<RegisterPage />} />
-             {/* <Route path="*" element={<NotFound />} /> */}
+            {/* <Route path="*" element={<NotFound />} /> */}
           </SharedLayout>
         }
       />
