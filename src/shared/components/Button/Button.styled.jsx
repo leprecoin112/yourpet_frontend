@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Btn = styled.button`
   /* ================base==================== */
@@ -14,6 +14,7 @@ export const Btn = styled.button`
   cursor: pointer;
   font-family: ${({ theme }) => theme.fonts.main.regular};
   transition: ${({ theme }) => theme.transition.main};
+  duratin: ${({ theme }) => theme.duration.main};
 
   /* ================add==================== */
 
@@ -24,7 +25,7 @@ export const Btn = styled.button`
     background: ${({ theme }) => theme.colors.blue};
     box-shadow: ${({ theme }) => theme.boxShadows.main};
     &::after {
-      content: "Add pet";
+      content: 'Add pet';
       position: absolute;
       font-size: 12px;
       top: 48px;
@@ -32,6 +33,7 @@ export const Btn = styled.button`
     }
     &:hover {
       transition: ${({ theme }) => theme.transition.main};
+      duratin: ${({ theme }) => theme.duration.main};
       background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -54,13 +56,14 @@ export const Btn = styled.button`
     background: ${({ theme }) => theme.colors.white};
     border: 2px solid ${({ theme }) => theme.colors.blue};
     &::after {
-      content: "Learn more";
+      content: 'Learn more';
       position: absolute;
       font-size: 16px;
       color: ${({ theme }) => theme.colors.blue};
     }
     &:hover {
       transition: ${({ theme }) => theme.transition.main};
+      duratin: ${({ theme }) => theme.duration.main};
       background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
       border: none;
       &::after {
@@ -71,7 +74,7 @@ export const Btn = styled.button`
       background: ${({ theme }) => theme.colors.blue};
       border: none;
       &::after {
-        content: "Learn more";
+        content: 'Learn more';
         position: absolute;
         font-size: 16px;
         left: 60px;
@@ -79,6 +82,7 @@ export const Btn = styled.button`
       }
       &:hover {
         transition: ${({ theme }) => theme.transition.main};
+        duratin: ${({ theme }) => theme.duration.main};
         background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
       }
     }
@@ -93,6 +97,7 @@ export const Btn = styled.button`
     background: ${({ theme }) => theme.colors.lightBlue};
     &:hover {
       transition: ${({ theme }) => theme.transition.main};
+      duratin: ${({ theme }) => theme.duration.main};
       background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -101,7 +106,7 @@ export const Btn = styled.button`
       background: ${({ theme }) => theme.colors.white};
       border: 2px solid ${({ theme }) => theme.colors.blue};
       &::after {
-        content: "Filter";
+        content: 'Filter';
         position: absolute;
         font-size: 16px;
         left: 38px;
@@ -121,6 +126,7 @@ export const Btn = styled.button`
       }
       &:hover {
         transition: ${({ theme }) => theme.transition.main};
+        duratin: ${({ theme }) => theme.duration.main};
         background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
       }
     }
