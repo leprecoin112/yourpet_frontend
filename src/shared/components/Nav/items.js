@@ -9,12 +9,12 @@ const items = [
      {
         id: nanoid(),
         to: "/notices",
-        text: "Notices"
+        text: "Find pet"
     },
       {
         id: nanoid(),
         to: "/friends",
-        text: "Friends"
+        text: "Our friends"
     }
 ]
 

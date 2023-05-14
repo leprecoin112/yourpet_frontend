@@ -16,3 +16,5 @@ export const NavigationWrapper = styled.div`
   flex: 1 1 auto;
   margin-left: 150px;
 `;
+
+export const AuthNavWrapper = styled.div``;
