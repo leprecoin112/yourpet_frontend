@@ -7,6 +7,6 @@ import { useAuth } from '../shared/hooks/useAuth';
  */
 
 export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = false;
   return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
 };

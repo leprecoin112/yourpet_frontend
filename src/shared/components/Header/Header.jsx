@@ -1,21 +1,24 @@
 import React from 'react';
 import Logo from '../Logo/Logo';
-import Navigation from '../Navigation/Navigation';
-import AuthNav from '../AuthNav/AuthNav';
-import { Box, LogoWrapper, NavigationWrapper, AuthnavWrapper } from './Header.styled';
+import { AuthNav, Nav, UserNav } from '../Nav';
+import {
+  Box,
+  LogoWrapper,
+  NavigationWrapper,
+  AuthNavWrapper,
+} from './Header.styled';
 
 const Header = () => {
+  const isLogin = false;
   return (
     <Box>
       <LogoWrapper>
         <Logo />
       </LogoWrapper>
       <NavigationWrapper>
-        <Navigation />
+        <Nav />
       </NavigationWrapper>
-      <AuthnavWrapper>
-        <AuthNav />
-      </AuthnavWrapper>
+      <AuthNavWrapper>{isLogin ? <UserNav /> : <AuthNav />}</AuthNavWrapper>
     </Box>
   );
 };

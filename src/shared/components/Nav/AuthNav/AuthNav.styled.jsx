@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const BaseButton = styled.button`
+const BaseLink = styled(Link)`
   padding: 8px ${({ theme }) => theme.space[2] * 5 + 'px'};
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.yellow};
@@ -40,7 +41,7 @@ const BaseButton = styled.button`
   }
 `;
 
-const PrimaryButton = styled(BaseButton)`
+const LoginButton = styled(BaseLink)`
   padding: 8px ${({ theme }) => theme.space[3] * 5 + 'px'};
   color: #fef9f9;
   background-color: ${({ theme }) => theme.colors.yellow};
@@ -50,7 +51,7 @@ const PrimaryButton = styled(BaseButton)`
   gap: 8px;
 `;
 
-const SecondaryButton = styled(BaseButton)`
+const RegisterButton = styled(BaseLink)`
   padding: 8px ${({ theme }) => theme.space[2] * 7.87 + 'px'};
   color: ${({ theme }) => theme.colors.yellow};
   background-color: inherit;
@@ -60,4 +61,4 @@ const SecondaryButton = styled(BaseButton)`
   }
 `;
 
-export { Wrapper, BaseButton, PrimaryButton, SecondaryButton };
+export { Wrapper, BaseLink, LoginButton, RegisterButton };
