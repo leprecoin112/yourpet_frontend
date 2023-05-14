@@ -8,8 +8,8 @@ import bgDesk2x from '../../shared/images/mainPage/pets-desk-2x-min.png';
 
 const PageContainer = styled.div`
   padding-top: 60px;
-  min-width: 320px;
-  height: 600px;
+  width: 100vw;
+  height: 100vh;
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: contain;
@@ -21,9 +21,6 @@ const PageContainer = styled.div`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     background-image: url(${bgTab});
-    min-width: 480px;
-    height: 900px;
-    background-position: right 100px;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -33,15 +30,15 @@ const PageContainer = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-top: 80px;
     min-width: 678px;
-    height: 1100px;
-    background-position: right 200px;
+    background-position: -40px 200px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     padding-top: 188px;
     min-width: 1280px;
     background-image: url(${bgDesk});
-    background-position: right bottom;
-    opacity: 0.7;
+    background-position: 363px bottom;
+    background-color: rgba(255, 255, 255, 0.3);
+    background-blend-mode: overlay;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -62,7 +59,7 @@ const PageTitle = styled.h1`
     margin-left: 32px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-family: ${({ theme }) => theme.fonts.main.extrabold};
+    font-family: ${({ theme }) => theme.fonts.main.extraBold};
     font-size: 68px;
     font-weight: 800;
     line-height: 130%;
