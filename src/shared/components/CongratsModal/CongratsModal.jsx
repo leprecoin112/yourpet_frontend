@@ -42,7 +42,7 @@ const CongratsModal = ({ onClose }) => {
         <IconClose onClick={onClose}><IconCrossBig color={"#54ADFF"}/></IconClose>
         <ModalTitle>Congrats!</ModalTitle>
         <ModalText>Yours registration is success</ModalText>
-        <ModalBtn>Go to profile <IconPaw color={"#FEF9F9"}/></ModalBtn>
+        <ModalBtn onClick={onClose}>Go to profile <IconPaw color={"#FEF9F9"}/></ModalBtn>
       </ModalContainer>
     </Overlay>, modalRoot)
 };
