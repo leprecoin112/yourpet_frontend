@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
-//import EllipsisText from 'react-ellipsis-text';
-import { format } from 'date-fns';
 import { useState, useEffect } from 'react';
+import { formatDate } from '../../shared/utils/dateUtils';
+import DecorativeLine from '../../shared/components/DecorativeLine/DecorativeLine';
 import {
     Item,
-    Line,
     Poster,
     NewsBody,
     NewsTitle,
@@ -24,12 +23,11 @@ export default function NewsItem({ title, url, date, imgUrl, text }) {
             .addEventListener('change', e => setMatches(e.matches));
     }, []);
 
-    const formatDate = format(new Date(date), 'dd/MM/yyyy');
-    const zeroDate = formatDate === '01/01/1970' ? '' : formatDate;
+    const formattedDate = formatDate(date);
 
     return (
         <Item>
-            <Line />
+            <DecorativeLine />
             <Poster src={imgUrl} width="100" alt={title} />
 
             <TextContent>
@@ -41,7 +39,7 @@ export default function NewsItem({ title, url, date, imgUrl, text }) {
                 <NewsBody text={text} length={230} />
 
                 <BottomInfoWrapper>
-                    <NewsDate>{zeroDate}</NewsDate>
+                    <NewsDate>{formattedDate}</NewsDate>
                     <NewsLink href={url} target="_blank" rel="noreferrer">
                         Read more
                     </NewsLink>

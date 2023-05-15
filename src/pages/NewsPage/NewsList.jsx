@@ -1,15 +1,14 @@
+import PropTypes from 'prop-types';
 import NewsItem from './NewsItem';
 import { List } from './NewsList.styled';
-import { nanoid } from 'nanoid';
 
 export default function NewsList({ data }) {
-
     return (
         <>
             <List>
-                {data?.map(({ title, url, date, imgUrl, text }) => (
+                {data?.map(({ title, url, date, imgUrl, text, id }) => (
                     <NewsItem
-                        key={nanoid()}
+                        key={id}
                         title={title}
                         url={url}
                         text={text}
@@ -21,3 +20,16 @@ export default function NewsList({ data }) {
         </>
     );
 }
+
+NewsList.propTypes = {
+    data: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired,
+            text: PropTypes.string.isRequired,
+            date: PropTypes.string.isRequired,
+            imgUrl: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+};

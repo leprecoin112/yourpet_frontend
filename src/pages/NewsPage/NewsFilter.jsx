@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { SearchComponent, SearchInput } from './NewsFilter.styled';
-import IconSearch from '../../shared/components/Icons/IconSearch';
+import CustomSearchComponent from '../../shared/components/SearchComponent/SearchComponent';
 
 export default function NewsFilter({
     input,
@@ -9,21 +8,12 @@ export default function NewsFilter({
     inputValue,
 }) {
     return (
-        <SearchComponent>
-            <SearchInput
-                type="text"
-                placeholder="Search"
-                name="filter"
-                onInput={onChange}
-                value={input}
-            />
-            {inputValue && (
-                <div onClick={() => resetInput()}>
-                    <IconSearch />
-                </div>
-            )}
-            {!inputValue && <IconSearch />}
-        </SearchComponent>
+        <CustomSearchComponent
+            input={input}
+            onChange={onChange}
+            resetInput={resetInput}
+            inputValue={inputValue}
+        />
     );
 }
 
@@ -31,3 +21,11 @@ NewsFilter.propTypes = {
     input: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
 };
+
+
+
+
+
+
+
+

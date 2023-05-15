@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 
 export const Item = styled.li`
@@ -75,7 +75,7 @@ export const TextContent = styled.div`
   
 `;
 
-export const NewsTitle = styled.p`
+export const NewsTitle = styled.div`
   margin-bottom: 15px;
   display: block;
   font-size: 24px;
@@ -85,7 +85,7 @@ export const NewsTitle = styled.p`
   flex-grow: 2;
 `;
 
-export const NewsBody = styled.p`
+export const NewsBody = styled.div`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.375;
