@@ -13,8 +13,11 @@ export const Btn = styled.button`
   border-radius: 40px;
   cursor: pointer;
   font-family: ${({ theme }) => theme.fonts.main.regular};
-  transition: ${({ theme }) => theme.transition.main};
-  duratin: ${({ theme }) => theme.duration.main};
+  &:hover {
+    transition: all ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    background: ${({ theme }) => theme.colors.gradientBlue};
+  }
 
   /* ================add==================== */
 
@@ -32,9 +35,7 @@ export const Btn = styled.button`
       color: ${({ theme }) => theme.colors.white};
     }
     &:hover {
-      transition: ${({ theme }) => theme.transition.main};
-      duratin: ${({ theme }) => theme.duration.main};
-      background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+      background: ${({ theme }) => theme.colors.gradientBlue};
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
       width: 129px;
@@ -62,15 +63,13 @@ export const Btn = styled.button`
       color: ${({ theme }) => theme.colors.blue};
     }
     &:hover {
-      transition: ${({ theme }) => theme.transition.main};
-      duratin: ${({ theme }) => theme.duration.main};
-      background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+      background: ${({ theme }) => theme.colors.gradientBlue};
       border: none;
       &::after {
         color: ${({ theme }) => theme.colors.white};
       }
     }
-    &.like {
+    &.blue {
       background: ${({ theme }) => theme.colors.blue};
       border: none;
       &::after {
@@ -81,9 +80,7 @@ export const Btn = styled.button`
         color: ${({ theme }) => theme.colors.white};
       }
       &:hover {
-        transition: ${({ theme }) => theme.transition.main};
-        duratin: ${({ theme }) => theme.duration.main};
-        background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+        background: ${({ theme }) => theme.colors.gradientBlue};
       }
     }
   }
@@ -96,9 +93,7 @@ export const Btn = styled.button`
     position: relative;
     background: ${({ theme }) => theme.colors.lightBlue};
     &:hover {
-      transition: ${({ theme }) => theme.transition.main};
-      duratin: ${({ theme }) => theme.duration.main};
-      background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+      background: ${({ theme }) => theme.colors.gradientBlue};
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
       width: 152px;
@@ -113,7 +108,7 @@ export const Btn = styled.button`
         color: ${({ theme }) => theme.colors.blue};
       }
       &:hover {
-        border: none;
+        border: ${({ theme }) => theme.colors.white};
         &::after {
           color: ${({ theme }) => theme.colors.white};
         }
@@ -125,10 +120,20 @@ export const Btn = styled.button`
         color: ${({ theme }) => theme.colors.white};
       }
       &:hover {
-        transition: ${({ theme }) => theme.transition.main};
-        duratin: ${({ theme }) => theme.duration.main};
-        background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+        border: ${({ theme }) => theme.colors.blue};
+        background: ${({ theme }) => theme.colors.gradientBlue};
       }
+    }
+  }
+
+  /* ================Like==================== */
+  &.like {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background: ${({ theme }) => theme.colors.lightBlue};
+    &:hover {
+      background: ${({ theme }) => theme.colors.gradientBlue};
     }
   }
 `;
