@@ -1,4 +1,3 @@
-import { ErrorMessage } from 'formik';
 import { FormInput, Error, InputWrapper } from './FormInput.styled';
 
 const Input = ({ type, name, placeholder, ...rest }) => {
