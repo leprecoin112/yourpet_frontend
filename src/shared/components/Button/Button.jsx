@@ -3,16 +3,15 @@ import { Btn } from '../Button/Button.styled';
 const Button = ({
   title,
   styled,
-  type,
+  type = "button",
   margin,
-  onSubmit,
   onClick,
   children,
 }) => {
   return (
     <Btn
       className={styled}
-      onSubmit={onSubmit}
+      onClick={onClick}
       type={type}
       style={{ margin: margin }}
     >
