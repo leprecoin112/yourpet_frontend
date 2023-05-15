@@ -1,20 +1,22 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Box = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-betwwen;
-margin-top: 20px;
-
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
 `;
+
 export const LogoWrapper = styled.div`
- flex: 0 0 auto;
+  flex: 0 0 auto;
 `;
 
-export const NavigationWrapper = styled.div`
-  flex: 1 1 auto;
-  margin-left: 150px;
+export const IconWrapper = styled.div`
+  stroke: ${({ theme }) => theme.colors.yellow};
+  cursor: pointer;
+  
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: none;    
+  }
 `;
-
-export const AuthNavWrapper = styled.div``;

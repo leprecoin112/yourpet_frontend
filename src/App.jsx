@@ -5,8 +5,6 @@ import MainPage from './pages/Main/MainPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
 import NoticesPage from './pages/NoticesPage/NoticesPage';
-import { PrivateRoute } from './router/PrivateRoute';
-import { RestrictedRoute } from './router/RestrictedRoute';
 
 function App() {
   return (
