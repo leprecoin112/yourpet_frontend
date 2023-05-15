@@ -5,6 +5,7 @@ import MainPage from './pages/Main/MainPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
 import NoticesPage from './pages/NoticesPage/NoticesPage';
+import UserPage from './pages/UserPage/UserPage';
 import { PrivateRoute } from './router/PrivateRoute';
 import { RestrictedRoute } from './router/RestrictedRoute';
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/notices" element={<NoticesPage />} />
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path='/user' element={<UserPage/>} />
             {/* <Route path="*" element={<NotFound />} /> */}
           </SharedLayout>
         }
