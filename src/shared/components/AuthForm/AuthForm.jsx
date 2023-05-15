@@ -1,14 +1,16 @@
-import { Formik } from 'formik';
+import { Formik, getIn } from 'formik';
 import * as yup from 'yup';
 //import { useDispatch, useSelector } from 'react-';
 //import { NavLink, useLocation } from 'react-router-dom';
+import Input from '../FormInput';
+import Error from '../FormError';
 import { FormContainer, FormInput, Btn, InputWrapper } from './AuthForm.styled';
 const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Required'),
   password: yup
     .string()
-    .min(6, 'password must contain at least 6  characters')
-    .max(16, 'password can not contain more then 16 characters')
+    .min(6, 'Password requires min 6  characters')
+    .max(16, 'Password requires max 16 characters')
     .matches(/[0-9]/, 'Password requires a number')
     .matches(/[a-z]/, 'Password requires a lowercase letter')
     .matches(/[A-Z]/, 'Password requires an uppercase letter')
@@ -18,6 +20,17 @@ const schema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Must match "password" field value')
     .required('Required'),
 });
+function getStyles(touched, error) {
+  if (touched && !error) {
+    return {
+      border: '2px solid #00C3AD',
+    };
+  } else if (touched && error) {
+    return {
+      border: '2px solid #F43F5E',
+    };
+  }
+}
 
 export default function RegisterForm() {
   //   const dispatch = useDispatch();
@@ -34,18 +47,48 @@ export default function RegisterForm() {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      <FormContainer>
-        <InputWrapper>
-          <FormInput type="email" name="email" placeholder="Email" />
+      {props => (
+        <FormContainer>
+          <InputWrapper>
+            <Input
+              style={getStyles(
+                props.getFieldMeta('email').touched,
+                props.getFieldMeta('email').error
+              )}
+              type="email"
+              name="email"
+              placeholder="Email"
+            />
+
+            <Input
+              style={getStyles(
+                props.getFieldMeta('password').touched,
+                props.getFieldMeta('password').error
+              )}
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+            <Input
+              style={getStyles(
+                props.getFieldMeta('confirm').touched,
+                props.getFieldMeta('confirm').error
+              )}
+              type="password"
+              name="confirm"
+              placeholder="Confirm Password"
+            />
+            {/* <FormInput type="email" name="email" placeholder="Email" />
           <FormInput type="password" name="password" placeholder="Password" />
           <FormInput
             type="password"
             name="confirm"
             placeholder="Confirm Password"
-          />
-        </InputWrapper>
-        <Btn type="submit">Registration</Btn>
-      </FormContainer>
+          /> */}
+          </InputWrapper>
+          <Btn type="submit">Registration</Btn>
+        </FormContainer>
+      )}
     </Formik>
   );
 }
