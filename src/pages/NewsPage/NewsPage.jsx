@@ -19,10 +19,6 @@ const NewsPage = () => {
 
   const [filter, setFilter] = useState('');
 
-  const handleChange = event => {
-    setFilter(event.target.value);
-  };
-
   const filterNews = () => {
     if (!filter) {
       return data;
