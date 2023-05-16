@@ -1,29 +1,37 @@
 import { AuthNav, Nav, UserNav } from '../';
 import Logo from '../../Logo';
 import {
-  Box,
+  MobileWrapper,
+  LogoWrapper,
+  MobileIconWrapper,
+  MainWrapper,
   NavigationWrapper,
   AuthNavWrapper,
-  IconWpapper,
+  SecondWrapper,
 } from '../../Nav/MobileMenu/MobileMenu.styled';
+
 import { IconCrossSmall } from '../../Icons';
 
 const MobileMenu = ({ onClick }) => {
   const isLoggedIn = false;
 
   return (
-    <Box>
+    <MobileWrapper>
+      <MainWrapper>
+      <LogoWrapper>
         <Logo />
-        <IconWpapper onClick={() => onClick()}>
-          <IconCrossSmall />
-        </IconWpapper>
-        <NavigationWrapper>
-          <Nav />
-        </NavigationWrapper>
-        <AuthNavWrapper>
-          {isLoggedIn ? <UserNav /> : <AuthNav />}
-        </AuthNavWrapper>
-    </Box>
+      </LogoWrapper>
+      <MobileIconWrapper onClick={() => onClick()}>
+        <IconCrossSmall />
+      </MobileIconWrapper>
+      </MainWrapper>
+      <SecondWrapper>
+      <NavigationWrapper>
+        <Nav />
+      </NavigationWrapper>
+      <AuthNavWrapper>{isLoggedIn ? <UserNav /> : <AuthNav />}</AuthNavWrapper>
+      </SecondWrapper>
+    </MobileWrapper>
   );
 };
 
