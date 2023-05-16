@@ -1,26 +1,24 @@
-import PropTypes from 'prop-types';
-import CustomSearchComponent from '../../shared/components/SearchComponent/SearchComponent';
+// import PropTypes from 'prop-types';
+// import NoticesSearch from '../../shared/components/SearchComponent/NoticesSearch';
 
-export default function NewsFilter({
-    input,
-    onChange,
-    resetInput,
-    inputValue,
-}) {
-    return (
-        <CustomSearchComponent
-            input={input}
-            onChange={onChange}
-            resetInput={resetInput}
-            inputValue={inputValue}
-        />
-    );
-}
+// const NewsFilter = ({ input, onChange, resetInput }) => {
+//     return (
+//         <NoticesSearch
+//             onFormSubmit={onChange}
+//             input={input}
+//             onChange={onChange}
+//             resetInput={resetInput}
+//         />
+//     );
+// };
 
-NewsFilter.propTypes = {
-    input: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-};
+// NewsFilter.propTypes = {
+//     input: PropTypes.string.isRequired,
+//     onChange: PropTypes.func.isRequired,
+//     resetInput: PropTypes.func.isRequired,
+// };
+
+// export default NewsFilter;
 
 
 

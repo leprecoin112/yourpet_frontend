@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import NoticesSearch from '../../shared/components/SearchComponent/NoticesSearch';
 import NewsList from './NewsList';
-import NewsFilter from './NewsFilter';
 import Container from '../../shared/components/Container/Container';
 import { Title } from './NewsPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,23 +18,10 @@ const NewsPage = () => {
   }, [dispatch]);
 
   const [filter, setFilter] = useState('');
-  const [inputValue, setInputValue] = useState(false);
 
   const handleChange = event => {
-    setFilter(event.currentTarget.value);
+    setFilter(event.target.value);
   };
-
-  useEffect(() => {
-    setFilter('');
-    setFilter(filter => {
-      if (filter.length > 0) {
-        setInputValue(true);
-      } else {
-        setInputValue(false);
-      }
-      return filter;
-    });
-  }, [filter]);
 
   const filterNews = () => {
     if (!filter) {
@@ -47,21 +33,22 @@ const NewsPage = () => {
     });
 
     if (filteredList.length === 0) {
+      toast.dismiss();
       toast.warning('Write a correct request');
     }
     return filteredList;
   };
 
+  const handleSubmit = query => {
+    setFilter(query);
+  };
+
   return (
     <Container>
       <Title>News</Title>
-      <NewsFilter
-        input={filter}
-        onChange={handleChange}
-        resetInput={() => setFilter('')}
-        inputValue={inputValue}
-      />
+      <NoticesSearch onFormSubmit={handleSubmit} />
       <NewsList data={filterNews()} />
+      <ToastContainer />
     </Container>
   );
 };
