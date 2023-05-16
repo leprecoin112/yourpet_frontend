@@ -14,7 +14,7 @@ const RegisterPage = () => {
         <FormTitle>Login</FormTitle>
         <AuthForm isLogin />
         <RedirectLink>
-          Don't have an account?
+          Don't have an account?&nbsp;
           <Link to="/register">Register</Link>
         </RedirectLink>
       </FormWrapper>
