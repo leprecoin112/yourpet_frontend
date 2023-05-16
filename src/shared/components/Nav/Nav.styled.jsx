@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const Li = styled.li`
   list-style: none;
 `;
+
 export const Link = styled(NavLink)`
   color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
