@@ -1,7 +1,7 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+//import { useDispatch, useSelector } from 'react-';
+//import { NavLink, useLocation } from 'react-router-dom';
 import { FormContainer, FormInput, Btn, InputWrapper } from './AuthForm.styled';
 const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Required'),

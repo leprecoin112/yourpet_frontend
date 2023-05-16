@@ -1,3 +1,4 @@
+
 export const selectAuth = state => {
     const { isLoggedIn, token } = state.auth;
     return { isLoggedIn, token };
