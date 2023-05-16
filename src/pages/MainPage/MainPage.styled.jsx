@@ -7,10 +7,13 @@ import desk from '../../shared/images/main/desk-min.png';
 import desk2x from '../../shared/images/main/desk2x-min.png';
 
 const PageContainer = styled.div`
+  min-width: 320px;
+  height: 553px;
+  padding-top: 60px;
   position: relative;
-  background-position: right bottom;
+  background-position: -80px 110px;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 320px;
   background-image: url(${mob});
   @media screen and (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
