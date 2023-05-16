@@ -3,7 +3,7 @@ import * as yup from 'yup';
 //import { useDispatch, useSelector } from 'react-';
 //import { NavLink, useLocation } from 'react-router-dom';
 import { FormContainer, FormInput, Btn, InputWrapper } from './AuthForm.styled';
-const schema = yup.object().shape({
+const schemaRegistration = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Required'),
   password: yup
     .string()
@@ -18,9 +18,20 @@ const schema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Must match "password" field value')
     .required('Required'),
 });
-
-export default function RegisterForm() {
+const schemaLogin = yup.object().shape({
+  email: yup.string().email('Please enter a valid email').required('Required'),
+  password: yup
+    .string()
+    .min(6, 'password must contain at least 6  characters')
+    .max(16, 'password can not contain more then 16 characters')
+    .matches(/[0-9]/, 'Password requires a number')
+    .matches(/[a-z]/, 'Password requires a lowercase letter')
+    .matches(/[A-Z]/, 'Password requires an uppercase letter')
+    .required('Required'),
+});
+export default function AuthForm({ isLogin }) {
   //   const dispatch = useDispatch();
+  const authSchema = isLogin ? schemaLogin : schemaRegistration;
   const handleSubmit = () => {
     console.log('submit');
   };
@@ -31,21 +42,25 @@ export default function RegisterForm() {
         password: '',
         confirm: '',
       }}
-      validationSchema={schema}
+      validationSchema={authSchema}
       onSubmit={handleSubmit}
     >
-      <FormContainer>
-        <InputWrapper>
-          <FormInput type="email" name="email" placeholder="Email" />
-          <FormInput type="password" name="password" placeholder="Password" />
-          <FormInput
-            type="password"
-            name="confirm"
-            placeholder="Confirm Password"
-          />
-        </InputWrapper>
-        <Btn type="submit">Registration</Btn>
-      </FormContainer>
+      {props => (
+        <FormContainer>
+          <InputWrapper>
+            <FormInput type="email" name="email" placeholder="Email" />
+            <FormInput type="password" name="password" placeholder="Password" />
+            {!isLogin && (
+              <FormInput
+                type="password"
+                name="confirm"
+                placeholder="Confirm Password"
+              />
+            )}
+          </InputWrapper>
+          <Btn type="submit">{isLogin ? 'Login' : 'Registration'}</Btn>
+        </FormContainer>
+      )}
     </Formik>
   );
 }

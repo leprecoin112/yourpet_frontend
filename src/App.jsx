@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import SharedLayout from './shared/SharedLayout/SharedLayout';
 import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 import MainPage from './pages/Main/MainPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
@@ -20,6 +21,7 @@ function App() {
             <Route path="/notices" element={<NoticesPage />} />
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
             {/* <Route path="*" element={<NotFound />} /> */}
           </SharedLayout>
         }
