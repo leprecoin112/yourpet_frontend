@@ -35,6 +35,7 @@ const lightTheme = {
   },
   transition: { main: 'cubic-bezier(0.4, 0, 0.2, 1)' },
   duration: { main: '250ms' },
+  bg: { main: '#FEF9F9' },
 };
 
 export default lightTheme;
