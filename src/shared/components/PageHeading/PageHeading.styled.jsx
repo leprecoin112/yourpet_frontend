@@ -5,11 +5,11 @@ export const Heading = styled.h1`
     font-family: ${({ theme }) => theme.fonts.main.bold};
     font-weight: 700;
     font-size: ${({ theme }) => theme.fontSizes[4]};
-    line-height: ${({ theme }) => (Number(theme.fontSizes[4].slice(0, 2)) / 33).toFixed(1)};  
+    line-height: ${({ theme }) => (33 / Number(theme.fontSizes[4].slice(0, 2))).toFixed(1)};  
     color: ${({ theme }) => theme.colors.black};
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
         font-size: ${({ theme }) => theme.fontSizes[6]};
-        line-height: ${({ theme }) => (Number(theme.fontSizes[6].slice(0, 2)) / 66).toFixed(1)}; 
+        line-height: ${({ theme }) => (66 / Number(theme.fontSizes[6].slice(0, 2))).toFixed(1)}; 
     }
 `
