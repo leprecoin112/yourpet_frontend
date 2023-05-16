@@ -7,6 +7,8 @@ import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
 import NoticesPage from './pages/NoticesPage/NoticesPage';
 import { PrivateRoute } from './router/PrivateRoute';
 import { RestrictedRoute } from './router/RestrictedRoute';
+import UserPage from './pages/UserPage/UserPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
   return (
@@ -20,7 +22,8 @@ function App() {
             <Route path="/notices" element={<NoticesPage />} />
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/user" element={<UserPage/>} />
           </SharedLayout>
         }
       />

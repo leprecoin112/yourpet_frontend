@@ -6,13 +6,19 @@ import { ThemeProvider } from '@emotion/react';
 import lightTheme from './shared/styled/theme/lightTheme';
 import './shared/styled/styles.css';
 
+import { Provider } from 'react-redux';
+import store from './shared/redux/store';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={lightTheme}>
+      <Provider store={store}>
         <BrowserRouter basename="/">
           <App />
         </BrowserRouter>
-      </ThemeProvider>
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>
 );

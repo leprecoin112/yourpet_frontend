@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { isUserLogin } from '../../redux/auth/auth-selectors';
 import Logo from '../Logo/Logo';
 import { AuthNav, Nav, UserNav } from '../Nav';
 import {
@@ -9,7 +11,8 @@ import {
 } from './Header.styled';
 
 const Header = () => {
-  const isLogin = false;
+
+  const isLogin = useSelector(isUserLogin);
   return (
     <Box>
       <LogoWrapper>

@@ -1,3 +1,15 @@
+import { useSelector } from "react-redux";
+
+import { isUserLogin } from "../redux/auth/auth-selectors";
+
+const useAuth = () => {
+    const result = useSelector(isUserLogin);
+    return result;
+}
+
+export default useAuth;
+
+
 // Provides the status of authentication
 
 // import { useSelector } from 'react-redux';

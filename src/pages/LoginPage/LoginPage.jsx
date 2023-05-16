@@ -1,4 +1,4 @@
-import AuthForm from '../../shared/components/AuthForm';
+import LoginForm from '../../shared/components/LoginForm/LoginForm';
 import { useSelector } from 'react-redux';
 import { isUserLogin } from '../../shared/redux/auth/auth-selectors';
 import { Navigate } from 'react-router-dom';
@@ -8,9 +8,9 @@ import {
   RedirectLink,
   Link,
   PageContainer,
-} from './RegisterPage.styled';
+} from './LoginPage.styled';
 
-const RegisterPage = () => {
+const LoginPage = () => {
   const isLogin = useSelector(isUserLogin);
   if (isLogin) {
     return <Navigate to="/user"/>
@@ -18,15 +18,15 @@ const RegisterPage = () => {
   return (
     <PageContainer>
       <FormWrapper>
-        <FormTitle>Registration</FormTitle>
-        <AuthForm />
+        <FormTitle>Logion</FormTitle>
+        <LoginForm />
         <RedirectLink>
           Already have an account?
-          <Link to="/login">Login</Link>
+          <Link to="/register">Registration</Link>
         </RedirectLink>
       </FormWrapper>
     </PageContainer>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

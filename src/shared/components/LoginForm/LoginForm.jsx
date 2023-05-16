@@ -1,9 +1,9 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/auth/auth-operations';
+import { login } from '../../redux/auth/auth-operations';
 //import { NavLink, useLocation } from 'react-router-dom';
-import { FormContainer, FormInput, Btn, InputWrapper } from './AuthForm.styled';
+import { FormContainer, FormInput, Btn, InputWrapper } from './LoginForm.styled';
 const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Required'),
   password: yup
@@ -14,38 +14,33 @@ const schema = yup.object().shape({
     .matches(/[a-z]/, 'Password requires a lowercase letter')
     .matches(/[A-Z]/, 'Password requires an uppercase letter')
     .required('Required'),
-  confirm: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Must match "password" field value')
-    .required('Required'),
 });
 
-export default function RegisterForm() {
-    const dispatch = useDispatch();
+export default function LoginForm() {
+  const dispatch = useDispatch();
   const handleSubmit = (data) => {
-    dispatch(register(data))
+    dispatch(login(data));
   };
   return (
     <Formik
       initialValues={{
         email: '',
         password: '',
-        confirm: '',
       }}
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
       <FormContainer>
         <InputWrapper>
-          <FormInput type="email" name="email" placeholder="Email" required/>
-          <FormInput type="password" name="password" placeholder="Password" required />
+          <FormInput type="email" name="email" placeholder="Email" required />
           <FormInput
             type="password"
-            name="confirm"
-            placeholder="Confirm Password"
+            name="password"
+            placeholder="Password"
+            required
           />
         </InputWrapper>
-        <Btn type="submit">Registration</Btn>
+        <Btn type="submit">Login</Btn>
       </FormContainer>
     </Formik>
   );
