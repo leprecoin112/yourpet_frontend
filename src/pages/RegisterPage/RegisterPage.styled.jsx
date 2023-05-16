@@ -5,7 +5,7 @@ const PageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 44px;
+  padding-top: 40px;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-top: 80px;
   }

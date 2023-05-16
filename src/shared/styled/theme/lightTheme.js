@@ -31,6 +31,7 @@ const lightTheme = {
   boxShadows: {
     main: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     secondary: '7px 13px 14px rgba(116, 177, 232, 0.24)',
+    filter: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   },
   transition: { main: 'cubic-bezier(0.4, 0, 0.2, 1)' },
   duration: { main: '250ms' },
