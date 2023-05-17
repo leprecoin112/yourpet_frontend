@@ -13,6 +13,13 @@ const PageContainer = styled.div`
   align-items: center;
   min-width: 320px;
   padding-top: 60px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding-top: 80px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding-top: 30px;
+    flex-direction: row;
+  }
 
   &::after {
     content: '';
@@ -23,6 +30,33 @@ const PageContainer = styled.div`
     background-repeat: no-repeat;
     position: relative;
     top: -20px;
+    left: 40px;
+    @media screen and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${mob2x});
+      background-size: 100%;
+    }
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+      width: 1200px;
+      height: 1150px;
+      top: -100px;
+      left: 120px;
+      background-image: url(${tab});
+      @media screen and (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url(${tab2x});
+        background-size: 100%;
+      }
+    }
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+      width: 917px;
+      height: 680px;
+      top: 0;
+      left: 0;
+      background-image: url(${desk});
+    }
   }
 `;
 
@@ -36,14 +70,13 @@ const PageTitle = styled.h1`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 68px;
     line-height: 147%;
-    margin-left: 32px;
+    width: 588px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     font-family: ${({ theme }) => theme.fonts.main.extraBold};
     font-size: 68px;
     font-weight: 800;
     line-height: 130%;
-    margin-left: 16px;
     width: 501px;
   }
 `;
