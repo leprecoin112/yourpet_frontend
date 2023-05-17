@@ -7,18 +7,22 @@ import desk from '../../shared/images/main/desk-min.png';
 import desk2x from '../../shared/images/main/desk2x-min.png';
 
 const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-width: 320px;
-  height: 553px;
   padding-top: 60px;
-  position: relative;
-  background-position: -80px 110px;
-  background-repeat: no-repeat;
-  background-size: 320px;
-  background-image: url(${mob});
-  @media screen and (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${mob2x});
+
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 474px;
+    height: 450px;
+    background-image: url(${mob});
+    background-repeat: no-repeat;
+    position: relative;
+    top: -20px;
   }
 `;
 
@@ -27,7 +31,7 @@ const PageTitle = styled.h1`
   font-size: 32px;
   font-weight: 700;
   line-height: 138%;
-  margin-left: 20px;
+  width: 280px;
   color: ${({ theme }) => theme.colors.black};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 68px;
