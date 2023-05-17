@@ -9,8 +9,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { store, persistor } from './shared/redux/store';
 
-import InputSearch from './shared/components/InputSearch/InputSearch';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -18,8 +16,7 @@ root.render(
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={lightTheme}>
           <BrowserRouter>
-            <InputSearch />
-            {/* <App /> */}
+            <App />
           </BrowserRouter>
         </ThemeProvider>
       </PersistGate>

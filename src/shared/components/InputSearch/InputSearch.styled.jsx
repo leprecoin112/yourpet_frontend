@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { IconSearch } from '../Icons';
+import { IconSearch, IconCrossBig } from '../Icons';
 
 export const InputContainer = styled.form`
   width: 280px;
@@ -27,24 +27,55 @@ export const InputStyled = styled.input`
     border-radius: 20px;
     font-size: 20px;
     padding: 10px 20px;
+    font-size: 20px;
   }
 `;
 
 export const BtnSearch = styled.button`
   position: absolute;
   padding: 0;
-  top: 10px;
-  right: 12px;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+  margin-top: 10px;
   width: 24px;
   height: 24px;
   background-color: transparent;
   border: none;
   cursor: pointer;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    top: 12px;
+    margin-right: 12px;
   }
 `;
 
 export const Icon = styled(IconSearch)`
   fill: ${({ theme }) => theme.colors.blue};
+  &:hover {
+    transition: all ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    fill: ${({ theme }) => theme.colors.yellow};
+  }
+`;
+
+export const ClearButton = styled.button`
+  position: absolute;
+  padding: 0;
+  top: 0;
+  right: 0;
+  margin-right: 13px;
+  margin-top: 10px;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+export const IconCross = styled(IconCrossBig)`
+  stroke: ${({ theme }) => theme.colors.yellow};
+  &:hover {
+    transition: all ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    stroke: ${({ theme }) => theme.colors.blue};
+  }
 `;

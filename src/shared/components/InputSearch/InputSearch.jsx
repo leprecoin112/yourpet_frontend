@@ -4,29 +4,27 @@ import {
   BtnSearch,
   InputContainer,
   Icon,
+  ClearButton,
+  IconCross,
 } from './InputSearch.styled';
-import ClearInputSearchButton from '../ClearInputSearchButton/ClearInputSearchButton';
 
 const InputSearch = ({ onSubmit, onClick, query }) => {
   return (
     <InputContainer id="searchForm">
-      <InputStyled placeholder="Search" type="text" name="search">
-        {/* {query && (
-          <ClearInputSearchButton
-            onClick={e => onClick(e)}
-            query={query}
-          ></ClearInputSearchButton>
-        )} */}
-      </InputStyled>
-
-      <ClearInputSearchButton
-        onClick={e => onClick(e)}
-        query={query}
-      ></ClearInputSearchButton>
-
-      <BtnSearch title="Search" onClick={e => onSubmit(e)}>
+      <InputStyled placeholder="Search" type="text" name="search" />
+      <BtnSearch id="btnSearch" title="Search" onClick={e => onSubmit(e)}>
         <Icon />
       </BtnSearch>
+      {query && (
+        <ClearButton
+          type="button"
+          title="Clear"
+          onClick={e => onClick(e)}
+          query={query}
+        >
+          <IconCross />
+        </ClearButton>
+      )}
     </InputContainer>
   );
 };
