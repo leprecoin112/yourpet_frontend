@@ -17,8 +17,10 @@ const PageContainer = styled.div`
     padding-top: 80px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding-top: 30px;
-    flex-direction: row;
+    width: 1280px;
+    height: 700px;
+    padding-top: 0;
+    display: block;
   }
 
   &::after {
@@ -51,11 +53,17 @@ const PageContainer = styled.div`
       }
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-      width: 917px;
-      height: 680px;
-      top: 0;
-      left: 0;
+      width: 930px;
+      height: 910px;
+      top: -500px;
+      left: 280px;
       background-image: url(${desk});
+      @media screen and (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url(${desk2x});
+        background-size: 100%;
+      }
     }
   }
 `;
@@ -78,6 +86,7 @@ const PageTitle = styled.h1`
     font-weight: 800;
     line-height: 130%;
     width: 501px;
+    margin-top: 188px;
   }
 `;
 
