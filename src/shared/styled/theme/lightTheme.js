@@ -20,6 +20,7 @@ const lightTheme = {
   colors: {
     yellow: '#FFC107',
     white: '#FFFFFF',
+    light: '#FEF9F9',
     black: '#111111',
     blue: '#54ADFF',
     lightBlue: '#CCE4FB',
