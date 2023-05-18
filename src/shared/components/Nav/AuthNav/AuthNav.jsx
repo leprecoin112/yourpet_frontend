@@ -1,7 +1,7 @@
 import { Wrapper, RegisterButton, LoginButton } from './AuthNav.styled';
 import { IconPaw } from '../../Icons';
 
-const AuthNav = () => {
+const AuthNav = ({ children }) => {
   return (
     <Wrapper>
       <LoginButton to="/login">
@@ -9,6 +9,7 @@ const AuthNav = () => {
         <IconPaw />
       </LoginButton>
       <RegisterButton to="/register">Registration</RegisterButton>
+      {children}
     </Wrapper>
   );
 };

@@ -10,7 +10,7 @@ export const MobileWrapper = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  width: 100%;
+  width: 100wh;
   height: 100%;
   z-index: 10;
   padding-top: 20px;
@@ -31,7 +31,7 @@ export const LogoWrapper = styled.div``;
 export const MobileIconWrapper = styled.div`
   stroke: ${({ theme }) => theme.colors.yellow};
   cursor: pointer;
-  
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     display: none;
   }
@@ -68,8 +68,8 @@ export const AuthNavWrapper = styled.div`
 `;
 
 export const SecondWrapper = styled.div`
-display: flex;
-flex-direction: column-reverse;
-align-items: center;
-margin-top: 41px
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-top: 41px;
 `;

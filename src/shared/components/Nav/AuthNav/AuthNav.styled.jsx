@@ -42,6 +42,7 @@ const BaseLink = styled(Link)`
 const LoginButton = styled(BaseLink)`
   padding: 8px ${({ theme }) => theme.space[3] * 5 + 'px'};
   color: #fef9f9;
+  border: none;
   background-color: ${({ theme }) => theme.colors.yellow};
 
   display: inline-flex;

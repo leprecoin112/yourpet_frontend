@@ -8,9 +8,7 @@ const SharedLayout = ({ children }) => {
   return (
     <Fragment>
       <header>
-        <Container>
-          <Header />
-        </Container>
+        <Header />
       </header>
       <main>
         <Suspense fallback={<p>Loading...</p>}>
