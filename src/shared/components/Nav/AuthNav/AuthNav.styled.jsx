@@ -7,8 +7,6 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 12px;
 
-  padding: 0 ${({ theme }) => theme.space[2] * 5 + 'px'};
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     gap: 20px;
     display: flex;

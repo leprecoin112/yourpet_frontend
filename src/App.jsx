@@ -24,7 +24,7 @@ function App() {
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path='/user' element={<UserPage/>} />
+            <Route path="/user" element={<UserPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </SharedLayout>
         }
