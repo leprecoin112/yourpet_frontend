@@ -1,15 +1,20 @@
 import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
+
 import SharedLayout from './shared/SharedLayout/SharedLayout';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import MainPage from './pages/MainPage';
-import NewsPage from './pages/NewsPage/NewsPage';
-import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
-import NoticesPage from './pages/NoticesPage/NoticesPage';
-import UserPage from './pages/UserPage/UserPage';
-import NotFoundPage from './pages/NotFoundPage';
 import { PrivateRoute } from './router/PrivateRoute';
 import { RestrictedRoute } from './router/RestrictedRoute';
+
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const MainPage = lazy(() => import('./pages/MainPage'));
+const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
+const OurFriendsPage = lazy(() =>
+  import('./pages/OurFriendsPage/OurFriendsPage')
+);
+const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
+const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   return (

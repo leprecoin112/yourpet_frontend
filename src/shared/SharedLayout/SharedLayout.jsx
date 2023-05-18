@@ -1,8 +1,8 @@
-import Section from './../components/Section/Section';
-import Container from './../components/Container/Container';
 import { Suspense, Fragment } from 'react';
 import { Routes } from 'react-router-dom';
 import Header from '../components/Header/Header';
+import Loader from '../components/Loader/Loader';
+import Container from '../components/Container/Container';
 
 const SharedLayout = ({ children }) => {
   return (
@@ -11,7 +11,13 @@ const SharedLayout = ({ children }) => {
         <Header />
       </header>
       <main>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense
+          fallback={
+            <Container>
+              <Loader />
+            </Container>
+          }
+        >
           <Routes>{children}</Routes>
         </Suspense>
       </main>
