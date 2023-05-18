@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const UserNav = () => {
-  return (
-    <div>UserNav</div>
-  )
-}
+const UserNav = ({ children }) => {
+  return <div>{children}</div>;
+};
 
-export default UserNav
+export default UserNav;

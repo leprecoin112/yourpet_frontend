@@ -7,8 +7,6 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 12px;
 
-  padding: 0 ${({ theme }) => theme.space[2] * 5 + 'px'};
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     gap: 20px;
     display: flex;
@@ -44,6 +42,7 @@ const BaseLink = styled(Link)`
 const LoginButton = styled(BaseLink)`
   padding: 8px ${({ theme }) => theme.space[3] * 5 + 'px'};
   color: #fef9f9;
+  border: none;
   background-color: ${({ theme }) => theme.colors.yellow};
 
   display: inline-flex;

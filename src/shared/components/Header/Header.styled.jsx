@@ -1,20 +1,31 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-export const Box = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-betwwen;
-margin-top: 20px;
+export const IconWrapper = styled.div`
+  stroke: ${({ theme }) => theme.colors.yellow};
+  cursor: pointer;
 
-
-`;
-export const LogoWrapper = styled.div`
- flex: 0 0 auto;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: none;
+  }
 `;
 
-export const NavigationWrapper = styled.div`
-  flex: 1 1 auto;
-  margin-left: 150px;
+export const Wrapper = styled.div`
+  display: flex;
+  padding-top: 24px;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-export const AuthNavWrapper = styled.div``;
+export const NavWrapper = styled.div`
+  display: none;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: block;
+  }
+`;
+
+export const UserWrapper = styled.div`
+  display: none;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: block;
+  }
+`;
