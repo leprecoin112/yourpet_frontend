@@ -1,8 +1,8 @@
 import { Heading } from "./PageHeading.styled";
 
-const PageHeading = ({text}) => {
+const PageHeading = ({text, styled}) => {
     return (
-        <Heading>{text}</Heading>
+        <Heading className={styled}>{text}</Heading>
     )
 }
 

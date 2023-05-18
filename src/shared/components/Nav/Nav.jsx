@@ -1,6 +1,6 @@
 import React from 'react';
 import items from './items';
-import { Li, Link, NavEl  } from './Nav.styled';
+import { Li, Link, NavEl } from './Nav.styled';
 
 const Nav = () => {
   const elements = items.map(({ id, to, text }) => (
@@ -11,8 +11,8 @@ const Nav = () => {
   return (
     <NavEl>
       {elements}
-   </NavEl>
-  )
-}
+    </NavEl>    
+  );
+};
 
-export default Nav
+export default Nav;

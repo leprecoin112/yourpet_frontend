@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../Logo/Logo';
-import { AuthNav, Nav, UserNav } from '../Nav';
-import { Box, NavigationWrapper, AuthNavWrapper } from './Header.styled';
+import { AuthNav } from '../Nav';
+import MobileMenu from '../Nav/MobileMenu/MobileMenu';
+import DesktopMenu from '../Nav/DesktopMenu/DesktopMenu';
+
+import {
+  Box,
+  LogoWrapper,
+  AuthNavWrapper,
+  IconWrapper,
+  DesktopWrapper,
+} from './Header.styled';
+import { IconMenuHamburger } from '../Icons';
 
 const Header = () => {
-  const isLogin = false;
+  const [nav, setNav] = useState(false);
+
+  const toggleMenu = () => {
+    setNav(!nav);
+  };
+
   return (
     <Box>
       <Logo />
-      <NavigationWrapper>
-        <Nav />
-      </NavigationWrapper>
-      <AuthNavWrapper>{isLogin ? <UserNav /> : <AuthNav />}</AuthNavWrapper>
+      <AuthNavWrapper>
+        <AuthNav />
+      </AuthNavWrapper>
+      <IconWrapper onClick={toggleMenu}>
+        <IconMenuHamburger />
+      </IconWrapper>
+      {nav && <MobileMenu onClick={toggleMenu} />}
+      <DesktopWrapper>
+        <DesktopMenu />
+      </DesktopWrapper>
     </Box>
   );
 };

@@ -18,8 +18,10 @@ const lightTheme = {
   },
   fontSizes: ['12px', '14px', '16px', '20px', '24px', '28px', '48px', '68px'],
   colors: {
+    background: '#FEF9F9',
     yellow: '#FFC107',
     white: '#FFFFFF',
+    light: '#FEF9F9',
     black: '#111111',
     blue: '#54ADFF',
     lightBlue: '#CCE4FB',
