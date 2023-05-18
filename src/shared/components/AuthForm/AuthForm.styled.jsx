@@ -48,8 +48,8 @@ const FormInput = styled(Field)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 458px;
   }
-  ${({ isvalid = 'true' }) =>
-    isvalid &&
+  ${({ validate }) =>
+    validate &&
     css`
       border: 1px solid #00c3ad;
       outline: none;
@@ -61,8 +61,8 @@ const FormInput = styled(Field)`
       }
     `}
 
-  ${({ iserror }) =>
-    iserror &&
+  ${({ unvalidate }) =>
+    unvalidate &&
     css`
       border: 1px solid #f43f5e;
       outline: none;

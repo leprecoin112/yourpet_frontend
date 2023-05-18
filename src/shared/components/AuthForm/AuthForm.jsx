@@ -49,8 +49,8 @@ export default function AuthForm({ isLogin }) {
                 type="email"
                 name="email"
                 placeholder="Email"
-                isvalid={touched.email && !errors.email}
-                iserror={touched.email && errors.email}
+                validate={touched.email && !errors.email}
+                unvalidate={touched.email && errors.email}
               />
               {touched.email && !errors.email && (
                 <IconWrapper>
@@ -69,8 +69,8 @@ export default function AuthForm({ isLogin }) {
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
-                isvalid={touched.password && !errors.password}
-                iserror={touched.password && errors.password}
+                validate={touched.password && !errors.password}
+                unvalidate={touched.password && errors.password}
               />
               <ShowPassword
                 type="button"
@@ -90,8 +90,8 @@ export default function AuthForm({ isLogin }) {
                   type={showPassword ? 'text' : 'password'}
                   name="confirm"
                   placeholder="Confirm Password"
-                  isvalid={touched.confirm && !errors.confirm}
-                  iserror={touched.confirm && errors.confirm}
+                  validate={touched.confirm && !errors.confirm}
+                  unvalidate={touched.confirm && errors.confirm}
                 />
                 <ShowPassword
                   type="button"
