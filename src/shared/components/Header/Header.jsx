@@ -4,7 +4,13 @@ import { AuthNav } from '../Nav';
 import MobileMenu from '../Nav/MobileMenu/MobileMenu';
 import DesktopMenu from '../Nav/DesktopMenu/DesktopMenu';
 
-import { Box, LogoWrapper, AuthNavWrapper, IconWrapper, DesktopWrapper } from './Header.styled';
+import {
+  Box,
+  LogoWrapper,
+  AuthNavWrapper,
+  IconWrapper,
+  DesktopWrapper,
+} from './Header.styled';
 import { IconMenuHamburger } from '../Icons';
 
 const Header = () => {
@@ -16,9 +22,7 @@ const Header = () => {
 
   return (
     <Box>
-      <LogoWrapper>
-        <Logo />
-      </LogoWrapper>
+      <Logo />
       <AuthNavWrapper>
         <AuthNav />
       </AuthNavWrapper>

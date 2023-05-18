@@ -5,12 +5,12 @@ import catTab2x from '../../images/not-found/catTongueTab@2x-min.png';
 import catDesk1x from '../../images/not-found/catTongueDesk@1x-min.png';
 import catDesk2x from '../../images/not-found/catTongueDesk@2x-min.png';
 
-import { NotFoundContainer, FourLeft, FourRight, CatBackground, CatImage } from "./NotFound.styled";
+import { NotFoundContainer, Four, CatBackground, CatImage } from "./NotFound.styled";
 
 const NotFound = () => {
     return (
         <NotFoundContainer>
-            <FourLeft>4</FourLeft>
+            <Four>4</Four>
             <CatBackground>
                 <picture>
                     <source
@@ -28,7 +28,7 @@ const NotFound = () => {
                     <CatImage src={catMob1x} alt="Cat with tongue" />
                 </picture>
             </CatBackground>   
-            <FourRight>4</FourRight>
+            <Four className='right'>4</Four>
         </NotFoundContainer>
     )
 }
