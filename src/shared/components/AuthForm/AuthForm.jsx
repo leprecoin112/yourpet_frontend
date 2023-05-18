@@ -1,8 +1,20 @@
-import { Formik } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { useState } from 'react';
 //import { useDispatch, useSelector } from 'react-';
 //import { NavLink, useLocation } from 'react-router-dom';
-import { FormContainer, FormInput, Btn, InputWrapper } from './AuthForm.styled';
+import {
+  FormContainer,
+  Btn,
+  FormInput,
+  Error,
+  InputWrapper,
+  FormLabel,
+  ShowPassword,
+} from './AuthForm.styled';
+import IconEyeClosed from '../Icons/IconEyeClosed';
+import IconEyeOpened from '../Icons/IconEyeOpened';
+
 const schemaRegistration = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Required'),
   password: yup
@@ -31,9 +43,10 @@ const schemaLogin = yup.object().shape({
 });
 export default function AuthForm({ isLogin }) {
   //   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
   const authSchema = isLogin ? schemaLogin : schemaRegistration;
-  const handleSubmit = () => {
-    console.log('submit');
+  const handleSubmit = ({ email, password }) => {
+    console.log({ email, password });
   };
   return (
     <Formik
@@ -48,14 +61,40 @@ export default function AuthForm({ isLogin }) {
       {props => (
         <FormContainer>
           <InputWrapper>
-            <FormInput type="email" name="email" placeholder="Email" />
-            <FormInput type="password" name="password" placeholder="Password" />
-            {!isLogin && (
+            <FormLabel htmlFor="email">
+              <FormInput type="email" name="email" placeholder="Email" />
+              <Error component="div" name="email" />
+            </FormLabel>
+            <FormLabel htmlFor="password">
               <FormInput
-                type="password"
-                name="confirm"
-                placeholder="Confirm Password"
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
               />
+              <ShowPassword
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <IconEyeOpened /> : <IconEyeClosed />}
+              </ShowPassword>
+              <Error component="div" name="password" />
+            </FormLabel>
+
+            {!isLogin && (
+              <FormLabel htmlFor="confirm">
+                <FormInput
+                  type={showPassword ? 'text' : 'password'}
+                  name="confirm"
+                  placeholder="Confirm Password"
+                />
+                <ShowPassword
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <IconEyeOpened /> : <IconEyeClosed />}
+                </ShowPassword>
+                <Error component="div" name="confirm" />
+              </FormLabel>
             )}
           </InputWrapper>
           <Btn type="submit">{isLogin ? 'Login' : 'Registration'}</Btn>

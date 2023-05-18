@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 
 const FormContainer = styled(Form)`
   display: flex;
@@ -26,12 +26,7 @@ const FormInput = styled(Field)`
   &:focus {
     border: 2px solid ${({ theme }) => theme.colors.blue};
   }
-  &:not(:last-child) {
-    margin-bottom: 24px;
-    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-      margin-bottom: 32px;
-    }
-  }
+
   &::placeholder {
     font-family: ${({ theme }) => theme.fonts.main.regular};
     font-size: 16px;
@@ -43,6 +38,16 @@ const FormInput = styled(Field)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 458px;
   }
+`;
+const Error = styled(ErrorMessage)`
+  position: absolute;
+  bottom: -24px;
+  left: 16px;
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: ${({ theme }) => theme.colors.red};
 `;
 
 const Btn = styled.button`
@@ -76,4 +81,31 @@ const Btn = styled.button`
     margin-top: 40px;
   }
 `;
-export { FormContainer, FormInput, Btn, InputWrapper };
+const FormLabel = styled.label`
+  position: relative;
+  &:not(:last-child) {
+    margin-bottom: 24px;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+      margin-bottom: 32px;
+    }
+  }
+`;
+const ShowPassword = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 0;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  stroke: ${({ theme }) => theme.colors.blue};
+`;
+
+export {
+  FormContainer,
+  FormInput,
+  Error,
+  Btn,
+  InputWrapper,
+  ShowPassword,
+  FormLabel,
+};
