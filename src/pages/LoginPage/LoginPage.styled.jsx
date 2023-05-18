@@ -1,22 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-
-const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 44px;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding-top: 80px;
-  }
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding-top: 45px;
-  }
-`;
 const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 280px;
   padding: 40px 12px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.boxShadows.main};
@@ -60,4 +44,4 @@ const Link = styled(NavLink)`
   text-decoration-line: underline;
   color: ${({ theme }) => theme.colors.blue};
 `;
-export { PageContainer, FormWrapper, FormTitle, RedirectLink, Link };
+export { FormWrapper, FormTitle, RedirectLink, Link };
