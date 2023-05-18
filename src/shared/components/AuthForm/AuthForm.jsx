@@ -58,11 +58,25 @@ export default function AuthForm({ isLogin }) {
       validationSchema={authSchema}
       onSubmit={handleSubmit}
     >
-      {props => (
+      {({
+        values,
+        errors,
+        touched,
+        handleSubmit,
+        isSubmitting,
+        validating,
+        valid,
+      }) => (
         <FormContainer>
           <InputWrapper>
             <FormLabel htmlFor="email">
-              <FormInput type="email" name="email" placeholder="Email" />
+              <FormInput
+                type="email"
+                name="email"
+                placeholder="Email"
+                valid={touched.email && !errors.email}
+                error={touched.email && errors.email}
+              />
               <Error component="div" name="email" />
             </FormLabel>
             <FormLabel htmlFor="password">
@@ -70,6 +84,8 @@ export default function AuthForm({ isLogin }) {
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
+                valid={touched.password && !errors.password}
+                error={touched.password && errors.password}
               />
               <ShowPassword
                 type="button"
@@ -86,6 +102,8 @@ export default function AuthForm({ isLogin }) {
                   type={showPassword ? 'text' : 'password'}
                   name="confirm"
                   placeholder="Confirm Password"
+                  valid={touched.confirm && !errors.confirm}
+                  error={touched.confirm && errors.confirm}
                 />
                 <ShowPassword
                   type="button"

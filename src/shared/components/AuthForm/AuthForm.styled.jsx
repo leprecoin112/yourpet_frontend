@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { Form, Field, ErrorMessage } from 'formik';
 
 const FormContainer = styled(Form)`
@@ -23,8 +24,11 @@ const FormInput = styled(Field)`
   border: 1px solid ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   padding: 12px 16px;
-  &:focus {
+  outline: none;
+  &:focus,
+  &:active {
     border: 2px solid ${({ theme }) => theme.colors.blue};
+    outline: none;
   }
 
   &::placeholder {
@@ -38,6 +42,30 @@ const FormInput = styled(Field)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 458px;
   }
+  ${({ valid }) =>
+    valid &&
+    css`
+      border: 1px solid #00c3ad;
+      outline: none;
+      &:focus,
+      &:active {
+        border: 2px solid #00c3ad;
+        outline: none;
+      }
+    `}
+
+  ${({ error }) =>
+    error &&
+    css`
+      border: 1px solid #f43f5e;
+      outline: none;
+
+      &:focus,
+      &:active {
+        border: 2px solid #f43f5e;
+        outline: none;
+      }
+    `}
 `;
 const Error = styled(ErrorMessage)`
   position: absolute;
