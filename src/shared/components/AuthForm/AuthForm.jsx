@@ -1,8 +1,7 @@
-import { Formik, Field, ErrorMessage } from 'formik';
-import * as yup from 'yup';
+import { Formik } from 'formik';
 import { useState } from 'react';
-//import { useDispatch, useSelector } from 'react-';
-//import { NavLink, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// import { NavLink, useLocation } from 'react-router-dom';
 import {
   FormContainer,
   Btn,
@@ -11,43 +10,27 @@ import {
   InputWrapper,
   FormLabel,
   ShowPassword,
+  SecureMsg,
+  IconWrapper,
 } from './AuthForm.styled';
 import IconEyeClosed from '../Icons/IconEyeClosed';
 import IconEyeOpened from '../Icons/IconEyeOpened';
-
-const schemaRegistration = yup.object().shape({
-  email: yup.string().email('Please enter a valid email').required('Required'),
-  password: yup
-    .string()
-    .min(6, 'password must contain at least 6  characters')
-    .max(16, 'password can not contain more then 16 characters')
-    .matches(/[0-9]/, 'Password requires a number')
-    .matches(/[a-z]/, 'Password requires a lowercase letter')
-    .matches(/[A-Z]/, 'Password requires an uppercase letter')
-    .required('Required'),
-  confirm: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Must match "password" field value')
-    .required('Required'),
-});
-const schemaLogin = yup.object().shape({
-  email: yup.string().email('Please enter a valid email').required('Required'),
-  password: yup
-    .string()
-    .min(6, 'password must contain at least 6  characters')
-    .max(16, 'password can not contain more then 16 characters')
-    .matches(/[0-9]/, 'Password requires a number')
-    .matches(/[a-z]/, 'Password requires a lowercase letter')
-    .matches(/[A-Z]/, 'Password requires an uppercase letter')
-    .required('Required'),
-});
+import IconCheck from '../Icons/IconCheck';
+import IconCrossSmall from '../Icons/IconCrossSmall';
+import { schemaRegistration, schemaLogin } from './YupSchema';
+import { register, logIn } from '../../redux/auth/operations';
 export default function AuthForm({ isLogin }) {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const authSchema = isLogin ? schemaLogin : schemaRegistration;
-  const handleSubmit = ({ email, password }) => {
-    console.log({ email, password });
+  const handleRegister = ({ email, password }, { resetForm }) => {
+    dispatch(register({ email, password }));
+    resetForm();
   };
+  // const handleLogin = ({ email, password }, { resetForm }) => {
+  //   dispatch(logIn({ email, password }));
+  //   resetForm();
+  // };
   return (
     <Formik
       initialValues={{
@@ -56,17 +39,9 @@ export default function AuthForm({ isLogin }) {
         confirm: '',
       }}
       validationSchema={authSchema}
-      onSubmit={handleSubmit}
+      onSubmit={handleRegister}
     >
-      {({
-        values,
-        errors,
-        touched,
-        handleSubmit,
-        isSubmitting,
-        validating,
-        valid,
-      }) => (
+      {({ errors, touched, isSubmitting }) => (
         <FormContainer>
           <InputWrapper>
             <FormLabel htmlFor="email">
@@ -74,9 +49,19 @@ export default function AuthForm({ isLogin }) {
                 type="email"
                 name="email"
                 placeholder="Email"
-                valid={touched.email && !errors.email}
-                error={touched.email && errors.email}
+                isvalid={touched.email && !errors.email}
+                iserror={touched.email && errors.email}
               />
+              {touched.email && !errors.email && (
+                <IconWrapper>
+                  <IconCheck color="green" />
+                </IconWrapper>
+              )}
+              {touched.email && errors.email && (
+                <IconWrapper>
+                  <IconCrossSmall color="red" />
+                </IconWrapper>
+              )}
               <Error component="div" name="email" />
             </FormLabel>
             <FormLabel htmlFor="password">
@@ -84,8 +69,8 @@ export default function AuthForm({ isLogin }) {
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
-                valid={touched.password && !errors.password}
-                error={touched.password && errors.password}
+                isvalid={touched.password && !errors.password}
+                iserror={touched.password && errors.password}
               />
               <ShowPassword
                 type="button"
@@ -94,6 +79,9 @@ export default function AuthForm({ isLogin }) {
                 {showPassword ? <IconEyeOpened /> : <IconEyeClosed />}
               </ShowPassword>
               <Error component="div" name="password" />
+              {touched.password && !errors.password && (
+                <SecureMsg>Password is secure</SecureMsg>
+              )}
             </FormLabel>
 
             {!isLogin && (
@@ -102,8 +90,8 @@ export default function AuthForm({ isLogin }) {
                   type={showPassword ? 'text' : 'password'}
                   name="confirm"
                   placeholder="Confirm Password"
-                  valid={touched.confirm && !errors.confirm}
-                  error={touched.confirm && errors.confirm}
+                  isvalid={touched.confirm && !errors.confirm}
+                  iserror={touched.confirm && errors.confirm}
                 />
                 <ShowPassword
                   type="button"
@@ -115,7 +103,9 @@ export default function AuthForm({ isLogin }) {
               </FormLabel>
             )}
           </InputWrapper>
-          <Btn type="submit">{isLogin ? 'Login' : 'Registration'}</Btn>
+          <Btn type="submit" disabled={isSubmitting}>
+            {isLogin ? 'Login' : 'Registration'}
+          </Btn>
         </FormContainer>
       )}
     </Formik>

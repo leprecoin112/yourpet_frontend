@@ -25,6 +25,12 @@ const FormInput = styled(Field)`
   border-radius: 40px;
   padding: 12px 16px;
   outline: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
   &:focus,
   &:active {
     border: 2px solid ${({ theme }) => theme.colors.blue};
@@ -42,11 +48,12 @@ const FormInput = styled(Field)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 458px;
   }
-  ${({ valid }) =>
-    valid &&
+  ${({ isvalid = 'true' }) =>
+    isvalid &&
     css`
       border: 1px solid #00c3ad;
       outline: none;
+
       &:focus,
       &:active {
         border: 2px solid #00c3ad;
@@ -54,8 +61,8 @@ const FormInput = styled(Field)`
       }
     `}
 
-  ${({ error }) =>
-    error &&
+  ${({ iserror }) =>
+    iserror &&
     css`
       border: 1px solid #f43f5e;
       outline: none;
@@ -127,7 +134,24 @@ const ShowPassword = styled.button`
   background-color: ${({ theme }) => theme.colors.white};
   stroke: ${({ theme }) => theme.colors.blue};
 `;
-
+const SecureMsg = styled.div`
+  position: absolute;
+  bottom: -24px;
+  left: 16px;
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: ${({ theme }) => theme.colors.green};
+`;
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 0;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.white};
+`;
 export {
   FormContainer,
   FormInput,
@@ -136,4 +160,6 @@ export {
   InputWrapper,
   ShowPassword,
   FormLabel,
+  SecureMsg,
+  IconWrapper,
 };
