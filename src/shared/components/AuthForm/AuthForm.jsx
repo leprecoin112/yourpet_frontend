@@ -27,10 +27,10 @@ export default function AuthForm({ isLogin }) {
     dispatch(register({ email, password }));
     resetForm();
   };
-  // const handleLogin = ({ email, password }, { resetForm }) => {
-  //   dispatch(logIn({ email, password }));
-  //   resetForm();
-  // };
+  const handleLogin = ({ email, password }, { resetForm }) => {
+    dispatch(logIn({ email, password }));
+    resetForm();
+  };
   return (
     <Formik
       initialValues={{
@@ -39,7 +39,7 @@ export default function AuthForm({ isLogin }) {
         confirm: '',
       }}
       validationSchema={authSchema}
-      onSubmit={handleRegister}
+      onSubmit={handleLogin}
     >
       {({ errors, touched, isSubmitting }) => (
         <FormContainer>
