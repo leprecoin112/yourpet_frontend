@@ -1,16 +1,18 @@
 import styled from '@emotion/styled';
 
 const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 44px;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding-top: 80px;
-  }
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0px auto 130px auto;
+ 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding-top: 45px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 40px;
+    max-width: 1288px;
   }
 `;
+
 
 export { PageContainer };

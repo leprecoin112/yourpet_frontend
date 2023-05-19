@@ -36,6 +36,8 @@ const IconClose = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
+  stroke: #54ADFF;
+  transition: stroke 250ms;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     top: 24px;
@@ -44,6 +46,7 @@ const IconClose = styled.div`
 
   &:hover {
     cursor: pointer;
+    stroke: ${({ theme }) => theme.colors.yellow};
   }
 `;
 
@@ -82,6 +85,7 @@ const ModalBtn = styled.div`
   border-radius: 40px;
   font-weight: 700;
   color: #FEF9F9;
+  fill: #FEF9F9;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-left: auto;
