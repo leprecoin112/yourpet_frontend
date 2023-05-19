@@ -19,6 +19,7 @@ import IconCheck from '../Icons/IconCheck';
 import IconCrossSmall from '../Icons/IconCrossSmall';
 import { schemaRegistration, schemaLogin } from './YupSchema';
 import { register, logIn } from '../../redux/auth/operations';
+
 export default function AuthForm({ isLogin }) {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
