@@ -13,7 +13,7 @@ const Overlay = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: rgba(87, 86, 86, 0.6);
+  background: ${({ theme }) => theme.colors.backdrop};
 `;
 
 const ModalContainer = styled.div`
