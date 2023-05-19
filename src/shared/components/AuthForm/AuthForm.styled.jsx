@@ -93,6 +93,7 @@ const Btn = styled.button`
   align-items: center;
   margin-top: 40px;
   margin-bottom: 24px;
+  padding: 10px 28px;
   background-color: ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   border: none;
@@ -100,12 +101,14 @@ const Btn = styled.button`
   font-family: ${({ theme }) => theme.fonts.main.regular};
   font-size: 20px;
   font-weight: 600;
-  line-height: 27px;
+  line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${({ theme }) => theme.colors.white};
+
   &:hover {
-    transition: ${({ theme }) => theme.transition.main};
-    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+    transition: ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    background: ${({ theme }) => theme.colors.gradientBlue};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 52px;
