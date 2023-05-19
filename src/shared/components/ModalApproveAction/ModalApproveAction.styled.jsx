@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 
 const Overlay = styled.div`
@@ -18,14 +19,18 @@ const Overlay = styled.div`
 
 const ModalContainer = styled.div`
   position: relative;
-  width: 280px;
-  height: 287px;
-  padding: 68px 16px 60px 16px;
+  width: 70vw;
+  padding: 40px 16px;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
   box-shadow: ${({ theme }) => theme.boxShadows.main};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    max-width: 608px;
+    height: 300px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 608px;
     height: 354px;
     padding: 60px 24px;
@@ -50,47 +55,81 @@ const IconClose = styled.div`
   }
 `;
 
-const ModalTitle = styled.p`
-  font-family: ${({ theme }) => theme.fonts.main.medium};
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 1.375rem;
-  text-align: center;
-  
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 36px;
-    line-height: 1.36rem;
-  }
-`;
 
 const ModalText = styled.p`
   text-align: center;
+  font-size: 26px;
+  line-height: 49px;
   margin-top: 24px;
   margin-bottom: 40px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 24px;
-    margin-top: 52px;
-    margin-bottom: 60px;
+    font-size: 32px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 36px;
+  }
+`;
+
+const BtnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 60vw;
+  margin: 0 auto;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    gap: 17px;
+    width: 275px;
   }
 `;
 
 const ModalBtn = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
-  padding: 8px 54px;
+  justify-content: center;
+  width: 100px;
+  height: 40px;
+  border-radius: 40px;
+  border: 2px solid ${({ theme }) => theme.colors.blue};
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.blue};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 130px;
+  }
+
+  &:hover {
+    border: none;
+    color:  #FEF9F9;
+    cursor: pointer;
+    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
+  }
+`;
+
+const ModalBtnYes = styled(NavLink)`
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 40px;
   background-color: ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   font-weight: 700;
+  text-decoration: none;
   color: #FEF9F9;
-  fill: #FEF9F9;
+  stroke: #FEF9F9;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-left: auto;
-    margin-right: auto;
-    width: 248px;
+    width: 130px;
   }
 
   &:hover {
@@ -102,4 +141,4 @@ const ModalBtn = styled.div`
 
 
 
-export { Overlay, ModalContainer, IconClose, ModalTitle, ModalText, ModalBtn };
+export { Overlay, ModalContainer, IconClose, ModalText, ModalBtn, ModalBtnYes, BtnWrapper };
