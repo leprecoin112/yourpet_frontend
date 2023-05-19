@@ -27,23 +27,4 @@ const FormWrapper = styled.div`
   }
 `;
 
-const RedirectLink = styled.p`
-  font-family: ${({ theme }) => theme.fonts.main.regular};
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  text-align: center;
-  letter-spacing: 0.04em;
-  color: ${({ theme }) => theme.colors.gray};
-`;
-
-const Link = styled(NavLink)`
-  font-family: ${({ theme }) => theme.fonts.main.regular};
-  font-size: 12px;
-  line-height: 16px;
-  text-align: center;
-  letter-spacing: 0.04em;
-  text-decoration-line: underline;
-  color: ${({ theme }) => theme.colors.blue};
-`;
-export { PageContainer, FormWrapper, RedirectLink, Link };
+export { PageContainer, FormWrapper };
