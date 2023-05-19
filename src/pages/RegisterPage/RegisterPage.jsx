@@ -1,17 +1,16 @@
 import AuthForm from '../../shared/components/AuthForm';
 import {
   FormWrapper,
-  FormTitle,
   RedirectLink,
   Link,
   PageContainer,
 } from './RegisterPage.styled';
-
+import FormTitle from '../../shared/components/FormTitile';
 const RegisterPage = () => {
   return (
     <PageContainer>
       <FormWrapper>
-        <FormTitle>Registration</FormTitle>
+        <FormTitle text="Registration" />
         <AuthForm />
         <RedirectLink>
           Already have an account?&nbsp;
