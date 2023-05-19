@@ -1,56 +1,42 @@
 
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
-import IconCrossBig from "../Icons/IconCrossBig";
-import {
-  Overlay,
-  ModalContainer,
-  IconClose,
-  ModalText,
-  ModalBtn,
-  ModalBtnYes,
-  BtnWrapper,
-} from "./ModalApproveAction.styled";
-import IconLogout from "../Icons/IconLogout";
+import { IconCrossBig } from '../Icons';
+import { Backdrop, Modal, BtnWrapper, BtnCancel, BtnConfirm, CloseIcon } from './ModalApproveAction.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalApproveAction = ({onClose, text, redirect }) => {
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
+const ModalApproveAction = ({ toggleModal, onYes, children, icon }) => {
+
+    const closeModal = ({ target, currentTarget, code }) => {
+        if (target === currentTarget || code === 'Escape'){
+            toggleModal();
+        }
     };
 
-    document.addEventListener("keydown", handleEscape);
+    useEffect(() => {
+        document.addEventListener('keydown', closeModal);
 
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [onClose]);
+        return () => document.removeEventListener('keydown', closeModal);
+    });
 
-  const handleOverlayClick = (event) => {
-      if (event.target === event.currentTarget) {
-        onClose();
-      }
-  };
 
-  const handleLogout = () => {
-    console.log('logout');
-  }
-  
-  return createPortal(
-    <Overlay onClick={handleOverlayClick}>
-      <ModalContainer>
-        <IconClose onClick={onClose}><IconCrossBig /></IconClose>
-        <ModalText>{text}</ModalText>
-        <BtnWrapper>
-          <ModalBtn onClick={onClose}>Cancel</ModalBtn>
-          <ModalBtnYes to={redirect} onClick={handleLogout}>Yes<IconLogout/></ModalBtnYes>
-        </BtnWrapper>
-      </ModalContainer>
-    </Overlay>, modalRoot)
+    return (
+        createPortal(
+            <Backdrop onClick={closeModal}>
+                <Modal>
+                    <CloseIcon onClick={toggleModal} >
+                        <IconCrossBig/>
+                    </CloseIcon>
+                    {children}
+                    <BtnWrapper>
+                        <BtnCancel onClick={closeModal}>Cancel</BtnCancel>
+                        <BtnConfirm onClick={() => onYes()}>Yes {icon}</BtnConfirm>
+                    </BtnWrapper>
+                </Modal>
+            </Backdrop>,
+            modalRoot
+    ));
 }
 
 export default ModalApproveAction;

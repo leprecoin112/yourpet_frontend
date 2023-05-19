@@ -1,144 +1,92 @@
-import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
+import styled from "@emotion/styled";
+import Button from '../Button';
 
+const Backdrop = styled.div`
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 
-const Overlay = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
+    background-color: ${({ theme }) => theme.colors.backdrop};
+`
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Modal = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 280px;
+    padding: 68px 16px 60px;
+    transform: translate(-50%, -50%);
 
-  background: rgba(87, 86, 86, 0.6);
-`;
+    text-align: center;
 
-const ModalContainer = styled.div`
-  position: relative;
-  width: 70vw;
-  padding: 40px 16px;
-  background: ${({ theme }) => theme.colors.white};
-  border-radius: 20px;
-  box-shadow: ${({ theme }) => theme.boxShadows.main};
+    background-color: ${({ theme }) => theme.colors.white};
+    border-radius: 20px;
+    box-shadow: ${({ theme }) => theme.boxShadows.main};
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    max-width: 608px;
-    height: 300px;
-  }
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}){
+        width: 608px;
+        padding: 60px;
+        border-radius: 40px;
+    }
+`
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    width: 608px;
-    height: 354px;
-    padding: 60px 24px;
-  }
-`;
-
-const IconClose = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  stroke: #54ADFF;
-  transition: stroke 250ms;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    top: 24px;
-    right: 24px;
-  }
-
-  &:hover {
+const CloseIcon = styled.div`
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    heigth: 24px;
     cursor: pointer;
-    stroke: ${({ theme }) => theme.colors.yellow};
-  }
-`;
+    stroke: ${({ theme }) => theme.colors.blue};
 
-
-const ModalText = styled.p`
-  text-align: center;
-  font-size: 26px;
-  line-height: 49px;
-  margin-top: 24px;
-  margin-bottom: 40px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 32px;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 36px;
-  }
-`;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}){
+        top: 24px;
+        right: 24px;
+    }
+`
 
 const BtnWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 60vw;
-  margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: ${({ theme }) => theme.space[3] + 'px'};
+    margin-top: 40px;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    gap: 17px;
-    width: 275px;
-  }
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet} {
+        gap: ${({ theme }) => theme.space[4] + 'px'};
+    }
 `;
 
-const ModalBtn = styled.div`
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 40px;
-  border-radius: 40px;
-  border: 2px solid ${({ theme }) => theme.colors.blue};
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.blue};
+const Btn = styled.button`
+    width: 129px;
+    border-radius: 40px;
+    border: 2px solid ${({ theme }) => theme.colors.blue};
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 130px;
-  }
+    font-family: ${({ theme }) => theme.fonts.main.bold};
+    font-size: ${({ theme }) => theme.fontSizes[2]};
+    line-height: ${({ theme }) => (22 / Number(theme.fontSizes[2].slice(0, 2))).toFixed(1)};  
+    letter-spacing: 0.04em;
 
-  &:hover {
-    border: none;
-    color:  #FEF9F9;
     cursor: pointer;
-    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
-  }
 `;
 
-const ModalBtnYes = styled(NavLink)`
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 40px;
-  background-color: ${({ theme }) => theme.colors.blue};
-  border-radius: 40px;
-  font-weight: 700;
-  text-decoration: none;
-  color: #FEF9F9;
-  stroke: #FEF9F9;
+const BtnCancel = styled(Btn)`
+    padding: 9px;
+    background-color: inherit;
+    color: ${({ theme }) => theme.colors.blue};
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 130px;
-  }
-
-  &:hover {
-    cursor: pointer;
-    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
-  }
 `;
 
+const BtnConfirm = styled(Btn)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: ${({ theme }) => theme.space[3] + 'px'};
 
+    background-color: ${({ theme }) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.light};
+`
 
-
-export { Overlay, ModalContainer, IconClose, ModalText, ModalBtn, ModalBtnYes, BtnWrapper };
+export { Backdrop, Modal, BtnWrapper, BtnCancel, BtnConfirm, CloseIcon };

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { Form, Field } from 'formik';
+import { css } from '@emotion/react';
+import { Form, Field, ErrorMessage } from 'formik';
 
 const FormContainer = styled(Form)`
   display: flex;
@@ -23,15 +24,19 @@ const FormInput = styled(Field)`
   border: 1px solid ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   padding: 12px 16px;
-  &:focus {
+  outline: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+  &:focus,
+  &:active {
     border: 2px solid ${({ theme }) => theme.colors.blue};
+    outline: none;
   }
-  &:not(:last-child) {
-    margin-bottom: 24px;
-    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-      margin-bottom: 32px;
-    }
-  }
+
   &::placeholder {
     font-family: ${({ theme }) => theme.fonts.main.regular};
     font-size: 16px;
@@ -43,6 +48,41 @@ const FormInput = styled(Field)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 458px;
   }
+  ${({ validate }) =>
+    validate &&
+    css`
+      border: 1px solid #00c3ad;
+      outline: none;
+
+      &:focus,
+      &:active {
+        border: 2px solid #00c3ad;
+        outline: none;
+      }
+    `}
+
+  ${({ unvalidate }) =>
+    unvalidate &&
+    css`
+      border: 1px solid #f43f5e;
+      outline: none;
+
+      &:focus,
+      &:active {
+        border: 2px solid #f43f5e;
+        outline: none;
+      }
+    `}
+`;
+const Error = styled(ErrorMessage)`
+  position: absolute;
+  bottom: -24px;
+  left: 16px;
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: ${({ theme }) => theme.colors.red};
 `;
 
 const Btn = styled.button`
@@ -53,6 +93,7 @@ const Btn = styled.button`
   align-items: center;
   margin-top: 40px;
   margin-bottom: 24px;
+  padding: 10px 28px;
   background-color: ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   border: none;
@@ -60,12 +101,14 @@ const Btn = styled.button`
   font-family: ${({ theme }) => theme.fonts.main.regular};
   font-size: 20px;
   font-weight: 600;
-  line-height: 27px;
+  line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${({ theme }) => theme.colors.white};
+
   &:hover {
-    transition: ${({ theme }) => theme.transition.main};
-    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+    transition: ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    background: ${({ theme }) => theme.colors.gradientBlue};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 52px;
@@ -76,4 +119,50 @@ const Btn = styled.button`
     margin-top: 40px;
   }
 `;
-export { FormContainer, FormInput, Btn, InputWrapper };
+const FormLabel = styled.label`
+  position: relative;
+  &:not(:last-child) {
+    margin-bottom: 24px;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+      margin-bottom: 32px;
+    }
+  }
+`;
+const ShowPassword = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 0;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  stroke: ${({ theme }) => theme.colors.blue};
+`;
+const SecureMsg = styled.div`
+  position: absolute;
+  bottom: -24px;
+  left: 16px;
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: ${({ theme }) => theme.colors.green};
+`;
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 0;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.white};
+`;
+export {
+  FormContainer,
+  FormInput,
+  Error,
+  Btn,
+  InputWrapper,
+  ShowPassword,
+  FormLabel,
+  SecureMsg,
+  IconWrapper,
+};

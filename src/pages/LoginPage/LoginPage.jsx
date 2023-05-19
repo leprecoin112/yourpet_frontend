@@ -1,23 +1,21 @@
 import AuthForm from '../../shared/components/AuthForm';
-import { FormWrapper, FormTitle, RedirectLink, Link } from './LoginPage.styled';
+import { FormWrapper } from './LoginPage.styled';
+import FormTitle from '../../shared/components/FormTitile';
 import Section from '../../shared/components/Section/Section';
 import Container from '../../shared/components/Container/Container';
-
-const RegisterPage = () => {
+import RedirectLink from '../../shared/components/RedirectLink';
+const LoginPage = () => {
   return (
     <Section>
       <Container>
         <FormWrapper>
-          <FormTitle>Login</FormTitle>
+          <FormTitle text="Login" />
           <AuthForm isLogin />
-          <RedirectLink>
-            Don't have an account?&nbsp;
-            <Link to="/register">Register</Link>
-          </RedirectLink>
+          <RedirectLink text="Don't have an account?" />
         </FormWrapper>
       </Container>
     </Section>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
