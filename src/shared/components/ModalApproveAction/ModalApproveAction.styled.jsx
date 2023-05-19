@@ -66,7 +66,7 @@ const Btn = styled.button`
 
     font-family: ${({ theme }) => theme.fonts.main.bold};
     font-size: ${({ theme }) => theme.fontSizes[2]};
-    line-height: 22px;
+    line-height: ${({ theme }) => (22 / Number(theme.fontSizes[2].slice(0, 2))).toFixed(1)};  
     letter-spacing: 0.04em;
 
     cursor: pointer;
