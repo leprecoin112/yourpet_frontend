@@ -17,6 +17,8 @@ const LoginPage = () => {
     const user = { email, password };
     const response = await login(user);
 
+    console.log(response.data);
+
     dispatch(setCredentials(response.data));
 
     resetForm();
