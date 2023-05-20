@@ -1,0 +1,17 @@
+import styled from '@emotion/styled';
+
+export const List = styled.ul`
+    padding-top: 20px;
+
+    @media screen and (min-width:768px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    @media screen and (min-width:1280px) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+    }`
+;
