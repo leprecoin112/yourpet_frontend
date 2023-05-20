@@ -1,4 +1,4 @@
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { selectIsLoggedIn } from '../../redux/api/backend/auth/authSelectors';
 import { useParams } from 'react-router-dom';
 
 import {

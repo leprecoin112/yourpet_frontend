@@ -3,15 +3,15 @@ import Logo from '../Logo/Logo';
 import { AuthNav, UserNav, Nav } from '../Nav';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import Container from '../Container/Container';
-import { isAuth } from '../../redux/auth/selectors';
 
 import { IconWrapper, Wrapper, NavWrapper, UserWrapper } from './Header.styled';
 import { IconMenuHamburger } from '../Icons';
-import { useSelector } from 'react-redux';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header = () => {
-  const isLogin = useSelector(isAuth);
   const [isMenu, setIsMenu] = useState(false);
+
+  const { isLoggedIn } = useAuth();
 
   const toggleMenu = () => {
     setIsMenu(!isMenu);
@@ -24,7 +24,7 @@ const Header = () => {
         <NavWrapper>
           <Nav />
         </NavWrapper>
-        <UserWrapper>{isLogin ? <UserNav /> : <AuthNav />}</UserWrapper>
+        <UserWrapper>{isLoggedIn ? <UserNav /> : <AuthNav />}</UserWrapper>
         <IconWrapper onClick={toggleMenu}>
           <IconMenuHamburger />
         </IconWrapper>

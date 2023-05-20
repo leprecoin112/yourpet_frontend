@@ -1,33 +1,18 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
+import {
+  selectCurrentUser,
+  selectIsLoggedIn,
+  selectIsRefreshing,
+} from '../redux/api/backend/auth/authSelectors';
 
-import { isAuth } from '../../../redux/auth/auth-selectors';
+export const useAuth = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const user = useSelector(selectCurrentUser);
 
-const useAuth = () => {
-    const result = useSelector(isAuth);
-    return result;
-}
-
-export default useAuth;
-
-
-
-// Provides the status of authentication
-
-// import { useSelector } from 'react-redux';
-// import {
-//   selectUser,
-//   selectIsLoggedIn,
-//   selectIsRefreshing,
-// } from '../redux/auth/selectors';
-
-// export const useAuth = () => {
-//   const isLoggedIn = useSelector(selectIsLoggedIn);
-//   const isRefreshing = useSelector(selectIsRefreshing);
-//   const user = useSelector(selectUser);
-
-//   return {
-//     isLoggedIn,
-//     isRefreshing,
-//     user,
-//   };
-// };
+  return {
+    isLoggedIn,
+    isRefreshing,
+    user,
+  };
+};
