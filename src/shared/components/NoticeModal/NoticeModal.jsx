@@ -6,6 +6,8 @@ import {
   ListItem,
   TextWrapper,
   Text,
+  TextEmail,
+  TextPhone,
   ModalTitle,
   ModalImage,
   ModalComments,
@@ -70,6 +72,7 @@ export const NoticeModal = ({ onClose, noticeId }) => {
                   location,
                   sex,
                   comments,
+                  owner,
                 },
                 idx
               ) => (
@@ -82,8 +85,8 @@ export const NoticeModal = ({ onClose, noticeId }) => {
                     <Text>Breed:{breed}</Text>
                     <Text>Place:{location}</Text>
                     <Text>The sex:{sex}</Text>
-                    <Text>Email:{}</Text>
-                    <Text>Phone:{}</Text>
+                    <TextEmail>Email:{owner}</TextEmail>
+                    <TextPhone>Phone:{owner}</TextPhone>
                   </TextWrapper>
                   <ModalComments>Comments:{comments}</ModalComments>
                 </ListItem>

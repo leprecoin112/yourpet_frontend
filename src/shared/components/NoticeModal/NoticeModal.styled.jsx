@@ -94,6 +94,18 @@ export const Text = styled.p`
   }
 `;
 
+export const TextEmail = styled.a`
+  &:hover {
+    color: ${({ theme }) => theme.colors.yellow};
+  }
+`;
+
+export const TextPhone = styled.a`
+  &:hover {
+    color: ${({ theme }) => theme.colors.yellow};
+  }
+`;
+
 export const ModalComments = styled.p`
   font-family: ${({ theme }) => theme.fonts.main.medium};
   font-size: 14px;

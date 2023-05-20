@@ -3,9 +3,10 @@ import { Btn } from '../Button/Button.styled';
 
 export const ButtonWrapper = styled.div``;
 
-export const IconWrapper = styled.div``;
+export const IconWrapper = styled.div`
+`;
 
-export const ContactButton = styled(Btn)`
+export const ContactButton = styled.a(Btn)`
   color: ${({ theme }) => theme.colors.blue};
   width: 256px;
   height: 40px;
