@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import Btn from '../Button/Button';
 
 export const ItemContainer = styled.li`
   position: relative;
@@ -43,22 +42,103 @@ export const CategoryLabel = styled.p`
   border-radius: 0px 16px 16px 0px;
 `;
 
-export const UserButtons = styled.div`
+export const UserBtns = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 12px;
   right: 12px;
   z-index: 1;
+  &.active,&: hover;
+  &.active,
+  &:hover,
+  &:focus {
+    transition: all ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+
+    stroke: ${({ theme }) => theme.colors.white};
+  }
 `;
 
-export const DeleteBtn = styled(Btn)`
-  margin: 16px;
-  stroke: black;
+export const Btns = styled.button`
+display:flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+
+  background: ${({ theme }) => theme.colors.lightBlue};
+  border-radius: 40px;
+  border: none;
+
+  &.active,
+  &:hover,
+  &:focus {
+    transition: all ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    background: ${({ theme }) => theme.colors.gradientBlue};
+    stroke: ${({ theme }) => theme.colors.white};
+  }
+  &:not(:last-child) {
+    margin-bottom: 16px;
+    }
+  }
+`;
+
+export const Filter = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  top: 248px;
+  margin: 0 8px;
+  z-index: 1;
+  width: 100%;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin: 0 24px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin: 0 12px;
+  }
+`;
+
+export const FilterBtn = styled.button`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2px 4px;
+  cursor: pointer;
+
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  width: 80px;
+  height: 28px;
+
+  background: ${({ theme }) => theme.colors.lightBlue};
+  border-radius: 16px;
+  border: none;
+
+  &.active,
+  &:hover,
+  &:focus {
+    transition: all ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    background: ${({ theme }) => theme.colors.gradientBlue};
+    stroke: ${({ theme }) => theme.colors.white};
+  }
 `;
 
 export const ItemPicture = styled.picture`
   width: 280px;
   height: 288px;
-
+  text-align: center;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 336px;
   }
@@ -76,55 +156,23 @@ export const ItemImage = styled.img`
 
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px 20px 50px 20px;
+  align-items: flex-start;
+  padding: 20px;
   width: 100%;
-`;
-
-export const InfoDescription = styled.ul`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-export const InfoDescriptionItem = styled.li`
-  display: flex;
-  align-items: center;
-
-  &:not(:last-child) {
-    margin-bottom: 8px;
-  }
 `;
 
 export const InfoTitle = styled.h3`
   margin-bottom: 20px;
 
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.357;
-  letter-spacing: -0.01em;
+  line-height: 1.38;
 
-  color: ${({ theme }) => theme.colors.blue};
-`;
-
-export const InfoText = styled.p`
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.375;
-
-  color: ${({ theme }) => theme.colors.blue};
-
-  &:first-of-type {
-    min-width: 90px;
-
-    @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-      min-width: 87px;
-    }
-  }
+  color: ${({ theme }) => theme.colors.black};
 `;

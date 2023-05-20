@@ -1,9 +1,17 @@
 import { useState } from 'react';
-// import { ageHandle, categoryTitleHandler } from 'helpers';
-// import FavoriteButton from 'components/FavoriteButton';
-// import DeleteButton from 'components/DeleteButton';
+import { useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { isAuth } from '../../../shared/redux/auth/selectors';
 import Btn from '../Button/Button';
-import { IconHeart, IconTrash } from '../Icons';
+import { ageCounter } from '../../redux/helpers/ageCounter';
+import {
+  IconHeart,
+  IconTrash,
+  IconLocation,
+  IconClock,
+  IconFemale,
+} from '../Icons';
 
 import ModalApproveAction from '../../components/ModalApproveAction';
 
@@ -13,12 +21,11 @@ import {
   ItemImage,
   Info,
   InfoTitle,
-  InfoDescription,
-  InfoDescriptionItem,
-  InfoText,
   CategoryLabel,
-  UserButtons,
-  DeleteBtn,
+  UserBtns,
+  Filter,
+  FilterBtn,
+  Btns,
 } from './NoticeCategoryItem.styled';
 
 const categories = {
@@ -33,8 +40,14 @@ const categories = {
   ],
 };
 
-const noImage =
-  'https://raw.githubusercontent.com/Laosing/cute-cat-avatars/master/assets/img/gaming.png';
+const noImage = {
+  mobileRetina:
+    'https://raw.githubusercontent.com/Laosing/cute-cat-avatars/master/assets/img/gaming.png',
+  tabletRetina:
+    'https://raw.githubusercontent.com/Laosing/cute-cat-avatars/master/assets/img/gaming.png',
+  desktopRetina:
+    'https://raw.githubusercontent.com/Laosing/cute-cat-avatars/master/assets/img/gaming.png',
+};
 
 const categoryTitleHandler = category => {
   return categories.publicCategories.find(([item]) => item === category) ?? '';
@@ -42,21 +55,34 @@ const categoryTitleHandler = category => {
 
 const NoticeCategoryItem = ({
   _id,
-  imageURL,
-  title,
-  breed,
-  location,
-  birthday,
   category,
-  favorite,
-  owner,
+  title,
+  name,
+  birthday,
+  breed,
+  photo,
+  sex,
+  location,
   price,
+  comments,
+  owner,
 }) => {
   const categoryTitle = categoryTitleHandler(category);
   const [showModal, setShowModal] = useState(false);
-  // const age = ageHandle(birthday);
 
-  // const age = 'one';
+  // const age = ageCounter(birthday);
+  const age = ageCounter('2022-03-23T00:00:00.000Z');
+
+  // const isOwner = ({ _id, owner }) => {
+  //   return userId === owner;
+  // };
+  const isOwner = true;
+
+  const isLogin = useSelector(isAuth);
+
+  const toastMss = () => {
+    return toast.dismiss(), toast.warning('Please login');
+  };
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -64,78 +90,80 @@ const NoticeCategoryItem = ({
 
   return (
     <ItemContainer>
-      {/* <CategoryLabel>{categoryTitle}</CategoryLabel> */}
-      <CategoryLabel>God</CategoryLabel>
-      <UserButtons>
-        <Btn styled="like">
+      <CategoryLabel>{category}</CategoryLabel>
+      <UserBtns>
+        <Btns
+          styled="like"
+          onClick={!isLogin ? () => toastMss() : () => 'додати в улюблені'}
+        >
           <IconHeart />
-        </Btn>
-        <DeleteBtn styled="like">
-          <IconTrash />
-        </DeleteBtn>
-        {/* <FavoriteButton noticeId={_id} favorite={favorite} />
-        <DeleteButton translucent noticeId={_id} owner={owner} /> */}
-      </UserButtons>
+        </Btns>
+
+        {isOwner && (
+          <Btns styled="like" margin="16px 0 0">
+            <IconTrash />
+          </Btns>
+        )}
+      </UserBtns>
+      <Filter>
+        <FilterBtn>
+          <IconLocation />
+          {location}
+        </FilterBtn>
+        <FilterBtn>
+          <IconClock />
+          {age}
+        </FilterBtn>
+        <FilterBtn>
+          <IconFemale />
+          {sex}
+        </FilterBtn>
+      </Filter>
       <ItemPicture>
         <source
-          srcSet="https://raw.githubusercontent.com/Laosing/cute-cat-avatars/master/assets/img/gaming.png"
-          media="(max-width: 767px)"
-          sizes="280px"
-        />
-        {/* <source
-          srcSet={`${imageURL ? imageURL?.mobile : noImage.mobile} 280w, ${
-            imageURL ? imageURL?.mobile_retina : noImage.mobileRetina
+          srcSet={`${photo ? photo?.mobile : noImage.mobile} 280w, ${
+            photo ? photo?.mobile_retina : noImage.mobileRetina
           } 560w`}
           media="(max-width: 767px)"
           sizes="280px"
         />
         <source
-          srcSet={`${imageURL ? imageURL?.desktop : noImage.desktop} 288w, ${
-            imageURL
-              ? imageURL?.desktop_retina
-              : noImage.desktopRetina.replace('%40', '@')
+          srcSet={`${photo ? photo?.tablet : noImage.tablet} 336w, ${
+            photo ? photo?.tablet_retina : noImage.tabletRetina
+          } 672w`}
+          media="(min-width: 768px)"
+          sizes="336px"
+        />
+        <source
+          srcSet={`${photo ? photo?.desktop : noImage.desktop} 288w, ${
+            photo ? photo?.desktop_retina : noImage.desktopRetina
           } 576w`}
           media="(min-width: 1280px)"
           sizes="288px"
         />
-        <source
-          srcSet={`${imageURL ? imageURL?.tablet : noImage.tablet} 336w, ${
-            imageURL
-              ? imageURL?.tablet_retina
-              : noImage.tabletRetina.replace('%40', '@')
-          } 672w`}
-          media="(min-width: 768px)"
-          sizes="336px"
-        /> */}
         <ItemImage
-          src={imageURL ? imageURL?.tablet : noImage.tablet}
+          src={photo ? photo?.tablet : noImage.tablet}
           loading="lazy"
           alt={title}
           onClick={toggleModal}
         />
-        {showModal && (
-          <ModalApproveAction onClose={toggleModal} image={imageURL} />
-        )}
       </ItemPicture>
       <Info>
-        <InfoTitle>InfoTitle</InfoTitle>
-        <InfoDescription>
-          {/* {age && (
-            <InfoDescriptionItem>
-              <InfoText>Age:</InfoText>
-              <InfoText>{age}</InfoText>
-            </InfoDescriptionItem>
-          )} */}
-          {categoryTitle === 'sell' && price && (
-            <InfoDescriptionItem>
-              <InfoText>Price:</InfoText>
-              <InfoText>{`${price}$`}</InfoText>
-            </InfoDescriptionItem>
-          )}
-        </InfoDescription>
+        <InfoTitle>{title}</InfoTitle>
       </Info>
-      <Btn styled="learnMore" />
-      {/* <LearnMoreButton noticeId={_id} favorite={favorite} owner={owner} /> */}
+      <Btn
+        styled="learnMore"
+        type="button"
+        onClick={() => {
+          setShowModal(true);
+        }}
+      />
+      {showModal && (
+        <ModalApproveAction toggleModal={() => setShowModal(false)}>
+          {<p>Картка улюбленця</p>}
+        </ModalApproveAction>
+      )}
+      <ToastContainer />
     </ItemContainer>
   );
 };
