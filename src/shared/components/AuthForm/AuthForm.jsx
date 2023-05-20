@@ -18,8 +18,7 @@ import IconEyeOpened from '../Icons/IconEyeOpened';
 import IconCheck from '../Icons/IconCheck';
 import IconCrossSmall from '../Icons/IconCrossSmall';
 import { schemaRegistration, schemaLogin } from './YupSchema';
-import { register, logIn } from '../../redux/auth/operations';
-
+import { register, login } from '../../redux/auth/operations';
 export default function AuthForm({ isLogin }) {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -29,7 +28,7 @@ export default function AuthForm({ isLogin }) {
     resetForm();
   };
   const handleLogin = ({ email, password }, { resetForm }) => {
-    dispatch(logIn({ email, password }));
+    dispatch(login({ email, password }));
     resetForm();
   };
   return (
@@ -40,7 +39,7 @@ export default function AuthForm({ isLogin }) {
         confirm: '',
       }}
       validationSchema={authSchema}
-      onSubmit={isLogin ? handleLogin : handleRegister}
+      onSubmit={ isLogin ? handleLogin : handleRegister}
     >
       {({ errors, touched, isSubmitting }) => (
         <FormContainer>
