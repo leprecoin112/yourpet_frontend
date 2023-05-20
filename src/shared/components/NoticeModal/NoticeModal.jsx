@@ -14,32 +14,42 @@ import {
 
 import IconCrossBig from '../Icons/IconCrossBig';
 import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { fetchNoticeById } from '../../redux/notices/operations';
 import { Contact } from '../Contact/Contact';
 import { AddToFavorite } from '../AddToFavorite/AddToFavorite';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const NoticeModal = ({ onClose }) => {
+export const NoticeModal = ({ onClose, noticeId }) => {
+  const [noticeInfo, setNoticeInfo] = useState([{}]);
+
   useEffect(() => {
-    const handleEscape = event => {
-      if (event.key === 'Escape') {
+    (async function getNoticeById() {
+      const res = await fetchNoticeById(noticeId);
+      setNoticeInfo(res.result);
+    })();
+  }, [noticeId]);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener("keydown", handleEscape);
     };
   }, [onClose]);
 
-  const handleOverlayClick = event => {
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
-  };
+  const handleOverlayClick = (event) => {
+      if (event.target === event.currentTarget) {
+        onClose();
+      }
+    };
 
   return createPortal(
     <Overlay onClick={handleOverlayClick}>
@@ -47,26 +57,40 @@ export const NoticeModal = ({ onClose }) => {
         <IconClose onClick={onClose}>
           <IconCrossBig color={'#54ADFF'} />
         </IconClose>
-        <List>
-          <ListItem>
-            <ModalImage></ModalImage>
-            <ModalTitle>Сute dog looking for a home</ModalTitle>
-            <TextWrapper>
-                <Text>Name:{}</Text>
-                <Text>Birthday:{}</Text>
-                <Text>Breed:{}</Text>
-                <Text>Place:{}</Text>
-                <Text>The sex:{}</Text>
-                <Text>Email:{}</Text>
-                <Text>Phone:{}</Text>
-            </TextWrapper>
-            <ModalComments>
-              Comments: Rich would be the perfect addition to an active family
-              that loves to play and go on walks. I bet he would love having a
-              doggy playmate too!
-            </ModalComments>
-          </ListItem>
-        </List>
+        {noticeInfo ? (
+          <List>
+            {noticeInfo.map(
+              (
+                {
+                  photo,
+                  title,
+                  name,
+                  birthday,
+                  breed,
+                  location,
+                  sex,
+                  comments,
+                },
+                idx
+              ) => (
+                <ListItem key={idx}>
+                  <ModalImage src={photo} alt=""></ModalImage>
+                  <ModalTitle>{title}</ModalTitle>
+                  <TextWrapper>
+                    <Text>Name:{name}</Text>
+                    <Text>Birthday:{birthday}</Text>
+                    <Text>Breed:{breed}</Text>
+                    <Text>Place:{location}</Text>
+                    <Text>The sex:{sex}</Text>
+                    <Text>Email:{}</Text>
+                    <Text>Phone:{}</Text>
+                  </TextWrapper>
+                  <ModalComments>Comments:{comments}</ModalComments>
+                </ListItem>
+              )
+            )}
+          </List>
+        ) : null}
         <ButtonWrapper>
           <Contact />
           <AddToFavorite />
