@@ -40,15 +40,12 @@ const Filter = () => {
         else setAges(prevAges => [...prevAges, value]);
     };
 
-    console.log(ages);
-
     const onGenderValueClick = value => {
         if (genders.includes(value)) {
             setGenders(prevGenders => prevGenders.filter(gender => gender !== value));
         }
         else setGenders(prevGenders => [...prevGenders, value]);
     };
-    console.log(genders);
 
     return (
         <>
