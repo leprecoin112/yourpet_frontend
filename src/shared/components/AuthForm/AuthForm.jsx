@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// import { NavLink, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import {
   FormContainer,
   Btn,
@@ -18,7 +18,6 @@ import IconEyeOpened from '../Icons/IconEyeOpened';
 import IconCheck from '../Icons/IconCheck';
 import IconCrossSmall from '../Icons/IconCrossSmall';
 import { schemaRegistration, schemaLogin } from './YupSchema';
-// import { register, logIn } from '../../redux/auth/operations';
 import { register, login } from '../../redux/auth/operations';
 export default function AuthForm({ isLogin }) {
   const dispatch = useDispatch();
@@ -104,11 +103,21 @@ export default function AuthForm({ isLogin }) {
               </FormLabel>
             )}
           </InputWrapper>
-          <Btn type="submit" disabled={isSubmitting}>
-            {isLogin ? 'Login' : 'Registration'}
-          </Btn>
+          {isLogin ? (
+            <Btn type="submit" disabled={isSubmitting} login>
+              Login
+            </Btn>
+          ) : (
+            <Btn type="submit" disabled={isSubmitting}>
+              Registration
+            </Btn>
+          )}
         </FormContainer>
       )}
     </Formik>
   );
 }
+
+AuthForm.propTypes = {
+  isLogin: PropTypes.bool,
+};

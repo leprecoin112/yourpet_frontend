@@ -12,17 +12,13 @@ const LoginPage = () => {
   if(isLogin){
     return <Navigate to="/user"/>
   }
-
   return (
     <Section>
       <Container>
         <FormWrapper>
-          <FormTitle>Login</FormTitle>
+          <FormTitle text="Login" />
           <AuthForm isLogin />
-          <RedirectLink>
-            Don't have an account?&nbsp;
-            <Link to="/register">Register</Link>
-          </RedirectLink>
+          <RedirectLink text="Don't have an account?" />
         </FormWrapper>
       </Container>
     </Section>

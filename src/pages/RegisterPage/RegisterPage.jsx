@@ -1,4 +1,5 @@
 import AuthForm from '../../shared/components/AuthForm';
+
 import { useDispatch, useSelector, } from 'react-redux';
 import {isAuth} from '../../shared/redux/auth/selectors';
 import { Navigate } from 'react-router-dom';
@@ -10,6 +11,7 @@ import {
   PageContainer,
 } from './RegisterPage.styled';
 
+
 const RegisterPage = () => {
   const isLogin = useSelector(isAuth);
 
@@ -19,12 +21,9 @@ const RegisterPage = () => {
   return (
     <PageContainer>
       <FormWrapper>
-        <FormTitle>Registration</FormTitle>
+        <FormTitle text="Registration" />
         <AuthForm />
-        <RedirectLink>
-          Already have an account?&nbsp;
-          <Link to="/login">Login</Link>
-        </RedirectLink>
+        <RedirectLink text="Already have an account?" isLogin />
       </FormWrapper>
     </PageContainer>
   );

@@ -93,6 +93,7 @@ const Btn = styled.button`
   align-items: center;
   margin-top: 40px;
   margin-bottom: 24px;
+  padding: 10px 28px;
   background-color: ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   border: none;
@@ -100,17 +101,29 @@ const Btn = styled.button`
   font-family: ${({ theme }) => theme.fonts.main.regular};
   font-size: 20px;
   font-weight: 600;
-  line-height: 27px;
+  line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${({ theme }) => theme.colors.white};
   &:hover {
-    transition: ${({ theme }) => theme.transition.main};
-    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+    transition: ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    background: ${({ theme }) => theme.colors.gradientBlue};
   }
+  ${({ login }) =>
+    login &&
+    css`
+      margin-top: 80px;
+    `}
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 52px;
     margin-bottom: 16px;
     width: 458px;
+    ${({ login }) =>
+      login &&
+      css`
+        margin-top: 60px;
+        margin-bottom: 20px;
+      `}
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin-top: 40px;
@@ -131,6 +144,7 @@ const ShowPassword = styled.button`
   right: 16px;
   padding: 0;
   border: none;
+  cursor: pointer;
   background-color: ${({ theme }) => theme.colors.white};
   stroke: ${({ theme }) => theme.colors.blue};
 `;
