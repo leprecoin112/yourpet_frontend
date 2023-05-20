@@ -104,16 +104,26 @@ const Btn = styled.button`
   line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${({ theme }) => theme.colors.white};
-
   &:hover {
     transition: ${({ theme }) => theme.duration.main}
       ${({ theme }) => theme.transition.main};
     background: ${({ theme }) => theme.colors.gradientBlue};
   }
+  ${({ login }) =>
+    login &&
+    css`
+      margin-top: 80px;
+    `}
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 52px;
     margin-bottom: 16px;
     width: 458px;
+    ${({ login }) =>
+      login &&
+      css`
+        margin-top: 60px;
+        margin-bottom: 20px;
+      `}
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin-top: 40px;
@@ -134,6 +144,7 @@ const ShowPassword = styled.button`
   right: 16px;
   padding: 0;
   border: none;
+  cursor: pointer;
   background-color: ${({ theme }) => theme.colors.white};
   stroke: ${({ theme }) => theme.colors.blue};
 `;

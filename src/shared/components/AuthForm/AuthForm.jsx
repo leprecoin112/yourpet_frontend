@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// import { NavLink, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import {
   FormContainer,
   Btn,
@@ -40,7 +40,7 @@ export default function AuthForm({ isLogin }) {
         confirm: '',
       }}
       validationSchema={authSchema}
-      onSubmit={handleLogin}
+      onSubmit={isLogin ? handleLogin : handleRegister}
     >
       {({ errors, touched, isSubmitting }) => (
         <FormContainer>
@@ -104,11 +104,21 @@ export default function AuthForm({ isLogin }) {
               </FormLabel>
             )}
           </InputWrapper>
-          <Btn type="submit" disabled={isSubmitting}>
-            {isLogin ? 'Login' : 'Registration'}
-          </Btn>
+          {isLogin ? (
+            <Btn type="submit" disabled={isSubmitting} login>
+              Login
+            </Btn>
+          ) : (
+            <Btn type="submit" disabled={isSubmitting}>
+              Registration
+            </Btn>
+          )}
         </FormContainer>
       )}
     </Formik>
   );
 }
+
+AuthForm.propTypes = {
+  isLogin: PropTypes.bool,
+};
