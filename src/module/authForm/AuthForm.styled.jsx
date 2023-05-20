@@ -85,50 +85,6 @@ const Error = styled(ErrorMessage)`
   color: ${({ theme }) => theme.colors.red};
 `;
 
-const Btn = styled.button`
-  width: 256px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
-  margin-bottom: 24px;
-  padding: 10px 28px;
-  background-color: ${({ theme }) => theme.colors.blue};
-  border-radius: 40px;
-  border: none;
-  cursor: pointer;
-  font-family: ${({ theme }) => theme.fonts.main.regular};
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: 0.04em;
-  color: ${({ theme }) => theme.colors.white};
-  &:hover {
-    transition: ${({ theme }) => theme.duration.main}
-      ${({ theme }) => theme.transition.main};
-    background: ${({ theme }) => theme.colors.gradientBlue};
-  }
-  ${({ login }) =>
-    login &&
-    css`
-      margin-top: 80px;
-    `}
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-top: 52px;
-    margin-bottom: 16px;
-    width: 458px;
-    ${({ login }) =>
-      login &&
-      css`
-        margin-top: 60px;
-        margin-bottom: 20px;
-      `}
-  }
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-top: 40px;
-  }
-`;
 const FormLabel = styled.label`
   position: relative;
   &:not(:last-child) {
@@ -166,14 +122,57 @@ const IconWrapper = styled.div`
   border: none;
   background-color: ${({ theme }) => theme.colors.white};
 `;
+
+const BtnBase = styled.button`
+  width: 256px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  padding: 10px 28px;
+  background-color: ${({ theme }) => theme.colors.blue};
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  color: ${({ theme }) => theme.colors.white};
+  &:hover {
+    transition: ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    background: ${({ theme }) => theme.colors.gradientBlue};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-top: 52px;
+    margin-bottom: 16px;
+    width: 458px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 40px;
+  }
+`;
+
+const BtnLogin = styled(BtnBase)`
+  margin-top: 80px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+`;
 export {
   FormContainer,
   FormInput,
   Error,
-  Btn,
   InputWrapper,
   ShowPassword,
   FormLabel,
   SecureMsg,
   IconWrapper,
+  BtnBase,
+  BtnLogin,
 };

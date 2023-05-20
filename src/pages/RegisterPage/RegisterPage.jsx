@@ -1,31 +1,16 @@
-import AuthForm from '../../shared/components/AuthForm';
-
-import { useDispatch, useSelector, } from 'react-redux';
-import {isAuth} from '../../shared/redux/auth/selectors';
-import { Navigate } from 'react-router-dom';
-import {
-  FormWrapper,
-  FormTitle,
-  RedirectLink,
-  Link,
-  PageContainer,
-} from './RegisterPage.styled';
-
+import { FormWrapper } from './RegisterPage.styled';
+import Container from '../../shared/components/Container/Container';
+import FormTitle from '../../shared/components/FormTitle/FormTitle';
+import RedirectLink from '../../shared/components/RedirectLink/RedirectLink';
 
 const RegisterPage = () => {
-  const isLogin = useSelector(isAuth);
-
-  if(isLogin){
-    return <Navigate to="/user"/>
-  }
   return (
-    <PageContainer>
+    <Container>
       <FormWrapper>
         <FormTitle text="Registration" />
-        <AuthForm />
         <RedirectLink text="Already have an account?" isLogin />
       </FormWrapper>
-    </PageContainer>
+    </Container>
   );
 };
 
