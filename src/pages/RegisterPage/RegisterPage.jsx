@@ -1,24 +1,16 @@
-import AuthForm from '../../shared/components/AuthForm';
-import {
-  FormWrapper,
-  FormTitle,
-  RedirectLink,
-  Link,
-  PageContainer,
-} from './RegisterPage.styled';
+import { FormWrapper } from './RegisterPage.styled';
+import Container from '../../shared/components/Container/Container';
+import FormTitle from '../../shared/components/FormTitle/FormTitle';
+import RedirectLink from '../../shared/components/RedirectLink/RedirectLink';
 
 const RegisterPage = () => {
   return (
-    <PageContainer>
+    <Container>
       <FormWrapper>
-        <FormTitle>Registration</FormTitle>
-        <AuthForm />
-        <RedirectLink>
-          Already have an account?&nbsp;
-          <Link to="/login">Login</Link>
-        </RedirectLink>
+        <FormTitle text="Registration" />
+        <RedirectLink text="Already have an account?" isLogin />
       </FormWrapper>
-    </PageContainer>
+    </Container>
   );
 };
 

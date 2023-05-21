@@ -39,10 +39,10 @@ const CongratsModal = ({ onClose }) => {
   return createPortal(
     <Overlay onClick={handleOverlayClick}>
       <ModalContainer>
-        <IconClose onClick={onClose}><IconCrossBig color={"#54ADFF"}/></IconClose>
+        <IconClose onClick={onClose}><IconCrossBig /></IconClose>
         <ModalTitle>Congrats!</ModalTitle>
         <ModalText>Yours registration is success</ModalText>
-        <ModalBtn onClick={onClose}>Go to profile <IconPaw color={"#FEF9F9"}/></ModalBtn>
+        <ModalBtn onClick={onClose}>Go to profile <IconPaw/></ModalBtn>
       </ModalContainer>
     </Overlay>, modalRoot)
 };

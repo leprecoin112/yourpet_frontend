@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import CongratsModal from "../../shared/components/CongratsModal/CongratsModal";
-import { PageContainer } from "../RegisterPage/RegisterPage.styled";
+import { PageContainer } from "./UserPage.styled";
+import UserData from "../../shared/components/UserData/UserData";
+import PetsData from "../../shared/components/PetsData/PetsData";
 
 
 const UserPage = () => {
@@ -25,7 +27,8 @@ const UserPage = () => {
 
   return (
     <PageContainer >
-      User Page
+      <UserData />
+      <PetsData/>
       {modalCongrats && <CongratsModal onClose={onClose} />}
     </PageContainer>
   )
