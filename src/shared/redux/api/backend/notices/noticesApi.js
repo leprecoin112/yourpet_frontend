@@ -11,7 +11,7 @@ export const noticesApi = baseApi.injectEndpoints({
             query: (page = 1, limit = 12) => `notices/all?page=${page}&limit=${limit}`
         }),
         getNoticesByParams: builder.query({
-            query: (category = '', title = '', page = 1, limit = 12) =>
+            query: ({title = '', category = '', page = 1, limit = 12}) =>
                 `notices/search?title=${title}&category=${category}&page=${page}&limit=${limit}`
         }),
         addNewNotice: builder.mutation({

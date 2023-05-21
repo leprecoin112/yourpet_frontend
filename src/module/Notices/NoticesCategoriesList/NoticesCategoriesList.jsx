@@ -5,7 +5,7 @@ import NoticeCategoryItem from "../NoticeCategoryItem";
 const NoticesCategoriesList = ({ data }) => {
     const { result } = data;
     console.log(result);
-    const card = result.map(({ _id, birthday, photo, category, location, name, sex }) => (
+    const card = result.map(({ _id, birthday, photo, category, location, name, sex, title }) => (
         <NoticeCategoryItem
             key={_id}
             id={_id}
@@ -14,6 +14,7 @@ const NoticesCategoriesList = ({ data }) => {
             category={category}
             location={location}
             name={name}
+            title={title}
             sex={sex}
         />
     ));

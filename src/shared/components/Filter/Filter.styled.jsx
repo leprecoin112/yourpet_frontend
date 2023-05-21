@@ -31,10 +31,18 @@ const FilterButtonTitle = styled.span`
 
 const FiltersWrapper = styled.div`
     position: absolute;
+    top: 40px;
+    right: 0;
+    z-index: 3;
     padding: ${({ theme }) => theme.space[3] + 'px'};
     border-radius: 20px;
     box-shadow: ${({ theme }) => theme.boxShadows.main};
     background-color: ${({ theme }) => theme.colors.white};
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}){
+        left: 0;
+        right: auto;
+    }
 
 `;
 

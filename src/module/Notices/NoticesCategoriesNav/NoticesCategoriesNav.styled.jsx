@@ -6,26 +6,22 @@ export const NavLinksContainer = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   flex-direction: column;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    flex-direction: column;
-  }
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    flex-direction: row;
-  }
 `;
 
 export const NavIsLogged = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    gap: 12px;
+  }
 `;
 
 export const NavNotLogged = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-right: 12px;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-right: 12px;
-  }
+  gap: 8px;
 `;
 
 export const Link = styled(NavLink)`
@@ -33,7 +29,6 @@ export const Link = styled(NavLink)`
   justify-content: center;
   align-items: center;
   padding: 8px 16px;
-  margin-bottom: 8px;
   text-decoration: none;
 
   font-size: 14px;
@@ -43,20 +38,9 @@ export const Link = styled(NavLink)`
   color: ${({ theme }) => theme.colors.blue};
 
   background-color: ${({ theme }) => theme.colors.lightBlue};
-  border: none;
   border-radius: 40px;
 
   transition: ${({ theme }) => theme.transition.main};
-
-  &:not(:last-of-type) {
-    margin-right: 12px;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    &:last-of-type {
-      margin-right: 12px;
-    }
-  }
 
   &.active,
   &:hover,

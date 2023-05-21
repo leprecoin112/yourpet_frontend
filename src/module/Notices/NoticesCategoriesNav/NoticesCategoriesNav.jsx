@@ -1,4 +1,4 @@
-import {  useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAuth } from '../../../shared/hooks/useAuth';
 import {
   NavLinksContainer,
@@ -20,10 +20,8 @@ const categories = {
   ],
 };
 
-const NoticesCategoriesNav = ({onCategory}) => {
+const NoticesCategoriesNav = () => {
   const { categoryName } = useParams();
-
-  // const isLogged = useSelector(selectIsLoggedIn);
   const { isLoggedIn } = useAuth;
 
   return (
@@ -34,7 +32,6 @@ const NoticesCategoriesNav = ({onCategory}) => {
             className={categoryName === category ? 'active' : ''}
             to={`/notices/${category}`}
             key={name + index}
-            onClick={() => onCategory(category)}
           >
             {name}
           </Link>

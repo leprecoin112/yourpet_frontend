@@ -3,9 +3,25 @@ import styled from '@emotion/styled';
 
 const ErrorMessage = styled.p``;
 
-const ButtonsWrapper = styled.div`
+const FiltersWrapper = styled.div`
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
 
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}){
+        margin-top: 40px;
+    }
 `
+
+const ButtonsWrapper = styled.div`
+    position: relative;
+
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        display: flex;
+        gap: 12px;
+    }
+`;
 const MobileAddButton = styled(Link)`
     position: fixed;
     top: 460px;
@@ -21,7 +37,7 @@ const MobileAddButton = styled(Link)`
     width: 80px;
     height: 80px;
 
-    background: ${({ theme }) => theme.colors.blue};
+    background: ${({ theme }) => theme.colors.gradientBlue};
     border: none;
     border-radius: 50%;
 
@@ -37,7 +53,7 @@ const MobileAddButton = styled(Link)`
     line-height: ${({ theme }) => (16 / Number(theme.fontSizes[0].slice(0, 2))).toFixed(1)}; 
 
     &:hover {
-        background: ${({ theme }) => theme.colors.gradientBlue};
+        background: ${({ theme }) => theme.colors.blue};
     }
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -49,14 +65,26 @@ const AddButton = styled(Link)`
     display: none;
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 129px;
+        height: 40px;
+        padding: 9px 16px;
 
         text-decoration: none;
-        font-size: ${({ theme }) => theme.fontSizes[0]};
+        font-family: ${({ theme }) => theme.fonts.main.bold};
+        font-size: ${({ theme }) => theme.fontSizes[2]};
         line-height: ${({ theme }) => (22 / Number(theme.fontSizes[2].slice(0, 2))).toFixed(1)}; 
         background: ${({ theme }) => theme.colors.blue};
+        stroke: ${({ theme }) => theme.colors.white};
+        color: ${({ theme }) => theme.colors.white};
+        border-radius: 40px;
+
+        &:hover {
+            background: ${({ theme }) => theme.colors.gradientBlue};
+        }
     }
 `
 
-export { ErrorMessage, ButtonsWrapper, MobileAddButton, AddButton };
+export { ErrorMessage, ButtonsWrapper, MobileAddButton, AddButton, FiltersWrapper };
