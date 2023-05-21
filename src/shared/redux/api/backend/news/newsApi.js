@@ -4,7 +4,7 @@ export const newsApi = baseApi.injectEndpoints({
   tagTypes: ['news'],
   endpoints: builder => ({
     allNews: builder.query({
-      query: () => 'news',
+      query: (page = 1, limit = 6) => `news?page=${page}&limit=${limit}`,
     }),
 
     searchNews: builder.query({

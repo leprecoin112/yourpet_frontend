@@ -3,6 +3,7 @@ import NewsItem from '../NewsItems/NewsItem';
 import { List } from './NewsList.styled';
 
 export default function NewsList({ data }) {
+  console.log(data);
   return (
     <>
       <List>

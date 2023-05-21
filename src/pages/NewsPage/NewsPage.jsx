@@ -1,34 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoticesSearch from '../../shared/components/SearchComponent/NoticesSearch';
 import NewsList from '../../module/News/NewsList/NewsList';
 import Container from '../../shared/components/Container/Container';
 import { Title } from './NewsPage.styled';
 import Pagination from '../../shared/components/Pagination/Pagination';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   useAllNewsQuery,
   useSearchNewsQuery,
 } from '../../shared/redux/api/backend/news/newsApi';
 
 const NewsPage = () => {
-  const [totalPages, setTotalPages] = useState(null);
-  //const { totalHints, hints } = useSelector(getHints);
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get('page') || 1;
   const searchQuery = searchParams.get('query');
-  const { data } = useSearchNewsQuery();
+  const { data } = useAllNewsQuery(page);
 
   const [filter, setFilter] = useState('');
 
   const filterNews = () => {
     if (!filter) {
-      return data;
+      return data.news;
     }
     const normalizedFilter = filter.toLowerCase();
-    const filteredList = data.filter(news => {
+    const filteredList = data.news.filter(news => {
       return news.title.toLowerCase().includes(normalizedFilter);
     });
 
@@ -57,13 +54,16 @@ const NewsPage = () => {
     <Container>
       <Title>News</Title>
       <NoticesSearch onFormSubmit={handleSubmit} />
-      <NewsList data={filterNews()} />
-      <ToastContainer />
-      <Pagination
-        currentPage={Number(page)}
-        totalPagesCount={totalPages}
-        onPageChange={page => onPageChange(page)}
-      />
+      {data && (
+        <>
+          <NewsList data={filterNews()} />
+          <Pagination
+            currentPage={Number(page)}
+            totalPagesCount={data?.totalPages}
+            onPageChange={page => onPageChange(page)}
+          />
+        </>
+      )}
     </Container>
   );
 };
