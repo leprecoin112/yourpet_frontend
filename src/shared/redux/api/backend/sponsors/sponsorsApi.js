@@ -9,4 +9,4 @@ export const sponsorsApi = baseApi.injectEndpoints({
     }),
   }),
 });
-export const { useallSponsorsQuery, useSearchNewsQuery } = sponsorsApi;
+export const { useAllSponsorsQuery } = sponsorsApi;
