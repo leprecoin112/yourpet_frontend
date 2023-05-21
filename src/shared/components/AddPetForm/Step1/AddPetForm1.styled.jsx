@@ -10,8 +10,22 @@ const RadioBtnWrapper = styled(Form)`
   height: 496px;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 458px;
+    height: 542px;
+  }
 `;
-
+const RadioBtn = styled(Field)`
+  cursor: pointer;
+  &::placeholder {
+    font-family: ${({ theme }) => theme.fonts.main.regular};
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.04em;
+    color: ${({ theme }) => theme.colors.black};
+  }
+`;
 const RadioLabel = styled.label`
   padding: 8px 16px;
   width: fit-content;
@@ -27,6 +41,12 @@ const RadioLabel = styled.label`
   & :focus {
     background-color: ${({ theme }) => theme.colors.blue};
   }
+  &:field {
+    & :hover,
+    & :focus {
+      background-color: ${({ theme }) => theme.colors.blue};
+    }
+  }
 `;
 const BtnWrapper = styled.div`
   display: flex;
@@ -34,4 +54,4 @@ const BtnWrapper = styled.div`
   gap: 20px;
   margin-top: 91px;
 `;
-export { RadioBtnWrapper, RadioLabel, BtnWrapper };
+export { RadioBtnWrapper, RadioLabel, RadioBtn, BtnWrapper };
