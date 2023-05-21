@@ -41,12 +41,17 @@ const CloseIcon = styled.div`
     heigth: 24px;
     cursor: pointer;
     stroke: ${({ theme }) => theme.colors.blue};
+    transition: all 250ms;
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}){
         top: 24px;
         right: 24px;
     }
-`
+
+    &:hover {
+        transform: scale(1.1);
+    }
+`;
 
 const BtnWrapper = styled.div`
     display: flex;
@@ -70,6 +75,10 @@ const Btn = styled.button`
     letter-spacing: 0.04em;
 
     cursor: pointer;
+
+    &:hover {
+    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
+  }
 `;
 
 const BtnCancel = styled(Btn)`
@@ -77,6 +86,9 @@ const BtnCancel = styled(Btn)`
     background-color: inherit;
     color: ${({ theme }) => theme.colors.blue};
 
+    &:hover {
+       color: ${({ theme }) => theme.colors.light};
+    }
 `;
 
 const BtnConfirm = styled(Btn)`
@@ -87,6 +99,7 @@ const BtnConfirm = styled(Btn)`
 
     background-color: ${({ theme }) => theme.colors.blue};
     color: ${({ theme }) => theme.colors.light};
+    stroke: ${({ theme }) => theme.colors.light};
 `
 
 export { Backdrop, Modal, BtnWrapper, BtnCancel, BtnConfirm, CloseIcon };
