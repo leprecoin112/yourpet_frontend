@@ -9,7 +9,7 @@ import AddPetPage from './pages/AddPetPage/AddPetPage';
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const MainPage = lazy(() => import('./pages/MainPage'));
-const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
+// const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const OurFriendsPage = lazy(() =>
   import('./pages/OurFriendsPage/OurFriendsPage')
 );

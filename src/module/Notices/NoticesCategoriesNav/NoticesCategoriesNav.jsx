@@ -20,7 +20,7 @@ const categories = {
   ],
 };
 
-const NoticesCategoriesNav = () => {
+const NoticesCategoriesNav = ({onCategory}) => {
   const { categoryName } = useParams();
 
   // const isLogged = useSelector(selectIsLoggedIn);
@@ -34,6 +34,7 @@ const NoticesCategoriesNav = () => {
             className={categoryName === category ? 'active' : ''}
             to={`/notices/${category}`}
             key={name + index}
+            onClick={() => onCategory(category)}
           >
             {name}
           </Link>
