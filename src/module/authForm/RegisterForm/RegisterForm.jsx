@@ -18,6 +18,7 @@ import IconCheck from '../../../shared/components/Icons/IconCheck';
 import IconCrossSmall from '../../../shared/components/Icons/IconCrossSmall';
 export default function RegisterForm({ handleSubmit, validationSchema }) {
   const [showPassword, setShowPassword] = useState(false);
+
   return (
     <Formik
       initialValues={{
