@@ -21,6 +21,7 @@ export default function RegisterForm({
   children,
 }) {
   const [showPassword, setShowPassword] = useState(false);
+
   return (
     <Formik
       initialValues={{
