@@ -1,17 +1,14 @@
-import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getUserName } from "../../../redux/auth/auth-selectors";
-import { Wrapper } from "./UserNav.styled";
-import { IconUser } from "../../Icons";
+import React from 'react';
+import { Wrapper } from './UserNav.styled';
+import { IconUser } from '../../Icons';
+import { useAuth } from '../../../hooks/useAuth';
 
 const UserNav = () => {
-  // const name = useSelector(getUserName);
-
-    // const dispatch = useDispatch();
+  const { user } = useAuth();
   return (
-    <Wrapper>
+    <Wrapper to="user">
       <IconUser />
-      <span>Anna</span>  
+      <span>{user.name}</span>
     </Wrapper>
   );
 };

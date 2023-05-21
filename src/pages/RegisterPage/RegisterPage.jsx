@@ -9,10 +9,13 @@ import { setCredentials } from '../../shared/redux/api/backend/auth/authSlice';
 import { useDispatch } from 'react-redux';
 import { schemaRegistration } from '../../shared/utils/validation/authValidationSchema';
 import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
+
 
 const RegisterPage = () => {
   const [register] = useRegisterMutation();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     const user = { email, password };
@@ -22,7 +25,7 @@ const RegisterPage = () => {
       toast.error(response.error.data.message);
     }
 
-    console.log(response);
+    location.upda = '/register';
 
     dispatch(setCredentials(response.data));
 
