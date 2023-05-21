@@ -49,8 +49,12 @@ function App() {
                 <PrivateRoute redirectTo="/login" component={<UserPage />} />
               }
             />
-
-            <Route path="/add-pet" element={<AddPetPage />} />
+            <Route
+              path="/add-pet"
+              element={
+                <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+              }
+            />
             <Route path="*" element={<NotFoundPage />} />
           </SharedLayout>
         }

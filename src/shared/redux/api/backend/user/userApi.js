@@ -5,38 +5,46 @@ export const userApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     getUser: builder.query({
       query: () => 'user',
+      providesTags: ['user'],
     }),
-    avatars: builder.mutation({
+    updateAvatars: builder.mutation({
       query(body) {
         return { url: `user/avatars`, method: 'PATCH', body };
       },
 
       invalidatesTags: ['user'],
     }),
-    name: builder.mutation({
+    updateName: builder.mutation({
       query(body) {
         return { url: `user/name`, method: 'PATCH', body };
       },
 
       invalidatesTags: ['user'],
     }),
-    phone: builder.mutation({
+    updatePhone: builder.mutation({
       query(body) {
         return { url: `user/phone`, method: 'PATCH', body };
       },
 
       invalidatesTags: ['user'],
     }),
-    city: builder.mutation({
+    updateCity: builder.mutation({
       query(body) {
         return { url: `user/city`, method: 'PATCH', body };
       },
 
       invalidatesTags: ['user'],
     }),
-    birthday: builder.mutation({
+    updateBirthday: builder.mutation({
       query(body) {
         return { url: `user/birthday`, method: 'PATCH', body };
+      },
+
+      invalidatesTags: ['user'],
+    }),
+    updateEmail: builder.mutation({
+      query(body) {
+        return { url: `user/email`, method: 'PATCH', body };
       },
 
       invalidatesTags: ['user'],
@@ -44,10 +52,11 @@ export const userApi = baseApi.injectEndpoints({
   }),
 });
 export const {
-  useAvatarsMutation,
-  useNameMutation,
+  useUpdateAvatarsMutation,
+  useUpdateNameMutation,
   useGetUserQuery,
-  usePhoneMutation,
-  useCityMutation,
-  useBirthdayMutation,
+  useUpdatePhoneMutation,
+  useUpdateCityMutation,
+  useUpdateBirthdayMutation,
+  useUpdateEmailMutation
 } = userApi;

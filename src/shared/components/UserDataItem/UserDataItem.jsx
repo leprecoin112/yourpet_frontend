@@ -13,9 +13,17 @@ import {
   Check,
   CustomInput,
 } from './UserDataItem.styled';
-import PhotoDefault from '../../images/photoDefault/photo-default.png';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import IconCamera from '../Icons/IconCamera';
+import { useFormik } from 'formik';
+import {
+  useUpdateAvatarsMutation,
+  useUpdateBirthdayMutation,
+  useUpdateCityMutation,
+  useUpdateNameMutation,
+  useUpdatePhoneMutation,
+  useUpdateEmailMutation,
+} from '../../redux/api/backend/user/userApi';
 
 const schemaData = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Required'),
@@ -37,9 +45,14 @@ const schemaData = yup.object().shape({
     ),
 });
 
-const UserDataItem = () => {
+const UserDataItem = ({ user }) => {
   const [photo, setPhoto] = useState(null);
   const [activeField, setActiveField] = useState(null);
+  const [updateName] = useUpdateNameMutation();
+  const [updateEmail] = useUpdateEmailMutation();
+  const [updateBirthday] = useUpdateBirthdayMutation();
+  const [updateCity] = useUpdateCityMutation();
+  const [updatePhone] = useUpdatePhoneMutation();
 
   const handlePhotoUpload = event => {
     const uploadedPhoto = event.target.files[0];
@@ -51,12 +64,43 @@ const UserDataItem = () => {
     setActiveField(id);
   };
 
-  const handleConfirmFieldData = event => {
+  const formik = useFormik({
+    initialValues: {
+      email: user?.email,
+      name: user?.name,
+      birthday: user?.birthday,
+      city: user?.city,
+      phone: user?.phone,
+    },
+    enableReinitialize: true,
+    validationSchema: schemaData,
+  });
+
+  const handleConfirmFieldData = async event => {
     const { id } = event.currentTarget;
+    const { name, email, birthday, city, phone } = formik.values;
     if (id === activeField) {
       setActiveField(null);
     }
-    console.log('!!! send field data to backend');
+    switch (id) {
+      case 'name':
+        await updateName({ name });
+        break;
+      case 'email':
+        await updateEmail({ email });
+        break;
+      case 'birthday':
+        await updateBirthday({ birthday });
+        break;
+      case 'city':
+        await updateCity({ city });
+        break;
+      case 'phone':
+        await updatePhone({ phone });
+        break;
+      default:
+        return;
+    }
   };
 
   return (
@@ -65,7 +109,7 @@ const UserDataItem = () => {
         {photo ? (
           <PhotoContainer src={photo} alt="User photo" />
         ) : (
-          <PhotoContainer src={PhotoDefault} alt="Default img" />
+          <PhotoContainer src={user?.avatarUrl} alt="user avtar" />
         )}
         <EditPhotoWrapper
           type="file"
@@ -79,16 +123,7 @@ const UserDataItem = () => {
           </CustomInput>
         </label>
       </UserPhotoWrapper>
-      <Formik
-        initialValues={{
-          email: '',
-          name: '',
-          birthday: '',
-          city: '',
-          mobilePhone: '',
-        }}
-        validationSchema={schemaData}
-      >
+      <Formik>
         {() => (
           <FormContainer>
             <FormLabel>
@@ -96,6 +131,8 @@ const UserDataItem = () => {
               <FormInput
                 type="name"
                 name="name"
+                onChange={formik.handleChange}
+                value={formik.values.name}
                 placeholder="Your Name"
                 disabled={activeField !== 'name'}
               />
@@ -122,6 +159,8 @@ const UserDataItem = () => {
               <FormInput
                 type="email"
                 name="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
                 placeholder="Email"
                 disabled={activeField !== 'email'}
               />
@@ -148,6 +187,8 @@ const UserDataItem = () => {
               <FormInput
                 type="birthday"
                 name="birthday"
+                onChange={formik.handleChange}
+                value={formik.values.birthday}
                 placeholder="DD.ММ.YYYY"
                 disabled={activeField !== 'birthday'}
               />
@@ -175,6 +216,8 @@ const UserDataItem = () => {
                 type="phone"
                 name="phone"
                 placeholder="Phone"
+                onChange={formik.handleChange}
+                value={formik.values.phone}
                 disabled={activeField !== 'phone'}
               />
               {activeField === 'phone' ? (
@@ -200,6 +243,8 @@ const UserDataItem = () => {
               <FormInput
                 type="city"
                 name="city"
+                onChange={formik.handleChange}
+                value={formik.values.city}
                 placeholder="City"
                 disabled={activeField !== 'city'}
               />
