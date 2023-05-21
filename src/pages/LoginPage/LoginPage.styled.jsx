@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 const FormWrapper = styled.div`
+  margin: auto;
   padding: 40px 12px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.boxShadows.main};
