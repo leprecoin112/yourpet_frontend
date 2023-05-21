@@ -29,6 +29,7 @@ const lightTheme = {
     red: '#F43F5E',
     gray: '#888888',
     gradientBlue: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
+    backdrop: 'rgba(87, 86, 86, 0.6)',
   },
   boxShadows: {
     main: '3px 8px 14px rgba(136, 198, 253, 0.19)',

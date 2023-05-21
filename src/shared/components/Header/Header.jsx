@@ -6,10 +6,12 @@ import Container from '../Container/Container';
 
 import { IconWrapper, Wrapper, NavWrapper, UserWrapper } from './Header.styled';
 import { IconMenuHamburger } from '../Icons';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header = () => {
-  const isLoggedIn = false;
   const [isMenu, setIsMenu] = useState(false);
+
+  const { isLoggedIn } = useAuth();
 
   const toggleMenu = () => {
     setIsMenu(!isMenu);
