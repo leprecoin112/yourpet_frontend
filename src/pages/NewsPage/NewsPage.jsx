@@ -9,42 +9,43 @@ import { Title } from './NewsPage.styled';
 import Pagination from '../../shared/components/Pagination/Pagination';
 import {
   useAllNewsQuery,
-  useSearchNewsQuery,
+  useNewsQuery,
 } from '../../shared/redux/api/backend/news/newsApi';
 
 const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = searchParams.get('page') || 1;
-  const searchQuery = searchParams.get('query');
-  console.log(page);
-  const { data, error } = useSearchNewsQuery('d', page);
+  const [page, setPage] = useState(1);
+  const query = searchParams.get('query') ?? '';
+  const { data, error } = useNewsQuery({ title: query, page, limit: 6 });
   console.log(data);
 
-  const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState('');
 
-  const handleSubmit = query => {};
+  const handleFormSubmit = value => {
+    if (query !== value) {
+      setSearchParams({ query: value });
+    }
+  };
 
   const onPageChange = currentPage => {
     if (page === currentPage) {
       return;
     }
-    var params = searchQuery
-      ? { query: searchQuery, page: currentPage }
-      : { page: currentPage };
-    setSearchParams(params);
+
+    setPage(currentPage);
   };
 
   return (
     <Container>
       <Title>News</Title>
-      <NoticesSearch onFormSubmit={handleSubmit} />
+      <NoticesSearch onFormSubmit={handleFormSubmit} />
       {data && (
         <>
           <NewsList data={data.news} />
           <Pagination
             currentPage={Number(page)}
             totalPagesCount={data?.totalPages}
-            onPageChange={page => onPageChange(page)}
+            onPageChange={onPageChange}
           />
         </>
       )}
