@@ -1,6 +1,6 @@
-import { PersonalDetails } from '../../shared/components/AddPetForm/AddPetForm2';
+
 const AddPetPage = () => {
-  return <PersonalDetails />;
+  return (<div></div>)
 };
 
 export default AddPetPage;
