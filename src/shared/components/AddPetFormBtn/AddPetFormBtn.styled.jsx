@@ -4,15 +4,14 @@ const ButtonBack = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 40px;
-
+  gap: 12px;
+  min-width: 248px;
   font-family: ${({ theme }) => theme.fonts.main.semiBold};
   font-size: 16px;
   font-weight: 700;
   line-height: 1.38;
-
   color: ${({ theme }) => theme.colors.blue};
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.white};
   border: none;
 
   & svg {
@@ -24,7 +23,6 @@ const ButtonNext = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: padding: 8px 28px;
   gap: 12px;
   min-width: 248px;

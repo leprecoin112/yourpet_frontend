@@ -1,28 +1,43 @@
-import { Field } from 'formik';
-
+import { Formik, Form, Field } from 'formik';
+import {
+  RadioBtnWrapper,
+  RadioBtn,
+  RadioLabel,
+  BtnWrapper,
+} from './AddPetForm1.styled';
+import {
+  AddFormButtonBack,
+  AddFormButtonNext,
+} from '../AddPetFormBtn/AddPetFormBtn';
 export const ChooseOption = () => {
   return (
-    <div>
-      <label htmlFor="my-pet">
-        <Field type="radio" name="category" value="my-pet" />
-        Your pet
-      </label>
-      <label htmlFor="sell">
-        <Field type="radio" name="category" value="sell" />
-        Sell
-      </label>
-      <label htmlFor="lost-found">
-        <Field type="radio" name="category" value="lost-found" />
-        Lost/found
-      </label>
-      <label htmlFor="for-free">
-        <Field type="radio" name="category" value="for-free" />
-        In good hands
-      </label>
-      <div>
-        <button type="button" text="Next" />
-        <button text="Cancel" />
-      </div>
-    </div>
+    <Formik
+      initialValues={{
+        category: '',
+      }}
+    >
+      <RadioBtnWrapper>
+        <RadioLabel htmlFor="my-pet">
+          <RadioBtn type="radio" name="category" value="my-pet" />
+          Your pet
+        </RadioLabel>
+        <RadioLabel htmlFor="sell">
+          <RadioBtn type="radio" name="category" value="sell" />
+          Sell
+        </RadioLabel>
+        <RadioLabel htmlFor="lost-found">
+          <RadioBtn type="radio" name="category" value="lost-found" />
+          Lost/found
+        </RadioLabel>
+        <lRadioLabel htmlFor="for-free">
+          <RadioBtn type="radio" name="category" value="for-free" />
+          In good hands
+        </lRadioLabel>
+        <BtnWrapper>
+          <AddFormButtonNext text="Next" />
+          <AddFormButtonBack text="Cancel" />
+        </BtnWrapper>
+      </RadioBtnWrapper>
+    </Formik>
   );
 };
