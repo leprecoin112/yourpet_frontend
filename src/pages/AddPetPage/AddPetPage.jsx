@@ -1,7 +1,7 @@
-import { AddPetWrapper } from "./AddPetPage.styled";
-const AddPetPage = () => {
-  return <AddPetWrapper> Add Pet Page</AddPetWrapper>
-};
+import { AddPetWrapper } from './AddPetPage.styled';
 
+const AddPetPage = () => {
+  return <AddPetWrapper></AddPetWrapper>;
+};
 
 export default AddPetPage;
