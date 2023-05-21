@@ -12,6 +12,7 @@ import {
   Edit,
   Check,
   CustomInput,
+  CustomFileUploud
 } from './UserDataItem.styled';
 import { useState } from 'react';
 import IconCamera from '../Icons/IconCamera';
@@ -24,10 +25,11 @@ import {
   useUpdatePhoneMutation,
   useUpdateEmailMutation,
 } from '../../redux/api/backend/user/userApi';
+import { IconCheck } from '../Icons';
 
 const schemaData = yup.object().shape({
-  email: yup.string().email('Please enter a valid email').required('Required'),
-  name: yup.string().required(),
+  email: yup.string().email('Please enter a valid email').required('Email is required'),
+  name: yup.string().min(3).required('Name is required'),
   birthday: yup
     .string()
     .required()
@@ -36,7 +38,7 @@ const schemaData = yup.object().shape({
     .string()
     .required()
     .matches(/^[A-Za-z\s]+$/, 'Місто повинно містити тільки літери'),
-  mobilePhone: yup
+  phone: yup
     .string()
     .required()
     .matches(
@@ -60,6 +62,10 @@ const UserDataItem = ({ user }) => {
     const uploadedPhoto = event.target.files[0];
     setPhoto(URL.createObjectURL(uploadedPhoto));
     await updateAvatars(uploadedPhoto);
+  };
+
+  const handleConfirmPhoto = () => {
+    setPhoto(null);
   };
 
   const handleEditActive = event => {
@@ -114,7 +120,7 @@ const UserDataItem = ({ user }) => {
         ) : (
           <PhotoContainer
             src={`https://yourpet-backend-jxa0.onrender.com/${user?.avatarURL}`}
-            alt="user avtar"
+            alt="user avatar"
           />
         )}
         <EditPhotoWrapper
@@ -123,13 +129,15 @@ const UserDataItem = ({ user }) => {
           accept="image/*"
           onChange={handlePhotoUpload}
         />
-        <label htmlFor="file">
+        {photo ? (<CustomFileUploud onClick={handleConfirmPhoto}><IconCheck/>Confirm</CustomFileUploud>) : (
+          <label htmlFor="file">
           <CustomInput>
-            <IconCamera /> Edit photo
+            <IconCamera/> Edit photo
           </CustomInput>
         </label>
+        )}
       </UserPhotoWrapper>
-      <Formik>
+      <Formik {...formik}>
         {() => (
           <FormContainer>
             <FormLabel>
@@ -148,7 +156,7 @@ const UserDataItem = ({ user }) => {
                   onClick={handleConfirmFieldData}
                   id="name"
                 >
-                  <Check />
+                  <Check/>
                 </EditInputBtn>
               ) : (
                 <EditInputBtn
@@ -159,6 +167,9 @@ const UserDataItem = ({ user }) => {
                   <Edit />
                 </EditInputBtn>
               )}
+              {formik.errors.name && formik.touched.name && (
+    <div>{formik.errors.name}</div>
+  )}
             </FormLabel>
             <FormLabel>
               Email:

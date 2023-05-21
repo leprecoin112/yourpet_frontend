@@ -1,6 +1,6 @@
 import IconLogout from '../Icons/IconLogout';
 import ModalApproveAction from '../ModalApproveAction/ModalApproveAction';
-import { LogoutBtn } from './Logout.styled';
+import { LogoutBtn, ModalText } from './Logout.styled';
 import { useState } from 'react';
 import { useLogoutMutation } from '../../redux/api/backend/auth/authApi';
 
@@ -28,6 +28,8 @@ const Logout = () => {
           text="Already leaving?"
           redirect="/main"
           onYes={handleLogout}
+          icon={<IconLogout/>}
+          children={<ModalText>Already leaving?</ModalText>}
         />
       )}
       <LogoutBtn onClick={handleApprove}>

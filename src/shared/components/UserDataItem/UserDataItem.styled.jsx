@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+// import { css } from '@emotion/react';
 import { Form, Field } from 'formik';
 import IconEdit from '../Icons/IconEdit';
 import IconCheck from '../Icons/IconCheck';
@@ -70,6 +71,20 @@ const CustomInput = styled.div`
 `;
 
 const CustomFileUploud = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 24px;
+  margin-top: 14px;
+
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+
+  stroke: ${({ theme }) => theme.colors.blue};
 `;
 
 const FormLabel = styled.label`
@@ -102,8 +117,9 @@ const FormInput = styled(Field)`
   border: 1px solid ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   padding: 4px 12px;
-  &:focus {
-    border: none;
+  &:focus,
+  &:active {
+    outline: none;
   }
 
   &::placeholder {
@@ -151,5 +167,6 @@ export {
   EditInputBtn,
   Edit,
   Check,
-  CustomInput
+  CustomInput, 
+  CustomFileUploud
 };
