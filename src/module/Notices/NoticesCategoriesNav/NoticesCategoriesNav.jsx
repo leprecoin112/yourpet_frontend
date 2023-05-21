@@ -1,21 +1,22 @@
-import { useParams } from 'react-router-dom';
-
+import {  useParams } from 'react-router-dom';
+import { useAuth } from '../../../shared/hooks/useAuth';
 import {
   NavLinksContainer,
   NavIsLogged,
   NavNotLogged,
   Link,
 } from './NoticesCategoriesNav.styled';
+import { useEffect } from 'react';
 
 const categories = {
   publicCategories: [
     ['sell', 'sell'],
     ['lost-found', 'lost/found'],
-    ['in good hands', 'in good hands'],
+    ['in-good-hands', 'in good hands'],
   ],
   privateCategories: [
-    ['favorite ads', 'favorite ads'],
-    ['my ads', 'my ads'],
+    ['favorite-ads', 'favorite ads'],
+    ['my-ads', 'my ads'],
   ],
 };
 
@@ -23,7 +24,7 @@ const NoticesCategoriesNav = () => {
   const { categoryName } = useParams();
 
   // const isLogged = useSelector(selectIsLoggedIn);
-  const isLogged = true;
+  const { isLoggedIn } = useAuth;
 
   return (
     <NavLinksContainer>
@@ -38,7 +39,7 @@ const NoticesCategoriesNav = () => {
           </Link>
         ))}
       </NavIsLogged>
-      {isLogged && (
+      {isLoggedIn && (
         <NavNotLogged>
           {categories.privateCategories.map(([category, name], index) => (
             <Link

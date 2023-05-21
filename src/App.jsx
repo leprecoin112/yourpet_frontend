@@ -13,7 +13,7 @@ const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const OurFriendsPage = lazy(() =>
   import('./pages/OurFriendsPage/OurFriendsPage')
 );
-const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
+const NoticesPage = lazy(() => import('./pages/NoticesPage'));
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
@@ -26,7 +26,14 @@ function App() {
           <SharedLayout>
             <Route path="/main" element={<MainPage />} />
             <Route path="/news" element={<NewsPage />} />
-            <Route path="/notices" element={<NoticesPage />} />
+            <Route path="/notices" element={<NoticesPage />}>
+              <Route path="sell" element={<NoticesPage />} />
+              <Route path="lost-found" element={<NoticesPage />} />
+              <Route path="in-good-hands" element={<NoticesPage />} />
+              <Route path="favorite-ads" element={<NoticesPage />} />
+              <Route path="my-ads" element={<NoticesPage />} />
+            </Route>
+
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route
               path="/register"

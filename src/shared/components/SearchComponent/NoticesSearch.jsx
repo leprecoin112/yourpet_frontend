@@ -16,8 +16,6 @@ const NoticesSearch = ({ onFormSubmit }) => {
         setQuery(searchQuery);
     };
 
-
-
     useEffect(() => {
         onFormSubmit(query);
     }, [query, onFormSubmit]);

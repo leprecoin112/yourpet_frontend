@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useAuth } from '../../../shared/hooks/useAuth';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { isAuth } from '../../../shared/redux/auth/selectors';
-import Btn from '../Button/Button';
-import { ageCounter } from '../../redux/helpers/ageCounter';
+import Btn from '../../../shared/components/Button/Button';
+import { ageCounter } from '../../../shared/redux/helpers/ageCounter';
 import {
   IconHeart,
   IconTrash,
   IconLocation,
   IconClock,
   IconFemale,
-} from '../Icons';
+} from '../../../shared/components/Icons';
 
-import ModalApproveAction from '../../components/ModalApproveAction';
+import ModalApproveAction from '../../../shared/components/ModalApproveAction';
 
 import {
   ItemContainer,
@@ -54,13 +53,13 @@ const categoryTitleHandler = category => {
 };
 
 const NoticeCategoryItem = ({
-  _id,
+  id,
   category,
   title,
   name,
   birthday,
   breed,
-  photo,
+  image,
   sex,
   location,
   price,
@@ -72,13 +71,11 @@ const NoticeCategoryItem = ({
 
   // const age = ageCounter(birthday);
   const age = ageCounter('2022-03-23T00:00:00.000Z');
-
+  const photo = `https://yourpet-backend-jxa0.onrender.com/${image}`; 
   // const isOwner = ({ _id, owner }) => {
   //   return userId === owner;
   // };
-  const isOwner = true;
-
-  const isLogin = useSelector(isAuth);
+  const { isLoggedIn } = useAuth;
 
   const toastMss = () => {
     return toast.dismiss(), toast.warning('Please login');
@@ -89,21 +86,21 @@ const NoticeCategoryItem = ({
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer key={id}>
       <CategoryLabel>{category}</CategoryLabel>
       <UserBtns>
         <Btns
           styled="like"
-          onClick={!isLogin ? () => toastMss() : () => 'додати в улюблені'}
+          onClick={!isLoggedIn ? () => toastMss() : () => 'додати в улюблені'}
         >
           <IconHeart />
         </Btns>
 
-        {isOwner && (
+        {/* {isOwner && (
           <Btns styled="like" margin="16px 0 0">
             <IconTrash />
           </Btns>
-        )}
+        )} */}
       </UserBtns>
       <Filter>
         <FilterBtn>
