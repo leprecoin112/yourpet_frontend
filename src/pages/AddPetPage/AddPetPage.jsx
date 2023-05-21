@@ -1,6 +1,6 @@
-
+import { AddPetWrapper } from './AddPetPage.styled';
 const AddPetPage = () => {
-  return (<div></div>)
+  return <AddPetWrapper> Add Pet Page</AddPetWrapper>;
 };
 
 export default AddPetPage;

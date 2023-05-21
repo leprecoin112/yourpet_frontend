@@ -90,7 +90,6 @@ export const Btn = styled.button`
   &.filter {
     width: 40px;
     height: 40px;
-    position: relative;
     background: ${({ theme }) => theme.colors.lightBlue};
     &:hover {
       background: ${({ theme }) => theme.colors.gradientBlue};
@@ -100,18 +99,9 @@ export const Btn = styled.button`
       height: 40px;
       background: ${({ theme }) => theme.colors.white};
       border: 2px solid ${({ theme }) => theme.colors.blue};
-      &::after {
-        content: 'Filter';
-        position: absolute;
-        font-size: 16px;
-        left: 38px;
-        color: ${({ theme }) => theme.colors.blue};
-      }
+
       &:hover {
         border: ${({ theme }) => theme.colors.white};
-        &::after {
-          color: ${({ theme }) => theme.colors.white};
-        }
       }
     }
     &.on {

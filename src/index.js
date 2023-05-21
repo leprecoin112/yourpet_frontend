@@ -7,6 +7,7 @@ import lightTheme from './shared/styled/theme/lightTheme';
 import './shared/styled/styles.css';
 import { Provider } from 'react-redux';
 import { store, persistor } from './shared/redux/store';
+import { NoticeModal } from './shared/components/NoticeModal/NoticeModal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
