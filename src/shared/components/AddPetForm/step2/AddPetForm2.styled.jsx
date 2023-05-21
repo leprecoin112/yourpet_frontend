@@ -50,7 +50,7 @@ const FormInput = styled(Field)`
     font-size: 14px;
     line-height: 1.5;
     letter-spacing: 0.04em;
-    color: ${({ theme }) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.gray};
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
       font-size: 16px;
     }

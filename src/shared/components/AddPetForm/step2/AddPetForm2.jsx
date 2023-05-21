@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
 
 // import {
 //   AddFormButtonBack,
@@ -12,8 +12,7 @@ import {
   BtnWrapper,
 } from './AddPetForm2.styled';
 
-export const PersonalDetails = props => {
-  const { formik } = props;
+export const PersonalDetails = () => {
   return (
     <Formik>
       {({ errors, touched }) => (
