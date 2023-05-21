@@ -9,7 +9,7 @@ export const newsApi = baseApi.injectEndpoints({
 
     searchNews: builder.query({
       query: (title = '', page = 1, limit = 6) =>
-        `news/search?title=${title}?page=${page}?limit=${limit}`,
+        `news/search?title=${title}?page=${page}&limit=${limit}`,
     }),
   }),
 });

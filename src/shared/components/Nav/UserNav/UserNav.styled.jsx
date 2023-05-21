@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
-
-
-export const Wrapper = styled.div`
+export const Wrapper = styled(Link)`
   display: flex;
-  
+  text-decoration: none;
   align-items: center;
   gap: 12px;
   stroke: ${({ theme }) => theme.colors.yellow};
