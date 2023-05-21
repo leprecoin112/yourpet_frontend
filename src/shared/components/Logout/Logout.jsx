@@ -24,7 +24,7 @@ const Logout = () => {
     <>
       {isLogout && (
         <ModalApproveAction
-          onClose={onClose}
+          toggleModal={onClose}
           text="Already leaving?"
           redirect="/main"
           onYes={handleLogout}
