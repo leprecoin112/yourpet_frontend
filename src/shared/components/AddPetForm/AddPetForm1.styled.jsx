@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
+
 const RadioBtnWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
@@ -10,8 +11,8 @@ const RadioBtnWrapper = styled(Form)`
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
 `;
-export const RadioButton = styled(Field)``;
-export const RadioLabel = styled.label`
+
+const RadioLabel = styled.label`
   padding: 8px 16px;
   width: fit-content;
   font-weight: 500;
@@ -22,10 +23,15 @@ export const RadioLabel = styled.label`
   background-color: ${({ theme }) => theme.colors.lightBlue};
   border-radius: 40px;
   cursor: pointer;
+  & :hover,
+  & :focus {
+    background-color: ${({ theme }) => theme.colors.blue};
+  }
 `;
 const BtnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 91px;
 `;
-export { RadioBtnWrapper, RadioButton, RadioLabel, BtnWrapper };
+export { RadioBtnWrapper, RadioLabel, BtnWrapper };

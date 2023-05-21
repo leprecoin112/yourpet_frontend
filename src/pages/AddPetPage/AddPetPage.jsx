@@ -1,6 +1,6 @@
-import { ChooseOption } from '../../shared/components/AddPetForm/AddPetForm1';
+import { PersonalDetails } from '../../shared/components/AddPetForm/AddPetForm2';
 const AddPetPage = () => {
-  return <ChooseOption />;
+  return <PersonalDetails />;
 };
 
 export default AddPetPage;

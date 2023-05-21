@@ -4,8 +4,10 @@ const ButtonBack = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   gap: 12px;
-  min-width: 248px;
+  min-width: 76px;
+  height: 24px;
   font-family: ${({ theme }) => theme.fonts.main.semiBold};
   font-size: 16px;
   font-weight: 700;
@@ -13,7 +15,13 @@ const ButtonBack = styled.button`
   color: ${({ theme }) => theme.colors.blue};
   background-color: ${({ theme }) => theme.colors.white};
   border: none;
-
+  border-radius: 40px;
+  &:hover,
+  &:focus {
+    transition: all ${({ theme }) => theme.duration.main}
+      ${({ theme }) => theme.transition.main};
+    background-color: ${({ theme }) => theme.colors.lightBlue};
+  }
   & svg {
     stroke: currentColor;
   }
@@ -24,8 +32,10 @@ const ButtonNext = styled.button`
   align-items: center;
   justify-content: center;
   padding: padding: 8px 28px;
+  cursor: pointer;
   gap: 12px;
-  min-width: 248px;
+  width: 248px;
+  height:40px;
   font-family: ${({ theme }) => theme.fonts.main.semiBold};
   font-size: 16px;
   font-weight: 700;
@@ -34,7 +44,8 @@ const ButtonNext = styled.button`
   background-color: ${({ theme }) => theme.colors.blue};
   border: none;
   border-radius: 40px;
-    &:hover {
+    &:hover,
+    &:focus {
     transition: all ${({ theme }) => theme.duration.main}
       ${({ theme }) => theme.transition.main};
     background: ${({ theme }) => theme.colors.gradientBlue};
