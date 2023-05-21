@@ -3,10 +3,9 @@ import { Btn } from '../Button/Button.styled';
 
 export const ButtonWrapper = styled.div``;
 
-export const IconWrapper = styled.div`
-`;
+export const IconWrapper = styled.div``;
 
-export const ContactButton = styled.a(Btn)`
+export const ContactButton = styled(Btn)`
   color: ${({ theme }) => theme.colors.blue};
   width: 256px;
   height: 40px;
@@ -29,7 +28,6 @@ export const ContactButton = styled.a(Btn)`
     background: ${({ theme }) => theme.colors.blue};
     color: ${({ theme }) => theme.colors.light};
     stroke: ${({ theme }) => theme.colors.blue};
-    
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
