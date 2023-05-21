@@ -8,7 +8,7 @@ import './shared/styled/styles.css';
 import { Provider } from 'react-redux';
 import { store, persistor } from './shared/redux/store';
 import { NoticeModal } from './shared/components/NoticeModal/NoticeModal';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

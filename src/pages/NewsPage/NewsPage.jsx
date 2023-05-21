@@ -16,29 +16,13 @@ const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get('page') || 1;
   const searchQuery = searchParams.get('query');
-  const { data } = useAllNewsQuery(page);
+  console.log(page);
+  const { data, error } = useSearchNewsQuery('d', page);
+  console.log(data);
 
   const [filter, setFilter] = useState('');
 
-  const filterNews = () => {
-    if (!filter) {
-      return data.news;
-    }
-    const normalizedFilter = filter.toLowerCase();
-    const filteredList = data.news.filter(news => {
-      return news.title.toLowerCase().includes(normalizedFilter);
-    });
-
-    if (filteredList.length === 0) {
-      toast.dismiss();
-      toast.warning('Write a correct request');
-    }
-    return filteredList;
-  };
-
-  const handleSubmit = query => {
-    setFilter(query);
-  };
+  const handleSubmit = query => {};
 
   const onPageChange = currentPage => {
     if (page === currentPage) {
@@ -56,7 +40,7 @@ const NewsPage = () => {
       <NoticesSearch onFormSubmit={handleSubmit} />
       {data && (
         <>
-          <NewsList data={filterNews()} />
+          <NewsList data={data.news} />
           <Pagination
             currentPage={Number(page)}
             totalPagesCount={data?.totalPages}
