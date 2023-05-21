@@ -16,11 +16,7 @@ import IconEyeClosed from '../../../shared/components/Icons/IconEyeClosed';
 import IconEyeOpened from '../../../shared/components/Icons/IconEyeOpened';
 import IconCheck from '../../../shared/components/Icons/IconCheck';
 import IconCrossSmall from '../../../shared/components/Icons/IconCrossSmall';
-export default function RegisterForm({
-  handleSubmit,
-  validationSchema,
-  children,
-}) {
+export default function RegisterForm({ handleSubmit, validationSchema }) {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <Formik

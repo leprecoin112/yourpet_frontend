@@ -2,11 +2,10 @@
 import IconPlusSmall from "../Icons/IconPlusSmall";
 import {
   Title,
-  PetsDataWrapper,
   TitleAndBtnWrapper,
   AddPetBtn,
-
 } from "./PetsData.styled";
+import { PetsList } from "./PetsList";
 
 const PetsData = () => {
   return <div>
@@ -14,9 +13,7 @@ const PetsData = () => {
       <Title>My pets:</Title>
       <AddPetBtn to="/add-pet">Add Pet <IconPlusSmall/></AddPetBtn>
     </TitleAndBtnWrapper>
-    <PetsDataWrapper>
-        <p></p>
-    </PetsDataWrapper>
+    <PetsList/>
   </div>
 };
 
