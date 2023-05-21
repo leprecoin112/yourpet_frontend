@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoticesSearch from '../../shared/components/SearchComponent/NoticesSearch';
-import NewsList from './NewsList';
+import NewsList from '../../module/News/NewsList/NewsList';
 import Container from '../../shared/components/Container/Container';
 import { Title } from './NewsPage.styled';
 import Pagination from '../../shared/components/Pagination/Pagination';
@@ -42,13 +42,6 @@ const NewsPage = () => {
   const handleSubmit = query => {
     setFilter(query);
   };
-
-  // useEffect(() => {
-  //   if (totalHints) {
-  //     const pages = Math.ceil(totalHints / hints);
-  //     setTotalPages(pages);
-  //   }
-  // }, [totalHints, hints]);
 
   const onPageChange = currentPage => {
     if (page === currentPage) {

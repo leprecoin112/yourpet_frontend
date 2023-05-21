@@ -53,10 +53,13 @@ const UserDataItem = ({ user }) => {
   const [updateBirthday] = useUpdateBirthdayMutation();
   const [updateCity] = useUpdateCityMutation();
   const [updatePhone] = useUpdatePhoneMutation();
+  const [updateAvatars] = useUpdateAvatarsMutation();
 
-  const handlePhotoUpload = event => {
+  console.log(user);
+  const handlePhotoUpload = async event => {
     const uploadedPhoto = event.target.files[0];
     setPhoto(URL.createObjectURL(uploadedPhoto));
+    await updateAvatars(uploadedPhoto);
   };
 
   const handleEditActive = event => {
@@ -109,7 +112,10 @@ const UserDataItem = ({ user }) => {
         {photo ? (
           <PhotoContainer src={photo} alt="User photo" />
         ) : (
-          <PhotoContainer src={user?.avatarUrl} alt="user avtar" />
+          <PhotoContainer
+            src={`https://yourpet-backend-jxa0.onrender.com/${user?.avatarURL}`}
+            alt="user avtar"
+          />
         )}
         <EditPhotoWrapper
           type="file"

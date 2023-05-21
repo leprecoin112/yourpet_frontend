@@ -8,8 +8,11 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: ['user'],
     }),
     updateAvatars: builder.mutation({
-      query(body) {
-        return { url: `user/avatars`, method: 'PATCH', body };
+      query(file) {
+        const body = new FormData();
+        body.append('Content-Type', file.type);
+        body.append('avatar', file);
+        return { url: `user/avatars`, method: 'PATCH', body, formData: true };
       },
 
       invalidatesTags: ['user'],
@@ -58,5 +61,5 @@ export const {
   useUpdatePhoneMutation,
   useUpdateCityMutation,
   useUpdateBirthdayMutation,
-  useUpdateEmailMutation
+  useUpdateEmailMutation,
 } = userApi;
