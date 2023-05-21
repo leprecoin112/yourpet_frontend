@@ -21,9 +21,6 @@ const SharedLayout = ({ children }) => {
           <Routes>{children}</Routes>
         </Suspense>
       </main>
-      <footer>
-        <p>Footer</p>
-      </footer>
     </Fragment>
   );
 };
