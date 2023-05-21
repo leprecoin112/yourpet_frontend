@@ -1,14 +1,7 @@
-import MoreInfo from '../../shared/components/AddPet/MoreInfo/MoreInfo';
-import { AddWrapper} from './AddPetPage.styled';
+
+import { AddPetWrapper } from './AddPetPage.styled';
+
 const AddPetPage = () => {
-  return (
-    <>
-      <AddWrapper>
-        Add Pet Page
-        <MoreInfo />
-      </AddWrapper>
-    </>
-  );
-};
+  return <AddPetWrapper> Add Pet Page</AddPetWrapper>;
 
 export default AddPetPage;

@@ -8,18 +8,19 @@ import { schemaLogin } from '../../shared/utils/validation/authValidationSchema'
 import { useLoginMutation } from '../../shared/redux/api/backend/auth/authApi';
 import { setCredentials } from '../../shared/redux/api/backend/auth/authSlice';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const LoginPage = () => {
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     const user = { email, password };
     const response = await login(user);
 
-    console.log(response.data);
-
     dispatch(setCredentials(response.data));
+    location.state.from = '/login';
 
     resetForm();
   };

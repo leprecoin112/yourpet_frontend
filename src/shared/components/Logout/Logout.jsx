@@ -1,29 +1,41 @@
-import IconLogout from "../Icons/IconLogout";
-import ModalApproveAction from "../ModalApproveAction/ModalApproveAction";
-import { LogoutBtn } from "./Logout.styled";
-import { useState } from "react";
+import IconLogout from '../Icons/IconLogout';
+import ModalApproveAction from '../ModalApproveAction/ModalApproveAction';
+import { LogoutBtn } from './Logout.styled';
+import { useState } from 'react';
+import { useLogoutMutation } from '../../redux/api/backend/auth/authApi';
 
 const Logout = () => {
-  const [logout, setLogout] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
+  const [logout] = useLogoutMutation();
 
+  const handleApprove = () => {
+    setIsLogout(true);
+  };
 
-  const handleLogout = () => {
-    setLogout(true);
+  const handleLogout = async () => {
+    await logout();
   };
 
   const onClose = () => {
-    setLogout(false);
-  }
+    setIsLogout(false);
+  };
 
-
-  return <>
-    {logout && <ModalApproveAction onClose={onClose} text='Already leaving?' redirect='/login'/>}
-    <LogoutBtn onClick={handleLogout}>
-      <IconLogout />
-      Log Out
-    </LogoutBtn>
-  </>
+  return (
+    <>
+      {isLogout && (
+        <ModalApproveAction
+          toggleModal={onClose}
+          text="Already leaving?"
+          redirect="/main"
+          onYes={handleLogout}
+        />
+      )}
+      <LogoutBtn onClick={handleApprove}>
+        <IconLogout />
+        Log Out
+      </LogoutBtn>
+    </>
+  );
 };
-
 
 export default Logout;

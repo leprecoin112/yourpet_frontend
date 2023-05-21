@@ -14,6 +14,7 @@ const PageContainer = styled.div`
   }
 `;
 const FormWrapper = styled.div`
+  margin: auto;
   display: flex;
   flex-direction: column;
   width: 280px;

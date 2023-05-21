@@ -3,39 +3,23 @@ import { useSearchParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoticesSearch from '../../shared/components/SearchComponent/NoticesSearch';
-import NewsList from './NewsList';
+import NewsList from '../../module/News/NewsList/NewsList';
 import Container from '../../shared/components/Container/Container';
 import { Title } from './NewsPage.styled';
 import Pagination from '../../shared/components/Pagination/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchNews } from '../../shared/redux/news/operations';
-import { fetchNewsByQuery2 } from '../../shared/redux/news/operations';
-import { getAllNews, getHints } from '../../shared/redux/news/selectors';
-
+import {
+  useAllNewsQuery,
+  useSearchNewsQuery,
+} from '../../shared/redux/api/backend/news/newsApi';
 
 const NewsPage = () => {
-  const dispatch = useDispatch();
-  const data = useSelector(getAllNews);
   const [totalPages, setTotalPages] = useState(null);
-  const { totalHints, hints } = useSelector(getHints);
+  //const { totalHints, hints } = useSelector(getHints);
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get('page') || 1;
   const searchQuery = searchParams.get('query');
-
-  useEffect(() => {
-    const getNews = (searchQuery, page) => {
-      const fetchNewsByQuery = async () => {
-        await dispatch(
-          searchQuery
-            ? fetchNewsByQuery2({ query: searchQuery, page: page })
-            : fetchNews({ page: page })
-        );
-      };
-      return fetchNewsByQuery();
-    };
-
-    getNews(searchQuery, page);
-  }, [dispatch, searchQuery, page]);
+  const { data } = useSearchNewsQuery();
 
   const [filter, setFilter] = useState('');
 
@@ -58,13 +42,6 @@ const NewsPage = () => {
   const handleSubmit = query => {
     setFilter(query);
   };
-
-  useEffect(() => {
-    if (totalHints) {
-      const pages = Math.ceil(totalHints / hints);
-      setTotalPages(pages);
-    }
-  }, [totalHints, hints]);
 
   const onPageChange = currentPage => {
     if (page === currentPage) {
