@@ -1,20 +1,28 @@
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import {
   RadioBtnWrapper,
   RadioLabel,
   RadioBtn,
   BtnWrapper,
 } from './AddPetForm1.styled';
+import * as yup from 'yup';
 import {
   AddFormButtonNext,
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
 
-export const ChooseOption = ({ nextStep, prevStep }) => {
-  return (
+const validationSchema = yup.object().shape({
+  category: yup.string().required('Category is required'),
+});
+
+export const ChooseOption = ({ nextStep, prevStep, formData }) => {
+  const handleSubmit = newData => nextStep(newData);
+  return ({ values }) => {
     <Formik
-      initialValues={{
-        category: '',
+      initialValues={{ category: '' }}
+      validationSchema={validationSchema}
+      onSubmit={category => {
+        console.log(category);
       }}
     >
       <RadioBtnWrapper>
@@ -34,11 +42,12 @@ export const ChooseOption = ({ nextStep, prevStep }) => {
           <RadioBtn type="radio" name="category" value="for-free" />
           In good hands
         </RadioLabel>
+        <ErrorMessage name="category" />
         <BtnWrapper>
-          <AddFormButtonNext text="Next" onClick={nextStep} />
-          <AddFormButtonBack text="Cancel" onClick={prevStep} />
+          <AddFormButtonNext type="submit" text="Next" onClick={nextStep} />
+          <AddFormButtonBack type="button" text="Cancel" onClick={prevStep} />
         </BtnWrapper>
       </RadioBtnWrapper>
-    </Formik>
-  );
+    </Formik>;
+  };
 };
