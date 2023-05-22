@@ -8,12 +8,17 @@ import Container from '../../shared/components/Container/Container';
 import { Title } from './NewsPage.styled';
 import Pagination from '../../shared/components/Pagination/Pagination';
 import { useNewsQuery } from '../../shared/redux/api/backend/news/newsApi';
+import Loader from '../../shared/components/Loader/Loader';
 
 const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
   const query = searchParams.get('query') ?? '';
-  const { data, error } = useNewsQuery({ title: query, page, limit: 6 });
+  const { data, error, isFetching, isLoading } = useNewsQuery({
+    title: query,
+    page,
+    limit: 6,
+  });
 
   const handleFormSubmit = value => {
     if (query !== value) {
@@ -28,10 +33,12 @@ const NewsPage = () => {
 
     setPage(currentPage);
   };
-
-  if (error) {
-    if (error.status === 404) {
-      toast.error(error.data.message);
+  const isLoader = isLoading || isFetching;
+  if (!isLoader) {
+    if (error) {
+      if (error.status === 404) {
+        toast.error(error.data.message);
+      }
     }
   }
 
@@ -39,15 +46,19 @@ const NewsPage = () => {
     <Container>
       <Title>News</Title>
       <NoticesSearch onFormSubmit={handleFormSubmit} />
-      {data && (
-        <>
-          <NewsList data={data.news} />
-          <Pagination
-            currentPage={Number(page)}
-            totalPagesCount={data?.totalPages}
-            onPageChange={onPageChange}
-          />
-        </>
+      {isLoader ? (
+        <Loader />
+      ) : (
+        data && (
+          <>
+            <NewsList data={data?.news} />
+            <Pagination
+              currentPage={Number(page)}
+              totalPagesCount={data?.totalPages}
+              onPageChange={onPageChange}
+            />
+          </>
+        )
       )}
     </Container>
   );
