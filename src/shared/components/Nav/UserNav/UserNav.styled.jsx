@@ -8,7 +8,6 @@ export const Wrapper = styled(Link)`
   gap: 12px;
   stroke: ${({ theme }) => theme.colors.yellow};
   color: ${({ theme }) => theme.colors.yellow};
-  margin-left: 104px;
   letter-spacing: 0.04em;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {

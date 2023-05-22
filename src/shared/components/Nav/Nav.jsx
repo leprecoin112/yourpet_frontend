@@ -8,11 +8,7 @@ const Nav = () => {
       <Link to={to}>{text}</Link>
     </Li>
   ));
-  return (
-    <NavEl>
-      {elements}
-    </NavEl>    
-  );
+  return <NavEl>{elements}</NavEl>;
 };
 
 export default Nav;
