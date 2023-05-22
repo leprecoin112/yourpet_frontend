@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
+// import { css } from '@emotion/react';
 import { Form, Field } from 'formik';
-import IconEdit from '../Icons/IconEdit';
-import IconCheck from '../Icons/IconCheck';
+import { IconEdit, IconCheck, IconCrossBig } from '../Icons/';
 
 const UserDataWrapper = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -69,7 +69,22 @@ const CustomInput = styled.div`
   stroke: ${({ theme }) => theme.colors.blue};
 `;
 
+
 const CustomFileUploud = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 24px;
+  margin-top: 14px;
+
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+
+  stroke: ${({ theme }) => theme.colors.blue};
 `;
 
 const FormLabel = styled.label`
@@ -102,8 +117,9 @@ const FormInput = styled(Field)`
   border: 1px solid ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   padding: 4px 12px;
-  &:focus {
-    border: none;
+  &:focus,
+  &:active {
+    outline: none;
   }
 
   &::placeholder {
@@ -140,6 +156,10 @@ const Check = styled(IconCheck)`
   stroke: #00c3ad;
 `;
 
+const Error = styled(IconCrossBig)`
+  stroke: #f43f5e;
+`;
+
 export {
   UserDataWrapper,
   UserPhotoWrapper,
@@ -151,5 +171,7 @@ export {
   EditInputBtn,
   Edit,
   Check,
-  CustomInput
+  CustomInput, 
+  CustomFileUploud,
+  Error,
 };

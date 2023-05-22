@@ -1,12 +1,16 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
 import {
   RadioBtnWrapper,
   RadioLabel,
   RadioBtn,
   BtnWrapper,
 } from './AddPetForm1.styled';
+import {
+  AddFormButtonNext,
+  AddFormButtonBack,
+} from '../../AddPetFormBtn/AddPetFormBtn';
 
-export const ChooseOption = () => {
+export const ChooseOption = ({ nextStep, prevStep }) => {
   return (
     <Formik
       initialValues={{
@@ -31,8 +35,8 @@ export const ChooseOption = () => {
           In good hands
         </RadioLabel>
         <BtnWrapper>
-          {/* <AddFormButtonNext text="Next" />
-          <AddFormButtonBack text="Cancel" /> */}
+          <AddFormButtonNext text="Next" onClick={nextStep} />
+          <AddFormButtonBack text="Cancel" onClick={prevStep} />
         </BtnWrapper>
       </RadioBtnWrapper>
     </Formik>

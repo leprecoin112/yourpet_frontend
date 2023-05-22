@@ -23,7 +23,8 @@ import {
 } from '../../AddPetFormBtn/AddPetFormBtn';
 
 import { Formik, Form } from 'formik';
-const MoreInfo = ({ nextStep, prevStep }) => {
+
+const MoreInfoToLost = ({ nextStep, prevStep }) => {
   return (
     <Formik>
       <Form>
@@ -44,7 +45,7 @@ const MoreInfo = ({ nextStep, prevStep }) => {
             </ContainerFirstBtn>
             <LabelFile className="to-sell">
               Load image:
-              <InputFileContainer>
+              <InputFileContainer className="to-lost">
                 <IconsPlusBig />
               </InputFileContainer>
               <InputFile
@@ -65,12 +66,9 @@ const MoreInfo = ({ nextStep, prevStep }) => {
               />
             </FormLabel>
             <FormLabel>
-              Price
-              <FormInputPet type="number" name="price" placeholder="Price" />
-            </FormLabel>
-            <FormLabel>
               Comments
               <InputComents
+                className="to-lost"
                 type="text"
                 name="comments"
                 placeholder="Comments"
@@ -87,4 +85,4 @@ const MoreInfo = ({ nextStep, prevStep }) => {
   );
 };
 
-export default MoreInfo;
+export default MoreInfoToLost;
