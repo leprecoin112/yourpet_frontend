@@ -20,5 +20,14 @@ const LogoutBtn = styled.button`
   color: ${({theme}) => theme.colors.gray}
 `;
 
+const ModalText = styled.p`
+  font-weight: 500;
+  font-size: 30px;
 
-export { LogoutBtn };
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 36px;
+  }
+`;
+
+
+export { LogoutBtn, ModalText };
