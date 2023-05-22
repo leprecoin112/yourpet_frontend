@@ -14,7 +14,6 @@ import {
   CustomInput,
   CustomFileUploud,
   Error,
-
 } from './UserDataItem.styled';
 import { useState } from 'react';
 import IconCamera from '../Icons/IconCamera';
@@ -30,7 +29,10 @@ import {
 import { IconCheck } from '../Icons';
 
 const schemaData = yup.object().shape({
-  email: yup.string().email('Please enter a valid email').required('Email is required'),
+  email: yup
+    .string()
+    .email('Please enter a valid email')
+    .required('Email is required'),
   name: yup.string().min(3).required('Name is required'),
   birthday: yup
     .string()
@@ -59,13 +61,14 @@ const UserDataItem = ({ user }) => {
   const [updatePhone] = useUpdatePhoneMutation();
   const [updateAvatars] = useUpdateAvatarsMutation();
 
-  const handlePhotoUpload = async event => {
+  const handlePhotoUpload = event => {
     const uploadedPhoto = event.target.files[0];
-    setPhoto(URL.createObjectURL(uploadedPhoto));
-    await updateAvatars(uploadedPhoto);
+    //setPhoto(URL.createObjectURL(uploadedPhoto));
+    setPhoto(uploadedPhoto);
   };
 
-  const handleConfirmPhoto = () => {
+  const handleConfirmPhoto = async () => {
+    await updateAvatars(photo);
     setPhoto(null);
   };
 
@@ -117,12 +120,9 @@ const UserDataItem = ({ user }) => {
     <UserDataWrapper>
       <UserPhotoWrapper>
         {photo ? (
-          <PhotoContainer src={photo} alt="User photo" />
+          <PhotoContainer src={URL.createObjectURL(photo)} alt="User photo" />
         ) : (
-          <PhotoContainer
-            src={`https://yourpet-backend-jxa0.onrender.com/${user?.avatarURL}`}
-            alt="user avatar"
-          />
+          <PhotoContainer src={user?.avatarURL} alt="user avatar" />
         )}
         <EditPhotoWrapper
           type="file"
@@ -130,12 +130,17 @@ const UserDataItem = ({ user }) => {
           accept="image/*"
           onChange={handlePhotoUpload}
         />
-        {photo ? (<CustomFileUploud onClick={handleConfirmPhoto}><IconCheck/>Confirm</CustomFileUploud>) : (
+        {photo ? (
+          <CustomFileUploud onClick={handleConfirmPhoto}>
+            <IconCheck />
+            Confirm
+          </CustomFileUploud>
+        ) : (
           <label htmlFor="file">
-          <CustomInput>
-            <IconCamera/> Edit photo
-          </CustomInput>
-        </label>
+            <CustomInput>
+              <IconCamera /> Edit photo
+            </CustomInput>
+          </label>
         )}
       </UserPhotoWrapper>
       <Formik {...formik}>
@@ -170,8 +175,8 @@ const UserDataItem = ({ user }) => {
                 </EditInputBtn>
               )}
               {formik.errors.name && formik.touched.name && (
-    <div>{formik.errors.name}</div>
-  )}
+                <div>{formik.errors.name}</div>
+              )}
             </FormLabel>
             <FormLabel>
               Email:
