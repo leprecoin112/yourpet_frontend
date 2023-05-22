@@ -15,12 +15,15 @@ import MoreInfoToLost from '../../shared/components/AddPet/MoreInfo/MoreInfoToLo
 
 const AddPetPage = () => {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    category: '',
+  });
 
   const nextStep = () => {
     setStep(prevStep => prevStep + 1);
-  };
 
+    console.log('data', formData);
+  };
   const prevStep = () => {
     setStep(prevStep => prevStep - 1);
   };
@@ -38,7 +41,7 @@ const AddPetPage = () => {
   //
   // const [variant, setVariant] = useState('add_pet');
   // const [variant, setVariant] = useState('sell');
-  const [variant, setVariant] = useState('lost_found');
+  // const [variant, setVariant] = useState('lost_found');
   // const [variant, setVariant] = useState('in_good_hands');
 
   function renderStep() {
@@ -48,27 +51,32 @@ const AddPetPage = () => {
           <AddPetWrapperShort>
             <PageTitle>Add pet</PageTitle>
             <AddPetNav1 />
-            <ChooseOption nextStep={nextStep} prevStep={prevStep} />
+            <ChooseOption
+              formData={formData}
+              setFormData={setFormData}
+              nextStep={nextStep}
+              prevStep={prevStep}
+            />
           </AddPetWrapperShort>
         );
       case 2:
         return (
           <>
-            {variant === 'add_pet' ? (
+            {formData.category === 'add_pet' ? (
               <AddPetWrapperShort>
                 <PageTitle>Add my pet</PageTitle>
                 <AddPetNav2 />
                 <PersonalDetailsToAdd nextStep={nextStep} prevStep={prevStep} />
               </AddPetWrapperShort>
             ) : null}
-            {variant === 'sell' ? (
+            {formData.category === 'sell' ? (
               <AddPetWrapper className="to-sell">
                 <PageTitle>Add pet for sale</PageTitle>
                 <AddPetNav2 />
                 <PersonalDetails nextStep={nextStep} prevStep={prevStep} />
               </AddPetWrapper>
             ) : null}
-            {variant === 'lost_found' ? (
+            {formData.category === 'lost_found' ? (
               <AddPetWrapper className="to-sell">
                 <PageTitle>Add lost pet</PageTitle>
                 <AddPetNav2 />
@@ -80,7 +88,7 @@ const AddPetPage = () => {
       case 3:
         return (
           <>
-            {variant === 'add_pet' ? (
+            {formData.category === 'add_pet' ? (
               <AddPetWrapperShort>
                 <PageTitle>Add my pet</PageTitle>
                 <AddPetNav3 />
@@ -91,7 +99,7 @@ const AddPetPage = () => {
                 />
               </AddPetWrapperShort>
             ) : null}
-            {variant === 'sell' ? (
+            {formData.category === 'sell' ? (
               <AddPetWrapper>
                 <PageTitle className="to-sell">Add pet for sale</PageTitle>
                 <AddPetNav3 />
@@ -102,7 +110,7 @@ const AddPetPage = () => {
                 />
               </AddPetWrapper>
             ) : null}
-            {variant === 'lost_found' ? (
+            {formData.category === 'lost_found' ? (
               <AddPetWrapper className="to-lost">
                 <PageTitle className="to-sell">Add lost pet</PageTitle>
                 <AddPetNav3 />
