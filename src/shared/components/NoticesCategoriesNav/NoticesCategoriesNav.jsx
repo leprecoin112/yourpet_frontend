@@ -1,4 +1,3 @@
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -11,7 +10,7 @@ import {
 const categories = {
   publicCategories: [
     ['sell', 'sell'],
-    ['lost/found', 'lost/found'],
+    ['lost-found', 'lost/found'],
     ['in good hands', 'in good hands'],
   ],
   privateCategories: [

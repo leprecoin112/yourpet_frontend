@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 
-import SharedLayout from './shared/SharedLayout/SharedLayout';
+import SharedLayout from './router/SharedLayout/SharedLayout';
 import { PrivateRoute } from './router/PrivateRoute';
 import { RestrictedRoute } from './router/RestrictedRoute';
-import AddPetPage from './pages/AddPetPage/AddPetPage';
+import { RedirectRoute } from './router/RedirectRoute';
+
+const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -24,14 +26,38 @@ function App() {
         path="*"
         element={
           <SharedLayout>
+            <Route path="/" element={<RedirectRoute redirectTo="/main" />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />} />
             <Route path="/friends" element={<OurFriendsPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/user" element={<UserPage />} />
-            <Route path="/add-pet" element={<AddPetPage />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  redirectTo="/user"
+                  component={<RegisterPage />}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+              }
+            />
+            <Route
+              path="/user"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UserPage />} />
+              }
+            />
+            <Route
+              path="/add-pet"
+              element={
+                <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+              }
+            />
             <Route path="*" element={<NotFoundPage />} />
           </SharedLayout>
         }

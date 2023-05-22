@@ -1,5 +1,7 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
+// import { css } from '@emotion/react';
 import { Form, Field } from 'formik';
+import { IconEdit, IconCheck, IconCrossBig } from '../Icons/';
 
 const UserDataWrapper = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -26,7 +28,6 @@ const UserPhotoWrapper = styled.div`
   }
 `;
 
-
 const FormContainer = styled(Form)`
   display: flex;
   flex-direction: column;
@@ -47,20 +48,47 @@ const PhotoContainer = styled.img`
 `;
 
 const EditPhotoWrapper = styled.input`
-  width: 94px;
+  display: none;
+`;
+
+const CustomInput = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  ${'' /* width: 94px; */}
+  height: 24px;
   margin-top: 14px;
 
   font-family: ${({ theme }) => theme.fonts.main.regular};
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
-  line-height: 22px;
 
-  border: none;
-  background: none;
+  stroke: ${({ theme }) => theme.colors.blue};
+`;
+
+
+const CustomFileUploud = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 24px;
+  margin-top: 14px;
+
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+
+  stroke: ${({ theme }) => theme.colors.blue};
 `;
 
 const FormLabel = styled.label`
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 264px;
@@ -70,8 +98,8 @@ const FormLabel = styled.label`
   line-height: 19px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-      width: 356px;
-    }
+    width: 356px;
+  }
 
   &:not(:last-child) {
     margin-bottom: 12px;
@@ -81,7 +109,6 @@ const FormLabel = styled.label`
   }
 `;
 
-
 const FormInput = styled(Field)`
   font-family: ${({ theme }) => theme.fonts.main.regular};
   font-size: 12px;
@@ -90,10 +117,11 @@ const FormInput = styled(Field)`
   border: 1px solid ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   padding: 4px 12px;
-  &:focus {
-    border: 2px solid ${({ theme }) => theme.colors.blue};
+  &:focus,
+  &:active {
+    outline: none;
   }
-  
+
   &::placeholder {
     font-family: ${({ theme }) => theme.fonts.main.regular};
     font-size: 12px;
@@ -109,4 +137,41 @@ const FormInput = styled(Field)`
   }
 `;
 
-export { UserDataWrapper, UserPhotoWrapper, FormContainer, FormInput, FormLabel, PhotoContainer, EditPhotoWrapper };
+const EditInputBtn = styled.button`
+  cursor: pointer;
+  height: 24px;
+  position: absolute;
+  right: 12px;
+  top: 4px;
+  padding: 0;
+  background: transparent;
+  border: none;
+`;
+
+const Edit = styled(IconEdit)`
+  fill: ${({ theme }) => theme.colors.blue};
+`;
+
+const Check = styled(IconCheck)`
+  stroke: #00c3ad;
+`;
+
+const Error = styled(IconCrossBig)`
+  stroke: #f43f5e;
+`;
+
+export {
+  UserDataWrapper,
+  UserPhotoWrapper,
+  FormContainer,
+  FormInput,
+  FormLabel,
+  PhotoContainer,
+  EditPhotoWrapper,
+  EditInputBtn,
+  Edit,
+  Check,
+  CustomInput, 
+  CustomFileUploud,
+  Error,
+};
