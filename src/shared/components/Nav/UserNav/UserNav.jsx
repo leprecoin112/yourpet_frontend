@@ -5,11 +5,11 @@ import { useGetUserQuery } from '../../../redux/api/backend/user/userApi';
 
 const UserNav = () => {
   const { data } = useGetUserQuery();
-
+  console.log(window.innerWidth);
   return (
     <Wrapper to="user">
       <IconUser />
-      <span>{data?.name}</span>
+      {window.innerWidth >= 768 && <span>{data?.name}</span>}
     </Wrapper>
   );
 };
