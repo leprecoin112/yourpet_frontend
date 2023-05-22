@@ -40,7 +40,6 @@ export const PersonalDetails = ({ nextStep, prevStep }) => {
         breed: '',
       }}
       validationSchema={validationSchema}
-      // onSubmit={}
     >
       {({ errors, touched }) => (
         <FormWrapper>
@@ -94,7 +93,7 @@ export const PersonalDetails = ({ nextStep, prevStep }) => {
             <Error component="div" name="breed" />
           </FormLabel>
           <BtnWrapper className="to-sale">
-            <AddFormButtonNext type="submit" text="Next" onClick={nextStep} />
+            <AddFormButtonNext type="button" text="Next" onClick={nextStep} />
             <AddFormButtonBack type="button" text="Back" onClick={prevStep} />
           </BtnWrapper>
         </FormWrapper>

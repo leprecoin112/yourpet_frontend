@@ -20,6 +20,11 @@ const validation = yup.object().shape({
     ),
 });
 export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
+  const handleChange = e => {
+    const value = e.target.value;
+    setFormData(prev => ({ ...prev, category: value }));
+  };
+  const { category } = formData;
   return (
     <Formik
       initialValues={{
@@ -35,7 +40,8 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
               name="category"
               value="my-pet"
               id="my-pet"
-              // checked={value === 'add_pet'}
+              onChange={handleChange}
+              checked={category === 'my-pet'}
             />
             Your pet
           </RadioLabel>
@@ -44,7 +50,9 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
               type="radio"
               name="category"
               value="sell"
-              // checked={category === 'sell'}
+              id="sell"
+              onChange={handleChange}
+              checked={category === 'sell'}
             />
             Sell
           </RadioLabel>
@@ -53,7 +61,9 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
               type="radio"
               name="category"
               value="lost-found"
-              // checked={category === 'lost_found'}
+              id="lost-found"
+              onChange={handleChange}
+              checked={category === 'lost-found'}
             />
             Lost/found
           </RadioLabel>
@@ -62,7 +72,9 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
               type="radio"
               name="category"
               value="for-free"
-              // checked={category === 'sell'}
+              id="for-free"
+              onChange={handleChange}
+              checked={category === 'for-free'}
             />
             In good hands
           </RadioLabel>
