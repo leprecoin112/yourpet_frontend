@@ -29,7 +29,7 @@ export const PetsList = () => {
 
   return (
     <PetsListWrapper>
-      {pets ? (
+      {pets.length > 0 ? (
         pets.map(pet => <PetsItem key={pet.id} petData={pet} />)
       ) : (
         <PetsNoData>You don't have any pets in list yet</PetsNoData>
