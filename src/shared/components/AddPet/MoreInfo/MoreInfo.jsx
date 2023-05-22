@@ -15,10 +15,12 @@ import {
   FormInputPet,
   ContainerForm,
   ContainerFirstBtn,
+  BtnWrapper
 } from './MoreInfo.styled';
+import {AddFormButtonNext, AddFormButtonBack } from '../../AddPetFormBtn/AddPetFormBtn';
 
 import { Formik, Form } from 'formik';
-const MoreInfo = () => {
+const MoreInfo = ({ nextStep, prevStep}) => {
   return (
     <Formik>
       <Form>
@@ -75,6 +77,10 @@ const MoreInfo = () => {
               />
             </FormLabel>
           </ContainerForm>
+          <BtnWrapper>
+            <AddFormButtonBack text="Back" onClick={prevStep} />
+            <AddFormButtonNext text="Done" onClick={nextStep} />
+          </BtnWrapper>
         </Container>
       </Form>
     </Formik>
