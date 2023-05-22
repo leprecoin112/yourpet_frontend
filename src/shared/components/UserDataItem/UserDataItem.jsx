@@ -55,7 +55,6 @@ const UserDataItem = ({ user }) => {
   const [updatePhone] = useUpdatePhoneMutation();
   const [updateAvatars] = useUpdateAvatarsMutation();
 
-  console.log(user);
   const handlePhotoUpload = async event => {
     const uploadedPhoto = event.target.files[0];
     setPhoto(URL.createObjectURL(uploadedPhoto));

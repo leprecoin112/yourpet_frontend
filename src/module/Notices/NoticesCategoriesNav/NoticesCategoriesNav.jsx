@@ -22,7 +22,7 @@ const categories = {
 
 const NoticesCategoriesNav = () => {
   const { categoryName } = useParams();
-  const { isLoggedIn } = useAuth;
+  const { isLoggedIn } = useAuth();
 
   return (
     <NavLinksContainer>

@@ -90,6 +90,7 @@ display:flex;
   }
 `;
 
+
 export const Filter = styled.div`
   position: absolute;
   display: flex;
@@ -154,9 +155,7 @@ export const ItemImage = styled.img`
   object-fit: cover;
   background-color: ${({ theme }) => theme.colors.background};
 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  object-fit: cover;
 `;
 
 export const Info = styled.div`

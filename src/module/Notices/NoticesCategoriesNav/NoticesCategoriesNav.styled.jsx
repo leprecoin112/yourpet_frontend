@@ -5,7 +5,11 @@ export const NavLinksContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  flex-direction: column;
+  gap: 8px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    gap: 12px;
+  }
 `;
 
 export const NavIsLogged = styled.div`
@@ -22,6 +26,10 @@ export const NavNotLogged = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    gap: 12px;
+  }
 `;
 
 export const Link = styled(NavLink)`

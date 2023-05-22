@@ -1,7 +1,17 @@
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-const ErrorMessage = styled.p``;
+const ErrorMessage = styled.p`
+  margin-top: 20px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray};
+
+  font-family: ${({ theme }) => theme.fonts.main.semiBold};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-top: 40px;
+  }
+`;
 
 const FiltersWrapper = styled.div`
     display: flex;

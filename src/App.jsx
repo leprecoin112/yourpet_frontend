@@ -11,7 +11,7 @@ const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const MainPage = lazy(() => import('./pages/MainPage'));
-// const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
+const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const OurFriendsPage = lazy(() =>
   import('./pages/OurFriendsPage/OurFriendsPage')
 );
@@ -28,7 +28,7 @@ function App() {
           <SharedLayout>
             <Route path="/" element={<RedirectRoute redirectTo="/main" />} />
             <Route path="/main" element={<MainPage />} />
-            {/* <Route path="/news" element={<NewsPage />} /> */}
+            <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />}>
               <Route path="sell" element={<NoticesPage />} />
               <Route path="lost-found" element={<NoticesPage />} />

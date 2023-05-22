@@ -5,10 +5,10 @@ export const noticesApi = baseApi.injectEndpoints({
     tagTypes: ['notices'],
     endpoints: builder => ({
         getOwnNotices: builder.query({
-            query: (page = 1, limit = 12) => `notices?page=${page}&limit=${limit}`
+            query: ({page = 1, limit = 12}) => `notices?page=${page}&limit=${limit}`
         }),
         getAllNotices: builder.query({
-            query: (page = 1, limit = 12) => `notices/all?page=${page}&limit=${limit}`
+            query: ({page = 1, limit = 12}) => `notices/all?page=${page}&limit=${limit}`
         }),
         getNoticesByParams: builder.query({
             query: ({title = '', category = '', page = 1, limit = 12}) =>
@@ -33,7 +33,8 @@ export const noticesApi = baseApi.injectEndpoints({
             invalidatesTags: ['notices'],
         }),
         getFavoriteNotices: builder.query({
-            query: (page = 1, limit = 12) => `notices/favorites/page=${page}&limit=${limit}`
+            query: () =>
+                `notices/favorites`
         }),
         findNoticeById: builder.query({
             query: (id) => `notices/${id}`
@@ -56,5 +57,5 @@ export const {
     useRemoveNoticeFromFavoritesMutation,
     useGetFavoriteNoticesQuery,
     useFindNoticeByIdQuery,
-    useDeleteNoticeByIdQuery,
+    useDeleteNoticeByIdMutation,
 } = noticesApi;
