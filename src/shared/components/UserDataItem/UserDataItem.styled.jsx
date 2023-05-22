@@ -173,6 +173,5 @@ export {
   Check,
   CustomInput, 
   CustomFileUploud,
-  CustomInput,
   Error,
 };
