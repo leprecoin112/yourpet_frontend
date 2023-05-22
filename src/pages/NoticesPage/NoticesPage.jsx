@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import { useGetNoticesByParamsQuery, useGetFavoriteNoticesQuery, useGetOwnNoticesQuery } from '../../shared/redux/api/backend/notices/noticesApi';
+import {
+  useGetNoticesByParamsQuery,
+  useGetFavoriteNoticesQuery,
+  useGetOwnNoticesQuery,
+} from '../../shared/redux/api/backend/notices/noticesApi';
 
 import NoticesCategoriesNav from '../../module/Notices/NoticesCategoriesNav';
 import NoticesCategoriesList from '../../module/Notices/NoticesCategoriesList';
 
-import { ErrorMessage, ButtonsWrapper, MobileAddButton, AddButton, FiltersWrapper } from './NoticesPage.styled';
+import {
+  ErrorMessage,
+  ButtonsWrapper,
+  MobileAddButton,
+  AddButton,
+  FiltersWrapper,
+} from './NoticesPage.styled';
 import Loader from '../../shared/components/Loader';
 import NoticesSearch from '../../shared/components/SearchComponent/NoticesSearch';
 import { useLocation } from 'react-router-dom';
@@ -27,11 +37,11 @@ const NoticesPage = () => {
     case 'my-ads':
       query = useGetOwnNoticesQuery;
       break;
-    
+
     case 'favorite-ads':
       query = useGetFavoriteNoticesQuery;
       break;
-    
+
     case 'lost-found':
     case 'in-good-hands':
     case 'sell':
@@ -39,11 +49,8 @@ const NoticesPage = () => {
       break;
   }
 
-  const {
-    data,
-    isFetching,
-  } = query({ title, category, page, limit: 12 });
-  
+  const { data, isFetching } = query({ title, category, page, limit: 12 });
+
   const handleFormSubmit = value => {
     setTitle(value);
   };
@@ -56,11 +63,12 @@ const NoticesPage = () => {
     setPage(currentPage);
   };
 
+  console.log(data);
+
   useEffect(() => {
     const categoryName = location.pathname.split('/')[2];
     setCategory(categoryName ?? '');
   }, [location]);
-
 
   return (
     <Section>
