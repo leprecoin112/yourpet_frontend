@@ -17,7 +17,6 @@ import {
 import IconCrossBig from '../Icons/IconCrossBig';
 import { createPortal } from 'react-dom';
 import { useState, useEffect } from 'react';
-import { fetchNoticeById } from '../../redux/notices/operations';
 import { Contact } from '../Contact/Contact';
 import { AddToFavorite } from '../AddToFavorite/AddToFavorite';
 
@@ -28,30 +27,30 @@ export const NoticeModal = ({ onClose, noticeId }) => {
 
   useEffect(() => {
     (async function getNoticeById() {
-      const res = await fetchNoticeById(noticeId);
-      setNoticeInfo(res.result);
+      //const res = await fetchNoticeById(noticeId);
+      //setNoticeInfo(res.result);
     })();
   }, [noticeId]);
 
   useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
+    const handleEscape = event => {
+      if (event.key === 'Escape') {
         onClose();
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [onClose]);
 
-  const handleOverlayClick = (event) => {
-      if (event.target === event.currentTarget) {
-        onClose();
-      }
-    };
+  const handleOverlayClick = event => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
 
   return createPortal(
     <Overlay onClick={handleOverlayClick}>
