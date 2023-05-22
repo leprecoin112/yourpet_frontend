@@ -13,10 +13,12 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: flex-end;
     flex-direction: row;
+    margin-left: 167px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     gap: 20px;
+    margin-left: 270px;
   }
 `;
 
@@ -28,9 +30,10 @@ const BaseLink = styled(Link)`
   text-decoration: none;
   align-items: center;
 
-  font-family: ${({ theme }) => theme.fonts.main.bold};
+  font-family: ${({ theme }) => theme.fonts.main.regular};
   font-size: ${({ theme }) => theme.fontSizes[2]};
   line-height: 1.38;
+  letter-spacing: 0.04em;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
   }
