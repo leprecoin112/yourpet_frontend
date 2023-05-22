@@ -47,6 +47,7 @@ export const Poster = styled.img`
   width: 100%;
   min-width: 280px;
   min-height: 252px;
+  object-fit: cover;
 
   @media (min-width: 768px) {
     width: 336px;
@@ -76,7 +77,6 @@ export const NewsTitle = styled(EllipsisText)`
   line-height: 1.375;
   letter-spacing: -0.01em;
   flex-grow: 2;
-
 `;
 
 export const NewsBody = styled(EllipsisText)`
