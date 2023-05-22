@@ -41,6 +41,7 @@ export const noticesApi = baseApi.injectEndpoints({
     }),
     getFavoriteNotices: builder.query({
       query: () => `notices/favorites`,
+      providesTags: ['notices'],
     }),
     findNoticeById: builder.query({
       query: id => `notices/${id}`,

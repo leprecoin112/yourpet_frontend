@@ -12,7 +12,7 @@ export const baseApi = createApi({
       }
       return headers;
     },
-    credentials: 'include',
+    credentials: 'same-origin',
   }),
   endpoints: () => ({}),
 });
