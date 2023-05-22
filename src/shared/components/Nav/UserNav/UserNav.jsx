@@ -8,7 +8,7 @@ const UserNav = () => {
   return (
     <Wrapper to="user">
       <IconUser />
-      {window.innerWidth >= 768 && <span>{data?.name}</span>}
+      <span>{data?.name}</span>
     </Wrapper>
   );
 };

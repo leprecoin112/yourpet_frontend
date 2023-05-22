@@ -1,5 +1,6 @@
 import { AuthNav, Nav, UserNav } from '../Nav';
 import Logo from '../Logo/Logo';
+import { useAuth } from '../../hooks/useAuth';
 import {
   MobileWrapper,
   LogoWrapper,
@@ -13,12 +14,12 @@ import {
 import { IconCrossBig } from '../Icons';
 
 const MobileMenu = ({ onClick }) => {
-  const isLoggedIn = false;
+  const isLoggedIn = useAuth();
 
   return (
     <MobileWrapper>
       <MainWrapper>
-        <LogoWrapper>
+        <LogoWrapper onClick={() => onClick()}>
           <Logo />
         </LogoWrapper>
         <MobileIconWrapper onClick={() => onClick()}>
@@ -26,10 +27,10 @@ const MobileMenu = ({ onClick }) => {
         </MobileIconWrapper>
       </MainWrapper>
       <SecondWrapper>
-        <NavigationWrapper>
+        <NavigationWrapper onClick={() => onClick()}>
           <Nav />
         </NavigationWrapper>
-        <AuthNavWrapper>
+        <AuthNavWrapper onClick={() => onClick()}>
           {isLoggedIn ? <UserNav /> : <AuthNav />}
         </AuthNavWrapper>
       </SecondWrapper>
