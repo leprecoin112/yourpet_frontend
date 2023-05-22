@@ -4,9 +4,13 @@ import Header from '../../shared/components/Header/Header';
 import Loader from '../../shared/components/Loader/Loader';
 import Container from '../../shared/components/Container/Container';
 
-const SharedLayout = ({ children }) => {
+import {WrapperBackground} from './ShaerdLayout.styled';
+
+const SharedLayout = ({ children, useWrapperBackground = true }) => {
+  const Component = useWrapperBackground ? WrapperBackground : Fragment;
+
   return (
-    <Fragment>
+    <Component>
       <header>
         <Header />
       </header>
@@ -21,7 +25,7 @@ const SharedLayout = ({ children }) => {
           <Routes>{children}</Routes>
         </Suspense>
       </main>
-    </Fragment>
+    </Component>
   );
 };
 

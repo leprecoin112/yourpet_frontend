@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { lazy } from 'react';
 
 import SharedLayout from './router/SharedLayout/SharedLayout';
@@ -20,17 +20,25 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
+  const location = useLocation();
+  const ROUTES = { NEWS: '/news', FRIENDS: '/friends'};
+  const ROUTES_WITHOUT_BACKGROUNDS = [ROUTES.NEWS, ROUTES.FRIENDS];
+
   return (
     <Routes>
       <Route
         path="*"
         element={
-          <SharedLayout>
+          <SharedLayout
+            useWrapperBackground={
+              !ROUTES_WITHOUT_BACKGROUNDS.includes(location.pathname)
+            }
+          >
             <Route path="/" element={<RedirectRoute redirectTo="/main" />} />
             <Route path="/main" element={<MainPage />} />
-            <Route path="/news" element={<NewsPage />} />
+            <Route path={ROUTES.NEWS} element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />} />
-            <Route path="/friends" element={<OurFriendsPage />} />
+            <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
             <Route
               path="/register"
               element={
