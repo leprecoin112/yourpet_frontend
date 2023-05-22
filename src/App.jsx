@@ -7,6 +7,7 @@ import { RestrictedRoute } from './router/RestrictedRoute';
 import { RedirectRoute } from './router/RedirectRoute';
 import { useRefreshQuery } from './shared/redux/api/backend/auth/authApi';
 import { useAuth } from './shared/hooks/useAuth';
+import Loader from './shared/components/Loader/Loader';
 
 const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 
@@ -25,7 +26,9 @@ function App() {
   const { data } = useRefreshQuery();
   console.log(data);
   const { isRefreshing } = useAuth();
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route
         path="*"
