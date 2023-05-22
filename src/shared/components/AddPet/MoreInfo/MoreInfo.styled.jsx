@@ -215,6 +215,13 @@ const FormInputPet = styled(Field)`
     width: 395px;
   }
 `;
+const BtnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 91px;
+`;
+
 export {
   Container,
   Title,
@@ -232,4 +239,5 @@ export {
   FormInputPet,
   ContainerForm,
   ContainerFirstBtn,
+  BtnWrapper
 };

@@ -11,8 +11,9 @@ import {
   FormWrapper,
   BtnWrapper,
 } from './AddPetForm2.styled';
+import {AddFormButtonNext, AddFormButtonBack } from '../../AddPetFormBtn/AddPetFormBtn';
 
-export const PersonalDetails = () => {
+export const PersonalDetails = ({ nextStep, prevStep }) => {
   return (
     <Formik>
       {({ errors, touched }) => (
@@ -67,8 +68,8 @@ export const PersonalDetails = () => {
             <Error component="div" name="breed" />
           </FormLabel>
           <BtnWrapper>
-            {/* <AddFormButtonNext text="Next" />
-          <AddFormButtonBack text="Back" /> */}
+          <AddFormButtonNext text="Next" onClick={nextStep} />
+            <AddFormButtonBack text="Back" onClick={prevStep} />
           </BtnWrapper>
         </FormWrapper>
       )}
