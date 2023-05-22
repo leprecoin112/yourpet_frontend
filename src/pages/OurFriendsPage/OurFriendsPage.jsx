@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import OurFriendsList from './OurFriendsList';
+import OurFriendsList from '../../module/OurFriends/OurFriendsList/OurFriendsList';
 import Container from '../../shared/components/Container/Container';
 import { Title } from './OurFriendsPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ const OurFriendsPage = () => {
   const dispatch = useDispatch();
   const ourFriendsList = useSelector(getAllFriends);
   const isLoading = useSelector(loading);
- 
+
   useEffect(() => {
     dispatch(fetchFriends());
   }, [dispatch]);
