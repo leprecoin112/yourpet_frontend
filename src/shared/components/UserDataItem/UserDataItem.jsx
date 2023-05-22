@@ -12,7 +12,9 @@ import {
   Edit,
   Check,
   CustomInput,
-  CustomFileUploud
+  CustomFileUploud,
+  Error,
+
 } from './UserDataItem.styled';
 import { useState } from 'react';
 import IconCamera from '../Icons/IconCamera';
@@ -57,7 +59,6 @@ const UserDataItem = ({ user }) => {
   const [updatePhone] = useUpdatePhoneMutation();
   const [updateAvatars] = useUpdateAvatarsMutation();
 
-  console.log(user);
   const handlePhotoUpload = async event => {
     const uploadedPhoto = event.target.files[0];
     setPhoto(URL.createObjectURL(uploadedPhoto));
@@ -153,10 +154,11 @@ const UserDataItem = ({ user }) => {
               {activeField === 'name' ? (
                 <EditInputBtn
                   type="button"
+                  disabled={formik.errors.name}
                   onClick={handleConfirmFieldData}
                   id="name"
                 >
-                  <Check/>
+                  {formik.errors.name ? <Error /> : <Check />}
                 </EditInputBtn>
               ) : (
                 <EditInputBtn
@@ -184,10 +186,11 @@ const UserDataItem = ({ user }) => {
               {activeField === 'email' ? (
                 <EditInputBtn
                   type="button"
+                  disabled={formik.errors.email}
                   onClick={handleConfirmFieldData}
                   id="email"
                 >
-                  <Check />
+                  {formik.errors.email ? <Error /> : <Check />}
                 </EditInputBtn>
               ) : (
                 <EditInputBtn
@@ -212,10 +215,11 @@ const UserDataItem = ({ user }) => {
               {activeField === 'birthday' ? (
                 <EditInputBtn
                   type="button"
+                  disabled={formik.errors.birthday}
                   onClick={handleConfirmFieldData}
                   id="birthday"
                 >
-                  <Check />
+                  {formik.errors.birthday ? <Error /> : <Check />}
                 </EditInputBtn>
               ) : (
                 <EditInputBtn
@@ -240,10 +244,11 @@ const UserDataItem = ({ user }) => {
               {activeField === 'phone' ? (
                 <EditInputBtn
                   type="button"
+                  disabled={formik.errors.phone}
                   onClick={handleConfirmFieldData}
                   id="phone"
                 >
-                  <Check />
+                  {formik.errors.phone ? <Error /> : <Check />}
                 </EditInputBtn>
               ) : (
                 <EditInputBtn
@@ -268,10 +273,11 @@ const UserDataItem = ({ user }) => {
               {activeField === 'city' ? (
                 <EditInputBtn
                   type="button"
+                  disabled={formik.errors.city}
                   onClick={handleConfirmFieldData}
                   id="city"
                 >
-                  <Check />
+                  {formik.errors.city ? <Error /> : <Check />}
                 </EditInputBtn>
               ) : (
                 <EditInputBtn

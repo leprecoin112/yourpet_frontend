@@ -4,7 +4,9 @@ import { lazy } from 'react';
 import SharedLayout from './router/SharedLayout/SharedLayout';
 import { PrivateRoute } from './router/PrivateRoute';
 import { RestrictedRoute } from './router/RestrictedRoute';
-import AddPetPage from './pages/AddPetPage/AddPetPage';
+import { RedirectRoute } from './router/RedirectRoute';
+
+const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -24,6 +26,7 @@ function App() {
         path="*"
         element={
           <SharedLayout>
+            <Route path="/" element={<RedirectRoute redirectTo="/main" />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />} />
