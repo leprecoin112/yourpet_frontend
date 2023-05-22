@@ -12,23 +12,11 @@ import {
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
 
-export const PersonalDetails = ({ nextStep, prevStep }) => {
+export const PersonalDetailsToAdd = ({ nextStep, prevStep }) => {
   return (
     <Formik>
       {({ errors, touched }) => (
         <FormWrapper>
-          <FormLabel htmlFor="title">
-            Title of add
-            <FormInput
-              placeholder="Type title"
-              type="text"
-              name="title"
-              validate={touched.email && !errors.email}
-              unvalidate={touched.email && errors.email}
-            />
-            <Error component="div" name="title" />
-          </FormLabel>
-
           <FormLabel htmlFor="name">
             Name pet
             <FormInput
@@ -66,7 +54,7 @@ export const PersonalDetails = ({ nextStep, prevStep }) => {
             />
             <Error component="div" name="breed" />
           </FormLabel>
-          <BtnWrapper className="to-sale">
+          <BtnWrapper className="to-add">
             <AddFormButtonNext text="Next" onClick={nextStep} />
             <AddFormButtonBack text="Back" onClick={prevStep} />
           </BtnWrapper>

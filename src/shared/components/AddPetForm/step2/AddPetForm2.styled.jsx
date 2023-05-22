@@ -3,19 +3,9 @@ import { Form, Field, ErrorMessage } from 'formik';
 import { css } from '@emotion/react';
 
 const FormWrapper = styled(Form)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-  width: 280px;
-
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 40px;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 458px;
-  }
+  margin-top: 16px;
 `;
+
 const FormLabel = styled.label`
   display: flex;
   flex-direction: column;
@@ -24,12 +14,22 @@ const FormLabel = styled.label`
   font-size: 14px;
   line-height: 1.36;
   color: ${({ theme }) => theme.colors.black};
+
+  &:not(first-child) {
+    margin-top: 20px;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 20px;
     line-height: 1.32;
     gap: 8px;
+
+    &:not(first-child) {
+      margin-top: 24px;
+    }
   }
 `;
+
 const FormInput = styled(Field)`
   position: relative;
   font-family: ${({ theme }) => theme.fonts.main.regular};
@@ -51,12 +51,14 @@ const FormInput = styled(Field)`
     line-height: 1.5;
     letter-spacing: 0.04em;
     color: ${({ theme }) => theme.colors.gray};
+
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
       font-size: 16px;
     }
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 394px;
+    height: 48px;
   }
   ${({ validate }) =>
     validate &&
@@ -101,8 +103,20 @@ const BtnWrapper = styled.div`
   align-items: center;
   margin-top: 24px;
   gap: 20px;
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row-reverse;
     gap: 20px;
+  }
+
+  &.to-add {
+    margin-top: 44px;
+  }
+
+  &.to-sale {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+      margin-top: 40px;
+    }
+  }
 `;
 export { FormInput, FormLabel, Error, FormWrapper, BtnWrapper };
