@@ -1,20 +1,13 @@
 import {
   Container,
-  Title,
   ContainerRadioBtn,
-  Label,
-  FemaleIcon,
-  MaleIcon,
-  RadioBtn,
   InputFile,
   InputFileContainer,
   LabelFile,
   FormLabel,
   IconsPlusBig,
   InputComents,
-  FormInputPet,
   ContainerForm,
-  ContainerFirstBtn,
   BtnWrapper,
 } from './MoreInfo.styled';
 import {
@@ -23,26 +16,14 @@ import {
 } from '../../AddPetFormBtn/AddPetFormBtn';
 
 import { Formik, Form } from 'formik';
-const MoreInfo = ({ nextStep, prevStep }) => {
+
+const MoreInfoToAdd = ({ nextStep, prevStep }) => {
   return (
     <Formik>
       <Form>
-        <Container className="to-sell">
-          <ContainerRadioBtn className="to-sell">
-            <Title>The Sex</Title>
-            <ContainerFirstBtn className="to-sell">
-              <Label>
-                <FemaleIcon />
-                <RadioBtn type="radio" name="sex" value="Female" />
-                Female
-              </Label>
-              <Label>
-                <MaleIcon />
-                <RadioBtn type="radio" name="sex" value="Male" />
-                Male
-              </Label>
-            </ContainerFirstBtn>
-            <LabelFile className="to-sell">
+        <Container className="to-add">
+          <ContainerRadioBtn>
+            <LabelFile className="to-add">
               Load image:
               <InputFileContainer>
                 <IconsPlusBig />
@@ -56,19 +37,7 @@ const MoreInfo = ({ nextStep, prevStep }) => {
             </LabelFile>
           </ContainerRadioBtn>
           <ContainerForm>
-            <FormLabel>
-              Location
-              <FormInputPet
-                type="text"
-                name="location"
-                placeholder="Location"
-              />
-            </FormLabel>
-            <FormLabel>
-              Price
-              <FormInputPet type="number" name="price" placeholder="Price" />
-            </FormLabel>
-            <FormLabel>
+            <FormLabel className="to-add">
               Comments
               <InputComents
                 type="text"
@@ -78,7 +47,7 @@ const MoreInfo = ({ nextStep, prevStep }) => {
             </FormLabel>
           </ContainerForm>
         </Container>
-        <BtnWrapper className="to-sale">
+        <BtnWrapper className="to-add">
           <AddFormButtonNext text="Done" onClick={nextStep} />
           <AddFormButtonBack text="Back" onClick={prevStep} />
         </BtnWrapper>
@@ -87,4 +56,4 @@ const MoreInfo = ({ nextStep, prevStep }) => {
   );
 };
 
-export default MoreInfo;
+export default MoreInfoToAdd;
