@@ -19,35 +19,6 @@ export const Btn = styled.button`
     background: ${({ theme }) => theme.colors.gradientBlue};
   }
 
-  /* ================add==================== */
-
-  &.add {
-    width: 80px;
-    height: 80px;
-    position: relative;
-    background: ${({ theme }) => theme.colors.blue};
-    box-shadow: ${({ theme }) => theme.boxShadows.main};
-    &::after {
-      content: 'Add pet';
-      position: absolute;
-      font-size: 12px;
-      top: 48px;
-      color: ${({ theme }) => theme.colors.white};
-    }
-    &:hover {
-      background: ${({ theme }) => theme.colors.gradientBlue};
-    }
-    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-      width: 129px;
-      height: 40px;
-      &::after {
-        font-size: 16px;
-        top: 9px;
-        left: 16px;
-      }
-    }
-  }
-
   /* ================Learn more==================== */
 
   &.learnMore {

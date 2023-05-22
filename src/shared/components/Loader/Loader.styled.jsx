@@ -65,6 +65,7 @@ const Cat = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 5;
     width: 188px;
     height: 260px;
     margin-left: -99px;

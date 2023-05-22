@@ -5,6 +5,7 @@ import { newsApi } from './api/backend/news/newsApi';
 import { userApi } from './api/backend/user/userApi';
 import { sponsorsApi } from './api/backend/sponsors/sponsorsApi';
 import { petsApi } from './api/backend/pets/petsApi';
+import { noticesApi } from './api/backend/notices/noticesApi';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     [sponsorsApi.reducerPath]: sponsorsApi.reducer,
     [petsApi.reducerPath]: petsApi.reducer,
     auth: authReducer,
+    [noticesApi.reducerPath]: noticesApi.reducer,
   },
 
   middleware: getDefaultMiddleware => [
@@ -23,5 +25,6 @@ export const store = configureStore({
     userApi.middleware,
     sponsorsApi.middleware,
     petsApi.middleware,
+    noticesApi.middleware,
   ],
 });

@@ -1,19 +1,23 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useAuth } from '../../../shared/hooks/useAuth';
+import {
+  useAddNoticeToFavoritesMutation,
+  useDeleteNoticeByIdMutation,
+  useRemoveNoticeFromFavoritesMutation,
+} from '../../../shared/redux/api/backend/notices/noticesApi';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { isAuth } from '../../../shared/redux/auth/selectors';
-import Btn from '../Button/Button';
-import { ageCounter } from '../../redux/helpers/ageCounter';
+import Btn from '../../../shared/components/Button/Button';
+import { agePet } from '../../../shared/utils/agePet';
 import {
   IconHeart,
   IconTrash,
   IconLocation,
   IconClock,
   IconFemale,
-} from '../Icons';
+} from '../../../shared/components/Icons';
 
-import ModalApproveAction from '../../components/ModalApproveAction';
+import {NoticeModal} from '../../../shared/components/NoticeModal/NoticeModal'
 
 import {
   ItemContainer,
@@ -28,17 +32,6 @@ import {
   Btns,
 } from './NoticeCategoryItem.styled';
 
-const categories = {
-  publicCategories: [
-    ['sell', 'sell'],
-    ['lost/found', 'lost/found'],
-    ['in good hands', 'in good hands'],
-  ],
-  privateCategories: [
-    ['favorite ads', 'favorite ads'],
-    ['my ads', 'my ads'],
-  ],
-};
 
 const noImage = {
   mobileRetina:
@@ -49,58 +42,72 @@ const noImage = {
     'https://raw.githubusercontent.com/Laosing/cute-cat-avatars/master/assets/img/gaming.png',
 };
 
-const categoryTitleHandler = category => {
-  return categories.publicCategories.find(([item]) => item === category) ?? '';
-};
 
 const NoticeCategoryItem = ({
-  _id,
+  id,
   category,
   title,
-  name,
-  birthday,
-  breed,
-  photo,
+  image,
   sex,
   location,
-  price,
-  comments,
+  birthday,
   owner,
+  favorites,
 }) => {
-  const categoryTitle = categoryTitleHandler(category);
+  const categoryTitle = category.split('-').join(category.includes('lost') ? '/' : ' ');
   const [showModal, setShowModal] = useState(false);
 
-  // const age = ageCounter(birthday);
-  const age = ageCounter('2022-03-23T00:00:00.000Z');
+  const [addNoticeToFavorites] = useAddNoticeToFavoritesMutation();
+  const [deleteNoticeById] = useDeleteNoticeByIdMutation();
+  const [removeNoticeFromFavorites] = useRemoveNoticeFromFavoritesMutation();
 
-  // const isOwner = ({ _id, owner }) => {
-  //   return userId === owner;
-  // };
-  const isOwner = true;
+  const { isLoggedIn, user } = useAuth();
+  const age = agePet(birthday);
+  const photo = `https://yourpet-backend-jxa0.onrender.com/${image}`;
+  const isOwner = user?._id === owner;
 
-  const isLogin = useSelector(isAuth);
+  const isNoticeInFavorites = favorites?.result.some(el => el._id === id);
+    console.log(isNoticeInFavorites);
+
+  const addToFavorites = async (id) => {
+    await addNoticeToFavorites(id);
+  };
+
+  const removeFromFavorites = async (id) => {
+    await removeNoticeFromFavorites(id);
+  };
+
+  const deleteNotice = async (id) => {
+    await deleteNoticeById(id);
+  };
 
   const toastMss = () => {
-    return toast.dismiss(), toast.warning('Please login');
+    return toast.warning('Please login');
   };
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
+  const onHeartClick = (id) => {
+    if (!isLoggedIn) toastMss();
+    isNoticeInFavorites ? removeFromFavorites(id) : addToFavorites(id);
+  }
+  
   return (
-    <ItemContainer>
-      <CategoryLabel>{category}</CategoryLabel>
+    <ItemContainer key={id}>
+      <CategoryLabel>{categoryTitle}</CategoryLabel>
       <UserBtns>
-        <Btns
-          styled="like"
-          onClick={!isLogin ? () => toastMss() : () => 'додати в улюблені'}
-        >
+        <Btns styled="like" onClick={() => onHeartClick(id)}>
           <IconHeart />
         </Btns>
 
         {isOwner && (
-          <Btns styled="like" margin="16px 0 0">
+          <Btns
+            styled="like"
+            margin="16px 0 0"
+            onClick={() => deleteNotice(id)}
+          >
             <IconTrash />
           </Btns>
         )}
@@ -159,9 +166,11 @@ const NoticeCategoryItem = ({
         }}
       />
       {showModal && (
-        <ModalApproveAction toggleModal={() => setShowModal(false)}>
-          {<p>Картка улюбленця</p>}
-        </ModalApproveAction>
+        <NoticeModal
+          noticeId={id}
+          onClose={toggleModal}
+          favorites={favorites}
+        />
       )}
       <ToastContainer />
     </ItemContainer>

@@ -61,6 +61,7 @@ const UserDataItem = ({ user }) => {
   const [updatePhone] = useUpdatePhoneMutation();
   const [updateAvatars] = useUpdateAvatarsMutation();
 
+
   const handlePhotoUpload = event => {
     const uploadedPhoto = event.target.files[0];
     //setPhoto(URL.createObjectURL(uploadedPhoto));
