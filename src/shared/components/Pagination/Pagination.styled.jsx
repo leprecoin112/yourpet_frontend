@@ -35,7 +35,7 @@ const PaginationItem = styled.li`
   font-size: 16px;
   line-height: 15px;
   line-height: 1.43;
-  transition: all 350ms ${({ theme }) => theme.transition.main};
+
 
 
   &:hover {
@@ -89,9 +89,9 @@ const ArrowRight = styled.div`
   }
 `;
 export {
-    PaginationList,
-    PaginationContainer,
-    PaginationItem,
-    ArrowLeft,
-    ArrowRight,
+  PaginationList,
+  PaginationContainer,
+  PaginationItem,
+  ArrowLeft,
+  ArrowRight,
 };

@@ -5,6 +5,9 @@ import SharedLayout from './router/SharedLayout/SharedLayout';
 import { PrivateRoute } from './router/PrivateRoute';
 import { RestrictedRoute } from './router/RestrictedRoute';
 import { RedirectRoute } from './router/RedirectRoute';
+import { useRefreshQuery } from './shared/redux/api/backend/auth/authApi';
+import { useAuth } from './shared/hooks/useAuth';
+import Loader from './shared/components/Loader/Loader';
 
 const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 
@@ -20,7 +23,12 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
-  return (
+  const { data } = useRefreshQuery();
+  console.log(data);
+  const { isRefreshing } = useAuth();
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route
         path="*"

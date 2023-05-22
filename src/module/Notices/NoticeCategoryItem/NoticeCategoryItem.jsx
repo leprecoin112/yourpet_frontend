@@ -17,7 +17,7 @@ import {
   IconFemale,
 } from '../../../shared/components/Icons';
 
-import {NoticeModal} from '../../../shared/components/NoticeModal/NoticeModal'
+import { NoticeModal } from '../../../shared/components/NoticeModal/NoticeModal';
 
 import {
   ItemContainer,
@@ -32,7 +32,6 @@ import {
   Btns,
 } from './NoticeCategoryItem.styled';
 
-
 const noImage = {
   mobileRetina:
     'https://raw.githubusercontent.com/Laosing/cute-cat-avatars/master/assets/img/gaming.png',
@@ -41,7 +40,6 @@ const noImage = {
   desktopRetina:
     'https://raw.githubusercontent.com/Laosing/cute-cat-avatars/master/assets/img/gaming.png',
 };
-
 
 const NoticeCategoryItem = ({
   id,
@@ -54,7 +52,9 @@ const NoticeCategoryItem = ({
   owner,
   favorites,
 }) => {
-  const categoryTitle = category.split('-').join(category.includes('lost') ? '/' : ' ');
+  const categoryTitle = category
+    .split('-')
+    .join(category.includes('lost') ? '/' : ' ');
   const [showModal, setShowModal] = useState(false);
 
   const [addNoticeToFavorites] = useAddNoticeToFavoritesMutation();
@@ -63,21 +63,20 @@ const NoticeCategoryItem = ({
 
   const { isLoggedIn, user } = useAuth();
   const age = agePet(birthday);
-  const photo = `https://yourpet-backend-jxa0.onrender.com/${image}`;
   const isOwner = user?._id === owner;
 
   const isNoticeInFavorites = favorites?.result.some(el => el._id === id);
-    console.log(isNoticeInFavorites);
+  console.log(isNoticeInFavorites);
 
-  const addToFavorites = async (id) => {
+  const addToFavorites = async id => {
     await addNoticeToFavorites(id);
   };
 
-  const removeFromFavorites = async (id) => {
+  const removeFromFavorites = async id => {
     await removeNoticeFromFavorites(id);
   };
 
-  const deleteNotice = async (id) => {
+  const deleteNotice = async id => {
     await deleteNoticeById(id);
   };
 
@@ -89,11 +88,11 @@ const NoticeCategoryItem = ({
     setShowModal(!showModal);
   };
 
-  const onHeartClick = (id) => {
+  const onHeartClick = id => {
     if (!isLoggedIn) toastMss();
     isNoticeInFavorites ? removeFromFavorites(id) : addToFavorites(id);
-  }
-  
+  };
+
   return (
     <ItemContainer key={id}>
       <CategoryLabel>{categoryTitle}</CategoryLabel>
@@ -128,28 +127,28 @@ const NoticeCategoryItem = ({
       </Filter>
       <ItemPicture>
         <source
-          srcSet={`${photo ? photo?.mobile : noImage.mobile} 280w, ${
-            photo ? photo?.mobile_retina : noImage.mobileRetina
+          srcSet={`${image ?? noImage.mobile} 280w, ${
+            image ?? noImage.mobileRetina
           } 560w`}
           media="(max-width: 767px)"
           sizes="280px"
         />
         <source
-          srcSet={`${photo ? photo?.tablet : noImage.tablet} 336w, ${
-            photo ? photo?.tablet_retina : noImage.tabletRetina
+          srcSet={`${image ?? noImage.tablet} 336w, ${
+            image ?? noImage.tabletRetina
           } 672w`}
           media="(min-width: 768px)"
           sizes="336px"
         />
         <source
-          srcSet={`${photo ? photo?.desktop : noImage.desktop} 288w, ${
-            photo ? photo?.desktop_retina : noImage.desktopRetina
+          srcSet={`${image ?? noImage.desktop} 288w, ${
+            image ?? noImage.desktopRetina
           } 576w`}
           media="(min-width: 1280px)"
           sizes="288px"
         />
         <ItemImage
-          src={photo ? photo?.tablet : noImage.tablet}
+          src={image ?? noImage.tablet}
           loading="lazy"
           alt={title}
           onClick={toggleModal}
