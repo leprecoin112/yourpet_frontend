@@ -33,11 +33,10 @@ const RadioLabel = styled.label`
     background-color: ${({ theme }) => theme.colors.blue};
     color: ${({ theme }) => theme.colors.light};
   }
-  &:field {
-    & :hover,
-    & :focus {
-      background-color: ${({ theme }) => theme.colors.blue};
-    }
+
+  &.active {
+    background-color: ${({ theme }) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.light};
   }
 `;
 
@@ -50,13 +49,6 @@ const RadioBtn = styled(Field)`
     line-height: 150%;
     letter-spacing: 0.04em;
     color: ${({ theme }) => theme.colors.black};
-  }
-
-  ${
-    '' /* &:checked + ${RadioLabel} {
-    background-color: ${({ theme }) => theme.colors.blue};
-    color: ${({ theme }) => theme.colors.light};
-  } */
   }
 `;
 
@@ -74,4 +66,5 @@ const BtnWrapper = styled.div`
     flex-direction: row-reverse;
   }
 `;
+
 export { RadioBtnWrapper, RadioLabel, RadioBtn, BtnWrapper };
