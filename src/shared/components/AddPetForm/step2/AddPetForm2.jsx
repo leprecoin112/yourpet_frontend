@@ -12,12 +12,10 @@ import {
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
 const validationSchema = yup.object().shape({
-  name: yup
-    .string()
-    .required('Name is required')
-    .min(2, 'The name must be longer than 2 letters')
-    .max(16, 'Name must be less than 16 letters'),
-  date: yup
+  title: yup.string().required('Title is required'),
+  name: yup.string().required('Name is required'),
+
+  birthday: yup
     .string()
     .required('Date is required')
     .matches(
@@ -26,7 +24,7 @@ const validationSchema = yup.object().shape({
     ),
   breed: yup
     .string()
-    .required('Name is required')
+    .required('Breed is required')
     .min(2, 'The Breed must be longer than 2 letters')
     .max(16, 'Breed must be less than 16 letters'),
 });
@@ -63,10 +61,12 @@ export const PersonalDetails = ({
               name="title"
               value={formData.title}
               onChange={handleChange}
-              validate={touched.email && !errors.email}
-              unvalidate={touched.email && errors.email}
+              validate={touched.title && !errors.title}
+              unvalidate={touched.title && errors.title}
             />
-            <Error component="div" name="title" />
+            {errors.title && touched.title ? (
+              <Error>{errors.title}</Error>
+            ) : null}
           </FormLabel>
 
           <FormLabel htmlFor="name">
@@ -77,10 +77,10 @@ export const PersonalDetails = ({
               name="name"
               value={formData.name}
               onChange={handleChange}
-              validate={touched.email && !errors.email}
-              unvalidate={touched.email && errors.email}
+              validate={touched.name && !errors.name}
+              unvalidate={touched.name && errors.name}
             />
-            <Error component="div" name="name" />
+            {errors.name && touched.name ? <Error>{errors.name}</Error> : null}
           </FormLabel>
 
           <FormLabel htmlFor="birthday">
@@ -93,10 +93,12 @@ export const PersonalDetails = ({
               onChange={handleChange}
               onFocus={e => (e.target.type = 'date')}
               onBlur={e => (e.target.type = 'text')}
-              validate={touched.email && !errors.email}
-              unvalidate={touched.email && errors.email}
+              validate={touched.birthday && !errors.birthday}
+              unvalidate={touched.birthday && errors.birthday}
             />
-            <Error component="div" name="birthday" />
+            {errors.birthday && touched.birthday ? (
+              <Error>{errors.birthday}</Error>
+            ) : null}
           </FormLabel>
 
           <FormLabel htmlFor="breed">
@@ -107,10 +109,12 @@ export const PersonalDetails = ({
               name="breed"
               value={formData.breed}
               onChange={handleChange}
-              validate={touched.email && !errors.email}
-              unvalidate={touched.email && errors.email}
+              validate={touched.breed && !errors.breed}
+              unvalidate={touched.breed && errors.breed}
             />
-            <Error component="div" name="breed" />
+            {errors.breed && touched.breed ? (
+              <Error>{errors.breed}</Error>
+            ) : null}
           </FormLabel>
           <BtnWrapper className="to-sale">
             <AddFormButtonNext type="button" text="Next" onClick={nextStep} />

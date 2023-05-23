@@ -7,6 +7,7 @@ const FormWrapper = styled(Form)`
 `;
 
 const FormLabel = styled.label`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -31,7 +32,6 @@ const FormLabel = styled.label`
 `;
 
 const FormInput = styled(Field)`
-  position: relative;
   font-family: ${({ theme }) => theme.fonts.main.regular};
   width: 264px;
   height: 40px;
@@ -86,7 +86,7 @@ const FormInput = styled(Field)`
       }
     `}
 `;
-const Error = styled(ErrorMessage)`
+const Error = styled.div`
   position: absolute;
   bottom: -24px;
   left: 16px;

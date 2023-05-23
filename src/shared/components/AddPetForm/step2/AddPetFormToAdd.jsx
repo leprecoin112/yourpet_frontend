@@ -18,7 +18,7 @@ const validationSchema = yup.object().shape({
     .required('Name is required')
     .min(2, 'The name must be longer than 2 letters')
     .max(16, 'Name must be less than 16 letters'),
-  date: yup
+  birthday: yup
     .string()
     .required('Date is required')
     .matches(
@@ -63,10 +63,10 @@ export const PersonalDetailsToAdd = ({
               name="name"
               value={formData.name}
               onChange={handleChange}
-              validate={touched.email && !errors.email}
-              unvalidate={touched.email && errors.email}
+              validate={touched.name && !errors.name}
+              unvalidate={touched.name && errors.name}
             />
-            <Error component="div" name="name" />
+            {errors.name && touched.name ? <Error>{errors.name}</Error> : null}
           </FormLabel>
 
           <FormLabel htmlFor="birthday">
@@ -79,10 +79,12 @@ export const PersonalDetailsToAdd = ({
               onChange={handleChange}
               onFocus={e => (e.target.type = 'date')}
               onBlur={e => (e.target.type = 'text')}
-              validate={touched.email && !errors.email}
-              unvalidate={touched.email && errors.email}
+              validate={touched.birthday && !errors.birthday}
+              unvalidate={touched.birthday && errors.birthday}
             />
-            <Error component="div" name="birthday" />
+            {errors.birthday && touched.birthday ? (
+              <Error>{errors.birthday}</Error>
+            ) : null}
           </FormLabel>
 
           <FormLabel htmlFor="breed">
@@ -93,14 +95,16 @@ export const PersonalDetailsToAdd = ({
               name="breed"
               value={formData.breed}
               onChange={handleChange}
-              validate={touched.email && !errors.email}
-              unvalidate={touched.email && errors.email}
+              validate={touched.breed && !errors.breed}
+              unvalidate={touched.breed && errors.breed}
             />
-            <Error component="div" name="breed" />
+            {errors.breed && touched.breed ? (
+              <Error>{errors.breed}</Error>
+            ) : null}
           </FormLabel>
           <BtnWrapper className="to-add">
             <AddFormButtonNext type="submit" text="Next" onClick={nextStep} />
-            <AddFormButtonBack text="Back" onClick={prevStep} />
+            <AddFormButtonBack type="button" text="Back" onClick={prevStep} />
           </BtnWrapper>
         </FormWrapper>
       )}

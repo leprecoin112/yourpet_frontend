@@ -44,9 +44,6 @@ const AddPetPage = () => {
     console.log('Form data:', values);
   };
 
-  // Значення полів з усіх форм записувати у state formData.
-  //   formData, setFormData передається пропсами у кожну форму
-  // Валідація не працює та in good hands
   function renderStep() {
     switch (step) {
       case 1:
