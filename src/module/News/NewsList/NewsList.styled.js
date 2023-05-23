@@ -1,12 +1,20 @@
 import styled from '@emotion/styled';
 
 export const List = styled.ul`
-padding: 0;
-margin: 0;
-@media (min-width: 768px) {
-  display: flex;
-  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  margin-top: 24px;
 
-  column-gap: 32px;
-}
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+
+    column-gap: 31px;
+    row-gap: 24px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 60px;
+  }
 `;

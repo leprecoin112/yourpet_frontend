@@ -6,6 +6,7 @@ const PaginationContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 60px;
+  margin-bottom: 100px;
 `;
 
 const PaginationList = styled.ul`
@@ -69,8 +70,6 @@ const ArrowLeft = styled.div`
   cursor: pointer;
 
   svg {
-    width: 20px;
-    height: 20px;
     stroke: ${({ theme }) => theme.colors.blue};
   }
 `;
@@ -83,11 +82,10 @@ const ArrowRight = styled.div`
   cursor: pointer;
 
   svg {
-    width: 20px;
-    height: 20px;
     stroke: ${({ theme }) => theme.colors.blue};
   }
 `;
+
 export {
   PaginationList,
   PaginationContainer,

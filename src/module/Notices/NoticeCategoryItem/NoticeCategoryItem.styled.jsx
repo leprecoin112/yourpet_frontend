@@ -90,7 +90,6 @@ display:flex;
   }
 `;
 
-
 export const Filter = styled.div`
   position: absolute;
   display: flex;
@@ -127,8 +126,7 @@ export const FilterBtn = styled.button`
   border: none;
 
   &.active,
-  &:hover,
-  &:focus {
+  &:hover {
     transition: all ${({ theme }) => theme.duration.main}
       ${({ theme }) => theme.transition.main};
     background: ${({ theme }) => theme.colors.gradientBlue};

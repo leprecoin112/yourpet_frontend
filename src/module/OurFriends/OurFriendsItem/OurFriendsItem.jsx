@@ -10,6 +10,8 @@ import {
   TimeInfo,
 } from './OurFriendsItem.styled';
 
+import ph_def from '../../../shared/images/photoDefault/photo-default.png';
+
 export default function OurFriendsItem({
   _id,
   title,
@@ -25,7 +27,7 @@ export default function OurFriendsItem({
       <Title>{title}</Title>
       <ItemContainer>
         <LogoWrapper>
-          <Logo src={imageUrl} alt={title} />
+          <Logo src={imageUrl ? imageUrl : ph_def} alt={title} />
         </LogoWrapper>
 
         <div>
@@ -33,7 +35,7 @@ export default function OurFriendsItem({
           <TimeInfo>
             {workDays === null ? 'day and night' : `09.00 : 17.00`}
           </TimeInfo>
-          <Field>Address:</Field>
+          <Field>{address && 'Address:'}</Field>
           <Link
             href={`https://maps.google.com/?q=${addressUrl}`}
             target="_blank"
@@ -42,9 +44,9 @@ export default function OurFriendsItem({
             {address}
           </Link>
 
-          <Field>Phone:</Field>
+          <Field>{phone && `Phone:`}</Field>
           <Link href={`tel:${phone}`}>{phone}</Link>
-          <Field>Email:</Field>
+          <Field>{email && `Email:`}</Field>
           <Link href={`mailto:${email}`}>{email}</Link>
         </div>
       </ItemContainer>

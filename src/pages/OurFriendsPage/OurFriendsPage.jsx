@@ -10,13 +10,11 @@ const OurFriendsPage = () => {
   const { data, isFetching, isLoading } = useAllSponsorsQuery();
   const isLoader = isLoading || isFetching;
   return (
-    <Section>
-      <Container>
-        <Title>Our Friends</Title>
-        {isLoader && <Loader />}
-        <OurFriendsList data={data?.result} />
-      </Container>
-    </Section>
+    <Container>
+      <Title>Our Friends</Title>
+      {isLoader && <Loader />}
+      <OurFriendsList data={data?.result} />
+    </Container>
   );
 };
 
