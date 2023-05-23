@@ -1,3 +1,5 @@
+import { Formik, Form } from 'formik';
+import * as yup from 'yup';
 import {
   Container,
   Title,
@@ -17,15 +19,41 @@ import {
   ContainerFirstBtn,
   BtnWrapper,
 } from './MoreInfo.styled';
+
 import {
   AddFormButtonNext,
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
+const validationSchema = yup.object().shape({
+  name: yup
+    .string()
+    .required('Name is required')
+    .min(2, 'The name must be longer than 2 letters')
+    .max(16, 'Name must be less than 16 letters'),
+  date: yup
+    .string()
+    .required('Date is required')
+    .matches(
+      /^([0-31]{2})\.(0[1-9]|1[0-2])\.(200[0-9]|201[0-9]|202[0-3])$/,
+      'Invalid date format. Use DD.MM.YYYY'
+    ),
+  breed: yup
+    .string()
+    .required('Name is required')
+    .min(2, 'The Breed must be longer than 2 letters')
+    .max(16, 'Breed must be less than 16 letters'),
+});
 
-import { Formik, Form } from 'formik';
+
 const MoreInfo = ({ nextStep, prevStep }) => {
   return (
-    <Formik>
+    <Formik
+    initialValues={{
+      name: '',
+      birthday: '',
+      breed: '',
+    }}
+    validationSchema={validationSchema}>
       <Form>
         <Container className="to-sell">
           <ContainerRadioBtn className="to-sell">

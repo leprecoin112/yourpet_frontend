@@ -1,3 +1,5 @@
+import { Formik, Form } from "formik";
+import * as yup from "yup";
 import {
   Container,
   Title,
@@ -16,17 +18,29 @@ import {
   ContainerForm,
   ContainerFirstBtn,
   BtnWrapper,
-} from './MoreInfo.styled';
+} from "./MoreInfo.styled";
 import {
   AddFormButtonNext,
   AddFormButtonBack,
-} from '../../AddPetFormBtn/AddPetFormBtn';
+} from "../../AddPetFormBtn/AddPetFormBtn";
 
-import { Formik, Form } from 'formik';
+const validationSchema = yup.object().shape({
+  location: yup.string().required("Name is required"),
+
+  comments: yup.string(),
+});
 
 const MoreInfoToLost = ({ nextStep, prevStep }) => {
   return (
-    <Formik>
+    <Formik
+      initialValues={{
+        Female: "",
+        Male: "",
+        location: "",
+        comments: "",
+      }}
+      validationSchema={validationSchema}
+    >
       <Form>
         <Container className="to-sell">
           <ContainerRadioBtn className="to-sell">
