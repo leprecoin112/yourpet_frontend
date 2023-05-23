@@ -11,8 +11,15 @@ export const petsApi = baseApi.injectEndpoints({
     }),
 
     addPets: builder.mutation({
-      query(body) {
-        return { url: `pets`, method: 'POST', body };
+      query(pets) {
+        const body = new FormData();
+        body.append('Content-Type', pets.avatar.type);
+        body.append('avatar', pets.avatar);
+        body.append('name', pets.name);
+        body.append('birthday', pets.birthday);
+        body.append('breed', pets.breed);
+        body.append('comments', pets.comments);
+        return { url: `pets`, method: 'POST', body, formData: true };
       },
       invalidatesTags: ['pets'],
     }),

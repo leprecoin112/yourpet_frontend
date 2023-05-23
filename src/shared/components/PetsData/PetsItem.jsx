@@ -27,13 +27,13 @@ export const PetsItem = ({ petData }) => {
 
   return (
     <PetItemWrapper>
-      <PetPhoto src={petData.photo} alt={petData.breed} />
+      <PetPhoto src={petData.avatarURL} alt={petData.breed} />
       <PetInfoContainer>
         <PetInfoTitle>
           Name:<PetInfo>{petData.name}</PetInfo>
         </PetInfoTitle>
         <PetInfoTitle>
-          Date of birth:<PetInfo>{petData.birth}</PetInfo>
+          Date of birth:<PetInfo>{petData.birthday}</PetInfo>
         </PetInfoTitle>
         <PetInfoTitle>
           Breed:<PetInfo>{petData.breed}</PetInfo>

@@ -10,6 +10,8 @@ import {
   AddFormButtonNext,
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
+
+import { useLocation, useNavigate } from 'react-router-dom';
 const validation = yup.object().shape({
   category: yup
     .string()
@@ -25,6 +27,12 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
     setFormData(prev => ({ ...prev, category: value }));
   };
   const { category } = formData;
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleForward = () => {
+    navigate(location.state?.from ?? '/user');
+  };
   return (
     <Formik
       initialValues={{
@@ -93,7 +101,11 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
 
           <BtnWrapper>
             <AddFormButtonNext type="button" text="Next" onClick={nextStep} />
-            <AddFormButtonBack type="button" text="Cancel" onClick={prevStep} />
+            <AddFormButtonBack
+              type="button"
+              text="Cancel"
+              onClick={handleForward}
+            />
           </BtnWrapper>
         </RadioBtnWrapper>
       )}

@@ -22,11 +22,9 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
-  useRefreshQuery();
-  const { isRefreshing } = useAuth();
-  return isRefreshing ? (
-    <Loader />
-  ) : (
+  // useRefreshQuery();
+  // const { isRefreshing } = useAuth();
+  return (
     <Routes>
       <Route
         path="*"

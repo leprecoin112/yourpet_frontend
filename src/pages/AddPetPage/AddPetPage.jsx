@@ -14,34 +14,45 @@ import MoreInfoToAdd from '../../shared/components/AddPet/MoreInfo/MoreInfoToAdd
 import MoreInfoToLost from '../../shared/components/AddPet/MoreInfo/MoreInfoToLost';
 import Section from '../../shared/components/Section/Section';
 
+import { useAddPetsMutation } from '../../shared/redux/api/backend/pets/petsApi';
+import { useAddNewNoticeMutation } from '../../shared/redux/api/backend/notices/noticesApi';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 const AddPetPage = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    category: '',
+    category: 'my-pet',
     name: '',
     title: '',
     birthday: '',
     breed: '',
     location: '',
     comments: '',
-    petPhoto: '',
+    avatar: '',
     sex: '',
     price: '',
   });
 
+  const [addPets] = useAddPetsMutation();
+  const [AddNewNotice] = useAddNewNoticeMutation();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const nextStep = () => {
     setStep(prevStep => prevStep + 1);
-
-    console.log('data', formData);
   };
   const prevStep = () => {
     setStep(prevStep => prevStep - 1);
   };
 
-  const handleFormSubmit = values => {
-    setFormData(values);
+  const handleFormSubmit = async () => {
+    if (formData.category === 'my-pet') {
+      await addPets(formData);
+    } else {
+      await AddNewNotice({ category: formData.category, notice: formData });
+    }
 
-    console.log('Form data:', values);
+    navigate(location.state?.from ?? '/user');
   };
 
   // Значення полів з усіх форм записувати у state formData.

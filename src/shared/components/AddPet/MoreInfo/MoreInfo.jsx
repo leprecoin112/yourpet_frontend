@@ -19,6 +19,7 @@ import {
   ContainerFirstBtn,
   BtnWrapper,
 } from './MoreInfo.styled';
+import { useState } from 'react';
 
 import {
   AddFormButtonNext,
@@ -44,18 +45,19 @@ const validationSchema = yup.object().shape({
     .max(16, 'Breed must be less than 16 letters'),
 });
 
-export const MoreInfo = ({
-  formData,
-  setFormData,
-  nextStep,
-  prevStep,
-  onSubmit,
-}) => {
+export const MoreInfo = ({ formData, setFormData, prevStep, onSubmit }) => {
+  const [photo, setPhoto] = useState(null);
   const handleChange = e => {
     const value = e.target.value;
     const name = e.target.name;
+    if (name === 'avatar') {
+      setPhoto(e.target.files[0]);
+    }
 
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === 'avatar' ? e.target.files[0] : value,
+    }));
   };
   const { sex } = formData;
   return (
@@ -65,9 +67,9 @@ export const MoreInfo = ({
         avatar: '',
         location: '',
         price: '',
-        coments: '',
+        comments: '',
       }}
-      validationSchema={validationSchema}
+      //validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
       <Form>
@@ -75,27 +77,27 @@ export const MoreInfo = ({
           <ContainerRadioBtn className="to-sell">
             <Title>The Sex</Title>
             <ContainerFirstBtn className="to-sell">
-              <Label>
+              <Label className={sex === 'female' ? 'active' : ''}>
                 <FemaleIcon />
                 <RadioBtn
                   type="radio"
                   name="sex"
-                  value="Female"
+                  value="female"
                   id="Female"
                   onChange={handleChange}
                   checked={sex === 'Female'}
                 />
                 Female
               </Label>
-              <Label>
+              <Label className={sex === 'male' ? 'active' : ''}>
                 <MaleIcon />
                 <RadioBtn
                   type="radio"
                   name="sex"
-                  value="Male"
+                  value="male"
                   id="Male"
                   onChange={handleChange}
-                  checked={sex === 'Male'}
+                  checked={sex === 'male'}
                 />
                 Male
               </Label>
@@ -104,14 +106,16 @@ export const MoreInfo = ({
               Load image:
               <InputFileContainer>
                 <IconsPlusBig />
+                {photo && (
+                  <img alt="avatar pet" src={URL.createObjectURL(photo)} />
+                )}
               </InputFileContainer>
               <InputFile
                 type="file"
                 name="avatar"
                 id="avatar"
-                accept=".png, .jpeg, .webp, .jpg"
+                accept="image/*"
                 onChange={handleChange}
-                value={formData.avatar}
               />
             </LabelFile>
           </ContainerRadioBtn>
@@ -149,8 +153,8 @@ export const MoreInfo = ({
           </ContainerForm>
         </Container>
         <BtnWrapper className="to-sale">
-          <AddFormButtonNext text="Done" onClick={nextStep} />
-          <AddFormButtonBack text="Back" onClick={prevStep} />
+          <AddFormButtonNext type="submit" text="Done" />
+          <AddFormButtonBack type="button" text="Back" onClick={prevStep} />
         </BtnWrapper>
       </Form>
     </Formik>

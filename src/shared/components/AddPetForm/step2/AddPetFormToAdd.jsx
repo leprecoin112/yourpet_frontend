@@ -42,7 +42,10 @@ export const PersonalDetailsToAdd = ({
     const value = e.target.value;
     const name = e.target.name;
 
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   };
   return (
     <Formik
@@ -99,8 +102,8 @@ export const PersonalDetailsToAdd = ({
             <Error component="div" name="breed" />
           </FormLabel>
           <BtnWrapper className="to-add">
-            <AddFormButtonNext type="submit" text="Next" onClick={nextStep} />
-            <AddFormButtonBack text="Back" onClick={prevStep} />
+            <AddFormButtonNext type="button" text="Next" onClick={nextStep} />
+            <AddFormButtonBack type="button" text="Back" onClick={prevStep} />
           </BtnWrapper>
         </FormWrapper>
       )}

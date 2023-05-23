@@ -93,10 +93,13 @@ const NoticesPage = () => {
           <NoticesCategoriesNav />
           <ButtonsWrapper>
             <Filter />
-            <MobileAddButton to={'/add-pet'}>
+            <MobileAddButton
+              state={{ from: location.pathname }}
+              to={'/add-pet'}
+            >
               <IconPlusBig /> Add pet
             </MobileAddButton>
-            <AddButton to={'/add-pet'}>
+            <AddButton state={{ from: location.pathname }} to={'/add-pet'}>
               Add Pet
               <IconPlusSmall />
             </AddButton>
@@ -104,7 +107,7 @@ const NoticesPage = () => {
         </FiltersWrapper>
         {isLoader && <Loader />}
         {data ? (
-          <NoticesCategoriesList items={data.result} />
+          <NoticesCategoriesList items={data?.result ?? data?.notices} />
         ) : (
           <ErrorMessage>
             Ooops, there is no notices in this category

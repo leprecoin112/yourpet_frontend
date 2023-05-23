@@ -16,6 +16,7 @@ import {
   AddFormButtonNext,
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
+import { useState } from 'react';
 
 const validationSchema = yup.object().shape({
   comments: yup.string(),
@@ -28,11 +29,18 @@ const MoreInfoToAdd = ({
   prevStep,
   onSubmit,
 }) => {
+  const [photo, setPhoto] = useState(null);
   const handleChange = e => {
     const value = e.target.value;
     const name = e.target.name;
 
-    setFormData(prev => ({ ...prev, [name]: value }));
+    if (name === 'avatar') {
+      setPhoto(e.target.files[0]);
+    }
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === 'avatar' ? e.target.files[0] : value,
+    }));
   };
   return (
     <Formik
@@ -50,14 +58,16 @@ const MoreInfoToAdd = ({
               Load image:
               <InputFileContainer>
                 <IconsPlusBig />
+                {photo && (
+                  <img alt="avatar pet" src={URL.createObjectURL(photo)} />
+                )}
               </InputFileContainer>
               <InputFile
                 type="file"
                 name="avatar"
                 id="avatar"
-                accept=".png, .jpeg, .webp, .jpg"
+                accept="image/*"
                 onChange={handleChange}
-                value={formData.avatar}
               />
             </LabelFile>
           </ContainerRadioBtn>
@@ -75,8 +85,8 @@ const MoreInfoToAdd = ({
           </ContainerForm>
         </Container>
         <BtnWrapper className="to-add">
-          <AddFormButtonNext text="Done" onClick={nextStep} />
-          <AddFormButtonBack text="Back" onClick={prevStep} />
+          <AddFormButtonNext type="submit" text="Done" />
+          <AddFormButtonBack type="button" text="Back" onClick={prevStep} />
         </BtnWrapper>
       </Form>
     </Formik>

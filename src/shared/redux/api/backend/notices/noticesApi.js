@@ -22,8 +22,24 @@ export const noticesApi = baseApi.injectEndpoints({
       providesTags: ['notices'],
     }),
     addNewNotice: builder.mutation({
-      query(category, body) {
-        return { url: `notices/${category}`, method: 'POST', body };
+      query({ category, notice }) {
+        const body = new FormData();
+        body.append('Content-Type', notice.avatar.type);
+        body.append('photo', notice.avatar);
+        body.append('name', notice.name);
+        body.append('title', notice.title);
+        body.append('sex', notice.sex);
+        body.append('birthday', notice.birthday);
+        body.append('location', notice.location);
+        body.append('price', notice.price);
+        body.append('breed', notice.breed);
+        body.append('comments', notice.comments);
+        return {
+          url: `notices/${category}`,
+          method: 'POST',
+          body,
+          formData: true,
+        };
       },
       invalidatesTags: ['notices'],
     }),

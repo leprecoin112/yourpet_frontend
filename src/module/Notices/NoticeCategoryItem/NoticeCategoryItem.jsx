@@ -63,7 +63,7 @@ const NoticeCategoryItem = ({
   const [removeNoticeFromFavorites] = useRemoveNoticeFromFavoritesMutation();
 
   const { isLoggedIn, user } = useAuth();
-  const age = agePet(birthday);
+  const age = agePet(birthday, 'parse');
   const isOwner = user?._id === owner;
 
   const isNoticeInFavorites = favorites?.result.some(el => el._id === id);

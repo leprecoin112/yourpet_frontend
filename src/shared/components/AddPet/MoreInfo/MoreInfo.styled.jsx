@@ -100,6 +100,10 @@ const Label = styled.label`
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.gray};
   cursor: pointer;
+
+  &.active {
+    color: ${({ theme }) => theme.colors.blue};
+  }
 `;
 const FemaleIcon = styled(IconFemale)`
   margin-right: 12px;

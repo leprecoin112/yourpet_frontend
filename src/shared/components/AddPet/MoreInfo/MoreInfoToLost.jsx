@@ -23,6 +23,7 @@ import {
   AddFormButtonNext,
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
+import { useState } from 'react';
 
 const validationSchema = yup.object().shape({
   location: yup.string().required('Name is required'),
@@ -37,13 +38,20 @@ const MoreInfoToLost = ({
   prevStep,
   onSubmit,
 }) => {
+  const [photo, setPhoto] = useState(null);
   const handleChange = e => {
     const value = e.target.value;
     const name = e.target.name;
 
-    setFormData(prev => ({ ...prev, [name]: value }));
+    if (name === 'avatar') {
+      setPhoto(e.target.files[0]);
+    }
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === 'avatar' ? e.target.files[0] : value,
+    }));
   };
-  const { theSex } = formData;
+  const { sex } = formData;
   return (
     <Formik
       initialValues={{
@@ -52,7 +60,6 @@ const MoreInfoToLost = ({
         location: '',
         comments: '',
       }}
-      validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
       <Form>
@@ -60,27 +67,27 @@ const MoreInfoToLost = ({
           <ContainerRadioBtn className="to-sell">
             <Title>The Sex</Title>
             <ContainerFirstBtn className="to-sell">
-              <Label>
+              <Label className={sex === 'female' ? 'active' : ''}>
                 <FemaleIcon />
                 <RadioBtn
                   type="radio"
                   name="sex"
-                  value="Female"
+                  value="female"
                   id="Female"
                   onChange={handleChange}
-                  checked={theSex === 'Female'}
+                  checked={sex === 'female'}
                 />
                 Female
               </Label>
-              <Label>
+              <Label className={sex === 'male' ? 'active' : ''}>
                 <MaleIcon />
                 <RadioBtn
                   type="radio"
                   name="sex"
-                  value="Male"
+                  value="male"
                   id="Male"
                   onChange={handleChange}
-                  checked={theSex === 'Male'}
+                  checked={sex === 'male'}
                 />
                 Male
               </Label>
@@ -89,14 +96,16 @@ const MoreInfoToLost = ({
               Load image:
               <InputFileContainer className="to-lost">
                 <IconsPlusBig />
+                {photo && (
+                  <img alt="avatar pet" src={URL.createObjectURL(photo)} />
+                )}
               </InputFileContainer>
               <InputFile
                 type="file"
                 name="avatar"
                 id="pet-avatar"
-                accept=".png, .jpeg, .webp, .jpg"
+                accept="image/*"
                 onChange={handleChange}
-                value={formData.avatar}
               />
             </LabelFile>
           </ContainerRadioBtn>
@@ -125,8 +134,8 @@ const MoreInfoToLost = ({
           </ContainerForm>
         </Container>
         <BtnWrapper className="to-sale">
-          <AddFormButtonNext text="Done" onClick={nextStep} />
-          <AddFormButtonBack text="Back" onClick={prevStep} />
+          <AddFormButtonNext type="submit" text="Done" />
+          <AddFormButtonBack type="button" text="Back" onClick={prevStep} />
         </BtnWrapper>
       </Form>
     </Formik>
