@@ -103,7 +103,7 @@ const NoticesPage = () => {
           </ButtonsWrapper>
         </FiltersWrapper>
         {isLoader && <Loader />}
-        {data || !isError ? (
+        {data ? (
           <NoticesCategoriesList items={data.result} />
         ) : (
           <ErrorMessage>

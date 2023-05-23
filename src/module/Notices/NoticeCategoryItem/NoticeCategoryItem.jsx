@@ -65,9 +65,6 @@ const NoticeCategoryItem = ({
   const age = agePet(birthday);
   const isOwner = user?._id === owner;
 
-  console.log('favorites', favorites);
-  console.log('id', id);
-
   const isNoticeInFavorites = favorites?.result.some(el => el._id === id);
 
   const addToFavorites = async id => {
