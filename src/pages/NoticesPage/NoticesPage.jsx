@@ -52,7 +52,7 @@ const NoticesPage = () => {
       query = useGetNoticesByParamsQuery;
   }
 
-  const { data, error, isFetching, isLoading } = query({
+  const { data, error, isFetching, isLoading, isError } = query({
     title,
     category,
     page,
@@ -70,8 +70,6 @@ const NoticesPage = () => {
 
     setPage(currentPage);
   };
-
-  console.log(data);
 
   useEffect(() => {
     const categoryName = location.pathname.split('/')[2];
@@ -105,7 +103,7 @@ const NoticesPage = () => {
           </ButtonsWrapper>
         </FiltersWrapper>
         {isLoader && <Loader />}
-        {data ? (
+        {data || !isError ? (
           <NoticesCategoriesList items={data.result} />
         ) : (
           <ErrorMessage>

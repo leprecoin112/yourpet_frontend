@@ -65,8 +65,10 @@ const NoticeCategoryItem = ({
   const age = agePet(birthday);
   const isOwner = user?._id === owner;
 
+  console.log('favorites', favorites);
+  console.log('id', id);
+
   const isNoticeInFavorites = favorites?.result.some(el => el._id === id);
-  console.log(isNoticeInFavorites);
 
   const addToFavorites = async id => {
     await addNoticeToFavorites(id);
@@ -97,7 +99,10 @@ const NoticeCategoryItem = ({
     <ItemContainer key={id}>
       <CategoryLabel>{categoryTitle}</CategoryLabel>
       <UserBtns>
-        <Btns styled="like" onClick={() => onHeartClick(id)}>
+        <Btns
+          className={isNoticeInFavorites ? 'active' : ''}
+          onClick={() => onHeartClick(id)}
+        >
           <IconHeart />
         </Btns>
 

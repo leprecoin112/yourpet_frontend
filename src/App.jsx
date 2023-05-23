@@ -22,8 +22,7 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
-  const { data } = useRefreshQuery();
-  console.log(data);
+  useRefreshQuery();
   const { isRefreshing } = useAuth();
   return isRefreshing ? (
     <Loader />
