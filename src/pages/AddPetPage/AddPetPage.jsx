@@ -12,6 +12,7 @@ import { AddPetNav2, AddPetNav1, AddPetNav3 } from './AddPetNav';
 import { PersonalDetailsToAdd } from '../../shared/components/AddPetForm/step2/AddPetFormToAdd';
 import MoreInfoToAdd from '../../shared/components/AddPet/MoreInfo/MoreInfoToAdd';
 import MoreInfoToLost from '../../shared/components/AddPet/MoreInfo/MoreInfoToLost';
+import Section from '../../shared/components/Section/Section';
 
 const AddPetPage = () => {
   const [step, setStep] = useState(1);
@@ -137,7 +138,7 @@ const AddPetPage = () => {
     }
   }
 
-  return <> {renderStep()}</>;
+  return <Section> {renderStep()}</Section>;
 };
 
 export default AddPetPage;

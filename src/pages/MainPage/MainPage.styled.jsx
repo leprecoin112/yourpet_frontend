@@ -27,12 +27,12 @@ const PageContainer = styled.div`
     content: '';
     display: inline-block;
     width: 474px;
-    height: 450px;
+    height: 460px;
     background-image: url(${mob});
     background-repeat: no-repeat;
     position: relative;
     top: -20px;
-    left: 40px;
+    left: 0px;
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -40,10 +40,10 @@ const PageContainer = styled.div`
       background-size: 100%;
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-      width: 1200px;
-      height: 1150px;
+      width: 985px;
+      height: 950px;
       top: -100px;
-      left: 120px;
+      left: 20px;
       background-image: url(${tab});
       @media screen and (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),

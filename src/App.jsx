@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
-
 import SharedLayout from './router/SharedLayout/SharedLayout';
 import { PrivateRoute } from './router/PrivateRoute';
 import { RestrictedRoute } from './router/RestrictedRoute';
