@@ -7,7 +7,7 @@ import {
 import React, { useState } from 'react';
 import { ChooseOption } from '../../shared/components/AddPetForm/Step1/AddPetForm1';
 import { PersonalDetails } from '../../shared/components/AddPetForm/step2/AddPetForm2';
-import MoreInfo from '../../shared/components/AddPet/MoreInfo/MoreInfo';
+import { MoreInfo } from '../../shared/components/AddPet/MoreInfo/MoreInfo';
 import { AddPetNav2, AddPetNav1, AddPetNav3 } from './AddPetNav';
 import { PersonalDetailsToAdd } from '../../shared/components/AddPetForm/step2/AddPetFormToAdd';
 import MoreInfoToAdd from '../../shared/components/AddPet/MoreInfo/MoreInfoToAdd';
@@ -18,6 +18,15 @@ const AddPetPage = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     category: '',
+    name: '',
+    title: '',
+    birthday: '',
+    breed: '',
+    location: '',
+    comments: '',
+    petPhoto: '',
+    sex: '',
+    price: '',
   });
 
   const nextStep = () => {
@@ -72,7 +81,12 @@ const AddPetPage = () => {
               <AddPetWrapper className="to-sell">
                 <PageTitle>Add pet for sale</PageTitle>
                 <AddPetNav2 />
-                <PersonalDetails nextStep={nextStep} prevStep={prevStep} />
+                <PersonalDetails
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  formData={formData}
+                  setFormData={setFormData}
+                />
               </AddPetWrapper>
             ) : null}
             {formData.category === 'lost-found' ? (

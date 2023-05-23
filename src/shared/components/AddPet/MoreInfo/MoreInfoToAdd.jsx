@@ -1,5 +1,5 @@
-import { Formik, Form } from "formik";
-import * as yup from "yup";
+import { Formik, Form } from 'formik';
+import * as yup from 'yup';
 import {
   Container,
   ContainerRadioBtn,
@@ -11,23 +11,37 @@ import {
   InputComents,
   ContainerForm,
   BtnWrapper,
-} from "./MoreInfo.styled";
+} from './MoreInfo.styled';
 import {
   AddFormButtonNext,
   AddFormButtonBack,
-} from "../../AddPetFormBtn/AddPetFormBtn";
+} from '../../AddPetFormBtn/AddPetFormBtn';
 
 const validationSchema = yup.object().shape({
   comments: yup.string(),
 });
 
-const MoreInfoToAdd = ({ nextStep, prevStep }) => {
+const MoreInfoToAdd = ({
+  formData,
+  setFormData,
+  nextStep,
+  prevStep,
+  onSubmit,
+}) => {
+  const handleChange = e => {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
   return (
     <Formik
       initialValues={{
-        comments: "",
+        comments: '',
+        avatar: '',
       }}
       validationSchema={validationSchema}
+      onSubmit={onSubmit}
     >
       <Form>
         <Container className="to-add">
@@ -40,8 +54,10 @@ const MoreInfoToAdd = ({ nextStep, prevStep }) => {
               <InputFile
                 type="file"
                 name="avatar"
-                id="pet-avatar"
+                id="avatar"
                 accept=".png, .jpeg, .webp, .jpg"
+                onChange={handleChange}
+                value={formData.avatar}
               />
             </LabelFile>
           </ContainerRadioBtn>
@@ -52,6 +68,8 @@ const MoreInfoToAdd = ({ nextStep, prevStep }) => {
                 type="text"
                 name="comments"
                 placeholder="Comments"
+                value={formData.comments}
+                onChange={handleChange}
               />
             </FormLabel>
           </ContainerForm>
