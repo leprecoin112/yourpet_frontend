@@ -2,15 +2,21 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const ErrorMessage = styled.p`
-  margin-top: 20px;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.gray};
-
-  font-family: ${({ theme }) => theme.fonts.main.semiBold};
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 40px;
-  }
+    text-align: center;
+    color: ${({ theme }) => theme.colors.gray};
+
+    font-family: ${({ theme }) => theme.fonts.main.medium};
+    font-size: ${({ theme }) => theme.fontSizes[2]};
+    line-height: ${({ theme }) =>
+        (22 / Number(theme.fontSizes[2].slice(0, 2))).toFixed(1)};
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        margin-top: 80px;
+        font-size: ${({ theme }) => theme.fontSizes[6]};
+        line-height: ${({ theme }) =>
+        (44 / Number(theme.fontSizes[4].slice(0, 2))).toFixed(1)};
+    }
 `;
 
 const FiltersWrapper = styled.div`

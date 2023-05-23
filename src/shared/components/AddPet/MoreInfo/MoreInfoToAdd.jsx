@@ -1,3 +1,5 @@
+import { Formik, Form } from "formik";
+import * as yup from "yup";
 import {
   Container,
   ContainerRadioBtn,
@@ -9,17 +11,24 @@ import {
   InputComents,
   ContainerForm,
   BtnWrapper,
-} from './MoreInfo.styled';
+} from "./MoreInfo.styled";
 import {
   AddFormButtonNext,
   AddFormButtonBack,
-} from '../../AddPetFormBtn/AddPetFormBtn';
+} from "../../AddPetFormBtn/AddPetFormBtn";
 
-import { Formik, Form } from 'formik';
+const validationSchema = yup.object().shape({
+  comments: yup.string(),
+});
 
 const MoreInfoToAdd = ({ nextStep, prevStep }) => {
   return (
-    <Formik>
+    <Formik
+      initialValues={{
+        comments: "",
+      }}
+      validationSchema={validationSchema}
+    >
       <Form>
         <Container className="to-add">
           <ContainerRadioBtn>

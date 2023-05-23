@@ -1,10 +1,9 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuth } from '../../hooks/useAuth';
 import { useFindNoticeByIdQuery } from '../../redux/api/backend/notices/noticesApi';
 import { IconHeart } from '../Icons';
+import PropTypes from 'prop-types';
 
 import {
   Overlay,
@@ -31,13 +30,12 @@ import { formatDate } from '../../utils/dateUtils';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const NoticeModal = ({ onClose, noticeId }) => {
+export const NoticeModal = ({ onClose, noticeId, favorites, onHeart }) => {
   const { data } = useFindNoticeByIdQuery(noticeId);
-  const { isLoggedIn, user } = useAuth;
+  const isNoticeInFavorites = favorites?.result.some(el => el._id === noticeId);
   const categoryTitle = data?.data.category
     .split('-')
     .join(data.data.category.includes('lost') ? '/' : ' ');
-  const image = `https://yourpet-backend-jxa0.onrender.com/${data?.data.photo}`;
 
   useEffect(() => {
     const handleEscape = event => {
@@ -59,10 +57,6 @@ export const NoticeModal = ({ onClose, noticeId }) => {
     }
   };
 
-  const toastMss = () => {
-    return toast.warning('Please login');
-  };
-
   return createPortal(
     <Overlay onClick={handleOverlayClick}>
       <ModalContainer>
@@ -73,7 +67,7 @@ export const NoticeModal = ({ onClose, noticeId }) => {
           <>
             <DataContainer>
               <ImageWrapper>
-                <ModalImage src={image} alt={data.data.name} />
+                <ModalImage src={data?.data.photo} alt={data.data.name} />
                 <CategoryLabel>{categoryTitle}</CategoryLabel>
               </ImageWrapper>
               <div>
@@ -128,12 +122,8 @@ export const NoticeModal = ({ onClose, noticeId }) => {
               <ContactButton href={`tel:${data.data.owner?.phone}`}>
                 Contact
               </ContactButton>
-              <AddToFavoriteButton
-                onClick={
-                  !isLoggedIn ? () => toastMss() : () => 'додати в улюблені'
-                }
-              >
-                Add to <IconHeart />
+              <AddToFavoriteButton onClick={() => onHeart(noticeId)}>
+                {isNoticeInFavorites ? 'Remove' : 'Add to'} <IconHeart />
               </AddToFavoriteButton>
             </ButtonWrapper>
           </>
@@ -142,4 +132,11 @@ export const NoticeModal = ({ onClose, noticeId }) => {
     </Overlay>,
     modalRoot
   );
+};
+
+NoticeModal.propTypes = {
+  onClose: PropTypes.func,
+  onHeart: PropTypes.func,
+  noticeId: PropTypes.string,
+  favorites: PropTypes.arrayOf(PropTypes.object),
 };

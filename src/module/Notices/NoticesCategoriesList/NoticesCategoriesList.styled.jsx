@@ -9,5 +9,6 @@ export const List = styled.ul`
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}){
         margin-top: 40px;
+        justify-content: start;
     }
 `

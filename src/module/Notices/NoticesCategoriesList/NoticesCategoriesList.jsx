@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { List } from './NoticesCategoriesList.styled';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import { useGetFavoriteNoticesQuery } from '../../../shared/redux/api/backend/notices/noticesApi';
@@ -22,6 +23,21 @@ const NoticesCategoriesList = ({ items }) => {
     )
   );
   return <List>{card}</List>;
+};
+
+NoticesCategoriesList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      category: PropTypes.string,
+      title: PropTypes.string,
+      photo: PropTypes.string,
+      sex: PropTypes.string,
+      location: PropTypes.string,
+      birthday: PropTypes.string,
+      owner: PropTypes.string,
+    })
+  ),
 };
 
 export default NoticesCategoriesList;
