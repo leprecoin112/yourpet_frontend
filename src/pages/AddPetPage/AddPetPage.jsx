@@ -15,12 +15,15 @@ import MoreInfoToLost from '../../shared/components/AddPet/MoreInfo/MoreInfoToLo
 
 const AddPetPage = () => {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    category: '',
+  });
 
   const nextStep = () => {
     setStep(prevStep => prevStep + 1);
-  };
 
+    console.log('data', formData);
+  };
   const prevStep = () => {
     setStep(prevStep => prevStep - 1);
   };
@@ -31,16 +34,9 @@ const AddPetPage = () => {
     console.log('Form data:', values);
   };
 
-  // Потрібно зробити логіку,
-  // на який батон клікнутий на першрму єтапі,
-  // зберегаэться variant в стейт і залежно від цього кейс 2 та 3 будуть відрізнятися
-  // Пишу фіктивний стейт щоб перевірити
-  //
-  // const [variant, setVariant] = useState('add_pet');
-  // const [variant, setVariant] = useState('sell');
-  const [variant, setVariant] = useState('lost_found');
-  // const [variant, setVariant] = useState('in_good_hands');
-
+  // Значення полів з усіх форм записувати у state formData.
+  //   formData, setFormData передається пропсами у кожну форму
+  // Валідація не працює та in good hands
   function renderStep() {
     switch (step) {
       case 1:
@@ -48,31 +44,46 @@ const AddPetPage = () => {
           <AddPetWrapperShort>
             <PageTitle>Add pet</PageTitle>
             <AddPetNav1 />
-            <ChooseOption nextStep={nextStep} prevStep={prevStep} />
+            <ChooseOption
+              formData={formData}
+              setFormData={setFormData}
+              nextStep={nextStep}
+              prevStep={prevStep}
+            />
           </AddPetWrapperShort>
         );
       case 2:
         return (
           <>
-            {variant === 'add_pet' ? (
+            {formData.category === 'my-pet' ? (
               <AddPetWrapperShort>
                 <PageTitle>Add my pet</PageTitle>
                 <AddPetNav2 />
-                <PersonalDetailsToAdd nextStep={nextStep} prevStep={prevStep} />
+                <PersonalDetailsToAdd
+                  formData={formData}
+                  setFormData={setFormData}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
               </AddPetWrapperShort>
             ) : null}
-            {variant === 'sell' ? (
+            {formData.category === 'sell' ? (
               <AddPetWrapper className="to-sell">
                 <PageTitle>Add pet for sale</PageTitle>
                 <AddPetNav2 />
                 <PersonalDetails nextStep={nextStep} prevStep={prevStep} />
               </AddPetWrapper>
             ) : null}
-            {variant === 'lost_found' ? (
+            {formData.category === 'lost-found' ? (
               <AddPetWrapper className="to-sell">
                 <PageTitle>Add lost pet</PageTitle>
                 <AddPetNav2 />
-                <PersonalDetails nextStep={nextStep} prevStep={prevStep} />
+                <PersonalDetails
+                  formData={formData}
+                  setFormData={setFormData}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
               </AddPetWrapper>
             ) : null}
           </>
@@ -80,33 +91,39 @@ const AddPetPage = () => {
       case 3:
         return (
           <>
-            {variant === 'add_pet' ? (
+            {formData.category === 'my-pet' ? (
               <AddPetWrapperShort>
                 <PageTitle>Add my pet</PageTitle>
                 <AddPetNav3 />
                 <MoreInfoToAdd
+                  formData={formData}
+                  setFormData={setFormData}
                   nextStep={nextStep}
                   prevStep={() => setStep(2)}
                   onSubmit={handleFormSubmit}
                 />
               </AddPetWrapperShort>
             ) : null}
-            {variant === 'sell' ? (
+            {formData.category === 'sell' ? (
               <AddPetWrapper>
                 <PageTitle className="to-sell">Add pet for sale</PageTitle>
                 <AddPetNav3 />
                 <MoreInfo
+                  formData={formData}
+                  setFormData={setFormData}
                   nextStep={nextStep}
                   prevStep={() => setStep(2)}
                   onSubmit={handleFormSubmit}
                 />
               </AddPetWrapper>
             ) : null}
-            {variant === 'lost_found' ? (
+            {formData.category === 'lost-found' ? (
               <AddPetWrapper className="to-lost">
                 <PageTitle className="to-sell">Add lost pet</PageTitle>
                 <AddPetNav3 />
                 <MoreInfoToLost
+                  formData={formData}
+                  setFormData={setFormData}
                   nextStep={nextStep}
                   prevStep={() => setStep(2)}
                   onSubmit={handleFormSubmit}
