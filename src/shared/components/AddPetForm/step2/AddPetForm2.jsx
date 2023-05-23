@@ -30,7 +30,19 @@ const validationSchema = yup.object().shape({
     .min(2, 'The Breed must be longer than 2 letters')
     .max(16, 'Breed must be less than 16 letters'),
 });
-export const PersonalDetails = ({ nextStep, prevStep }) => {
+export const PersonalDetails = ({
+  formData,
+  setFormData,
+  nextStep,
+  prevStep,
+}) => {
+  const handleChange = e => {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   return (
     <Formik
       initialValues={{
@@ -49,6 +61,8 @@ export const PersonalDetails = ({ nextStep, prevStep }) => {
               placeholder="Type title"
               type="text"
               name="title"
+              value={formData.title}
+              onChange={handleChange}
               validate={touched.email && !errors.email}
               unvalidate={touched.email && errors.email}
             />
@@ -61,6 +75,8 @@ export const PersonalDetails = ({ nextStep, prevStep }) => {
               placeholder="Type name pet"
               type="text"
               name="name"
+              value={formData.name}
+              onChange={handleChange}
               validate={touched.email && !errors.email}
               unvalidate={touched.email && errors.email}
             />
@@ -73,6 +89,8 @@ export const PersonalDetails = ({ nextStep, prevStep }) => {
               placeholder="Type date of birth"
               type="text"
               name="birthday"
+              value={formData.birthday}
+              onChange={handleChange}
               onFocus={e => (e.target.type = 'date')}
               onBlur={e => (e.target.type = 'text')}
               validate={touched.email && !errors.email}
@@ -87,6 +105,8 @@ export const PersonalDetails = ({ nextStep, prevStep }) => {
               placeholder="Type breed"
               type="text"
               name="breed"
+              value={formData.breed}
+              onChange={handleChange}
               validate={touched.email && !errors.email}
               unvalidate={touched.email && errors.email}
             />

@@ -1,5 +1,5 @@
-import { Formik, Form } from "formik";
-import * as yup from "yup";
+import { Formik, Form } from 'formik';
+import * as yup from 'yup';
 import {
   Container,
   Title,
@@ -18,28 +18,42 @@ import {
   ContainerForm,
   ContainerFirstBtn,
   BtnWrapper,
-} from "./MoreInfo.styled";
+} from './MoreInfo.styled';
 import {
   AddFormButtonNext,
   AddFormButtonBack,
-} from "../../AddPetFormBtn/AddPetFormBtn";
+} from '../../AddPetFormBtn/AddPetFormBtn';
 
 const validationSchema = yup.object().shape({
-  location: yup.string().required("Name is required"),
+  location: yup.string().required('Name is required'),
 
   comments: yup.string(),
 });
 
-const MoreInfoToLost = ({ nextStep, prevStep }) => {
+const MoreInfoToLost = ({
+  formData,
+  setFormData,
+  nextStep,
+  prevStep,
+  onSubmit,
+}) => {
+  const handleChange = e => {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+  const { theSex } = formData;
   return (
     <Formik
       initialValues={{
-        Female: "",
-        Male: "",
-        location: "",
-        comments: "",
+        theSex: '',
+        Male: '',
+        location: '',
+        comments: '',
       }}
       validationSchema={validationSchema}
+      onSubmit={onSubmit}
     >
       <Form>
         <Container className="to-sell">
@@ -48,12 +62,26 @@ const MoreInfoToLost = ({ nextStep, prevStep }) => {
             <ContainerFirstBtn className="to-sell">
               <Label>
                 <FemaleIcon />
-                <RadioBtn type="radio" name="sex" value="Female" />
+                <RadioBtn
+                  type="radio"
+                  name="sex"
+                  value="Female"
+                  id="Female"
+                  onChange={handleChange}
+                  checked={theSex === 'Female'}
+                />
                 Female
               </Label>
               <Label>
                 <MaleIcon />
-                <RadioBtn type="radio" name="sex" value="Male" />
+                <RadioBtn
+                  type="radio"
+                  name="sex"
+                  value="Male"
+                  id="Male"
+                  onChange={handleChange}
+                  checked={theSex === 'Male'}
+                />
                 Male
               </Label>
             </ContainerFirstBtn>
@@ -67,6 +95,8 @@ const MoreInfoToLost = ({ nextStep, prevStep }) => {
                 name="avatar"
                 id="pet-avatar"
                 accept=".png, .jpeg, .webp, .jpg"
+                onChange={handleChange}
+                value={formData.avatar}
               />
             </LabelFile>
           </ContainerRadioBtn>
@@ -77,6 +107,8 @@ const MoreInfoToLost = ({ nextStep, prevStep }) => {
                 type="text"
                 name="location"
                 placeholder="Location"
+                value={formData.location}
+                onChange={handleChange}
               />
             </FormLabel>
             <FormLabel>
@@ -86,6 +118,8 @@ const MoreInfoToLost = ({ nextStep, prevStep }) => {
                 type="text"
                 name="comments"
                 placeholder="Comments"
+                value={formData.comments}
+                onChange={handleChange}
               />
             </FormLabel>
           </ContainerForm>

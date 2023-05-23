@@ -34,7 +34,10 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
     >
       {({ values }) => (
         <RadioBtnWrapper>
-          <RadioLabel htmlFor="my-pet" className={category === 'my-pet' ? 'active' : ''}>
+          <RadioLabel
+            htmlFor="my-pet"
+            className={category === 'my-pet' ? 'active' : ''}
+          >
             <RadioBtn
               type="radio"
               name="category"
@@ -45,7 +48,10 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
             />
             Your pet
           </RadioLabel>
-          <RadioLabel htmlFor="sell" className={category === 'sell' ? 'active' : ''}>
+          <RadioLabel
+            htmlFor="sell"
+            className={category === 'sell' ? 'active' : ''}
+          >
             <RadioBtn
               type="radio"
               name="category"
@@ -56,7 +62,10 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
             />
             Sell
           </RadioLabel>
-          <RadioLabel htmlFor="lost-found"  className={category === 'lost-found' ? 'active' : ''}>
+          <RadioLabel
+            htmlFor="lost-found"
+            className={category === 'lost-found' ? 'active' : ''}
+          >
             <RadioBtn
               type="radio"
               name="category"
@@ -67,7 +76,10 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
             />
             Lost/found
           </RadioLabel>
-          <RadioLabel htmlFor="for-free"  className={category === 'for-free' ? 'active' : ''}>
+          <RadioLabel
+            htmlFor="for-free"
+            className={category === 'for-free' ? 'active' : ''}
+          >
             <RadioBtn
               type="radio"
               name="category"

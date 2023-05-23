@@ -44,16 +44,32 @@ const validationSchema = yup.object().shape({
     .max(16, 'Breed must be less than 16 letters'),
 });
 
+export const MoreInfo = ({
+  formData,
+  setFormData,
+  nextStep,
+  prevStep,
+  onSubmit,
+}) => {
+  const handleChange = e => {
+    const value = e.target.value;
+    const name = e.target.name;
 
-const MoreInfo = ({ nextStep, prevStep }) => {
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+  const { sex } = formData;
   return (
     <Formik
-    initialValues={{
-      name: '',
-      birthday: '',
-      breed: '',
-    }}
-    validationSchema={validationSchema}>
+      initialValues={{
+        sex: '',
+        avatar: '',
+        location: '',
+        price: '',
+        coments: '',
+      }}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
       <Form>
         <Container className="to-sell">
           <ContainerRadioBtn className="to-sell">
@@ -61,12 +77,26 @@ const MoreInfo = ({ nextStep, prevStep }) => {
             <ContainerFirstBtn className="to-sell">
               <Label>
                 <FemaleIcon />
-                <RadioBtn type="radio" name="sex" value="Female" />
+                <RadioBtn
+                  type="radio"
+                  name="sex"
+                  value="Female"
+                  id="Female"
+                  onChange={handleChange}
+                  checked={sex === 'Female'}
+                />
                 Female
               </Label>
               <Label>
                 <MaleIcon />
-                <RadioBtn type="radio" name="sex" value="Male" />
+                <RadioBtn
+                  type="radio"
+                  name="sex"
+                  value="Male"
+                  id="Male"
+                  onChange={handleChange}
+                  checked={sex === 'Male'}
+                />
                 Male
               </Label>
             </ContainerFirstBtn>
@@ -78,8 +108,10 @@ const MoreInfo = ({ nextStep, prevStep }) => {
               <InputFile
                 type="file"
                 name="avatar"
-                id="pet-avatar"
+                id="avatar"
                 accept=".png, .jpeg, .webp, .jpg"
+                onChange={handleChange}
+                value={formData.avatar}
               />
             </LabelFile>
           </ContainerRadioBtn>
@@ -90,11 +122,19 @@ const MoreInfo = ({ nextStep, prevStep }) => {
                 type="text"
                 name="location"
                 placeholder="Location"
+                value={formData.location}
+                onChange={handleChange}
               />
             </FormLabel>
             <FormLabel>
               Price
-              <FormInputPet type="number" name="price" placeholder="Price" />
+              <FormInputPet
+                type="number"
+                name="price"
+                placeholder="Price"
+                value={formData.price}
+                onChange={handleChange}
+              />
             </FormLabel>
             <FormLabel>
               Comments
@@ -102,6 +142,8 @@ const MoreInfo = ({ nextStep, prevStep }) => {
                 type="text"
                 name="comments"
                 placeholder="Comments"
+                value={formData.comments}
+                onChange={handleChange}
               />
             </FormLabel>
           </ContainerForm>
@@ -114,5 +156,3 @@ const MoreInfo = ({ nextStep, prevStep }) => {
     </Formik>
   );
 };
-
-export default MoreInfo;
