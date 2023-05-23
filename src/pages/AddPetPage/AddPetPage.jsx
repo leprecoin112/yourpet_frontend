@@ -101,6 +101,18 @@ const AddPetPage = () => {
                 />
               </AddPetWrapper>
             ) : null}
+            {formData.category === 'for-free' ? (
+              <AddPetWrapper className="to-sell">
+                <PageTitle>In good hands</PageTitle>
+                <AddPetNav2 />
+                <PersonalDetails
+                  formData={formData}
+                  setFormData={setFormData}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              </AddPetWrapper>
+            ) : null}
           </>
         );
       case 3:
@@ -135,6 +147,19 @@ const AddPetPage = () => {
             {formData.category === 'lost-found' ? (
               <AddPetWrapper className="to-lost">
                 <PageTitle className="to-sell">Add lost pet</PageTitle>
+                <AddPetNav3 />
+                <MoreInfoToLost
+                  formData={formData}
+                  setFormData={setFormData}
+                  nextStep={nextStep}
+                  prevStep={() => setStep(2)}
+                  onSubmit={handleFormSubmit}
+                />
+              </AddPetWrapper>
+            ) : null}
+            {formData.category === 'for-free' ? (
+              <AddPetWrapper className="to-lost">
+                <PageTitle className="to-sell">In good hands</PageTitle>
                 <AddPetNav3 />
                 <MoreInfoToLost
                   formData={formData}
