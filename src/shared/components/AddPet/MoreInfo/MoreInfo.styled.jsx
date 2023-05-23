@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-
+import { css } from '@emotion/react';
 import { IconFemale, IconMale, IconPlusBig } from '../../Icons';
 import { Field } from 'formik';
 
@@ -181,6 +181,7 @@ const IconsPlusBig = styled(IconPlusBig)`
 `;
 
 const FormLabel = styled.label`
+position:relative;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -251,6 +252,31 @@ const InputComents = styled(Field)`
       height: 182px;
     }
   }
+  ${({ validate }) =>
+    validate &&
+    css`
+      border: 1px solid #00c3ad;
+      outline: none;
+
+      &:focus,
+      &:active {
+        border: 2px solid #00c3ad;
+        outline: none;
+      }
+    `}
+
+  ${({ unvalidate }) =>
+    unvalidate &&
+    css`
+      border: 1px solid #f43f5e;
+      outline: none;
+
+      &:focus,
+      &:active {
+        border: 2px solid #f43f5e;
+        outline: none;
+      }
+    `}
 `;
 
 const FormInputPet = styled(Field)`
@@ -289,6 +315,31 @@ const FormInputPet = styled(Field)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 395px;
   }
+  ${({ validate }) =>
+    validate &&
+    css`
+      border: 1px solid #00c3ad;
+      outline: none;
+
+      &:focus,
+      &:active {
+        border: 2px solid #00c3ad;
+        outline: none;
+      }
+    `}
+
+  ${({ unvalidate }) =>
+    unvalidate &&
+    css`
+      border: 1px solid #f43f5e;
+      outline: none;
+
+      &:focus,
+      &:active {
+        border: 2px solid #f43f5e;
+        outline: none;
+      }
+    `}
 `;
 const BtnWrapper = styled.div`
   display: flex;
@@ -312,6 +363,16 @@ const BtnWrapper = styled.div`
     }
   }
 `;
+const Error = styled.div`
+  position: absolute;
+  bottom: -24px;
+  left: 16px;
+  font-family: ${({ theme }) => theme.fonts.main.regular};
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: ${({ theme }) => theme.colors.red};
+`;
 
 export {
   Container,
@@ -331,4 +392,5 @@ export {
   ContainerForm,
   ContainerFirstBtn,
   BtnWrapper,
+  Error,
 };

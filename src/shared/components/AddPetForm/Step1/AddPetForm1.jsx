@@ -10,15 +10,11 @@ import {
   AddFormButtonNext,
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
+
 const validation = yup.object().shape({
-  category: yup
-    .string()
-    .required('Category is required')
-    .oneOf(
-      ['my pet', 'sell', 'lost-found', 'for-free'],
-      'Category not selected'
-    ),
+  category: yup.string().required('Category is required'),
 });
+
 export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
   const handleChange = e => {
     const value = e.target.value;
@@ -32,7 +28,7 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
       }}
       validationSchema={validation}
     >
-      {({ values }) => (
+      {({ errors, touched }) => (
         <RadioBtnWrapper>
           <RadioLabel
             htmlFor="my-pet"
@@ -90,9 +86,20 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
             />
             In good hands
           </RadioLabel>
-
+          {errors.category && touched.category ? (
+            <div>{errors.category}</div>
+          ) : null}
           <BtnWrapper>
-            <AddFormButtonNext type="button" text="Next" onClick={nextStep} />
+            {formData.category ? (
+              <AddFormButtonNext type="submit" text="Next" onClick={nextStep} />
+            ) : (
+              <AddFormButtonNext
+                type="submit"
+                text="Next"
+                onClick={nextStep}
+                disabled
+              />
+            )}
             <AddFormButtonBack type="button" text="Cancel" onClick={prevStep} />
           </BtnWrapper>
         </RadioBtnWrapper>
