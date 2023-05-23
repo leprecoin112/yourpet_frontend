@@ -13,7 +13,6 @@ const Wrapper = styled.section`
   padding-top: 40px;
   padding-bottom: 40px;
   background-repeat: repeat;
-  overflow-x: hidden;
 
   background-image: url(${bgMob1});
   background-size: 100%;

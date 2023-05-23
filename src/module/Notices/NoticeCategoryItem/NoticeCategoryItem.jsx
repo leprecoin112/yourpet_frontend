@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useAuth } from '../../../shared/hooks/useAuth';
 import {
   useAddNoticeToFavoritesMutation,
@@ -171,11 +172,24 @@ const NoticeCategoryItem = ({
           noticeId={id}
           onClose={toggleModal}
           favorites={favorites}
+          onHeart={onHeartClick}
         />
       )}
       <ToastContainer />
     </ItemContainer>
   );
+};
+
+NoticeCategoryItem.propTypes = {
+  id: PropTypes.string,
+  category: PropTypes.string,
+  title: PropTypes.string,
+  image: PropTypes.string,
+  sex: PropTypes.string,
+  location: PropTypes.string,
+  birthday: PropTypes.string,
+  owner: PropTypes.string,
+  favorites: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default NoticeCategoryItem;
