@@ -10,12 +10,20 @@ import { store, persistor } from './shared/redux/store';
 import { NoticeModal } from './shared/components/NoticeModal/NoticeModal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Global, css } from '@emotion/react';
+
+const globalStyles = css`
+  html {
+    overflow: hidden;
+  }
+`;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={lightTheme}>
+        <Global styles={globalStyles} />
         <BrowserRouter>
           <App />
           <ToastContainer />
