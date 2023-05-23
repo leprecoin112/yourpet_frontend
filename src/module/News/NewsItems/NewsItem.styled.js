@@ -2,43 +2,44 @@ import styled from '@emotion/styled';
 import EllipsisText from 'react-ellipsis-text';
 
 export const Item = styled.li`
-height: auto;
-display: flex;
-flex-direction: column;
-// justify-content: center;
-align-items: space-between;
-box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-border-radius: 20px;
-padding: 0px 0px 12px;
-margin-top: 40px;
-background: #FFFFFF;
-list-style-type: none;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
 
-@media (min-width: 768px) {
-  width: calc((100% - 32px) / 2);
-  margin-top: 60px;
-}
-@media (min-width: 1280px) {
-  width: calc((100% - 32px * 2) / 3);
-}
-}
+  list-style-type: none;
+  background-color: transparent;
+
+  @media (min-width: 768px) {
+    width: calc((100% - 32px) / 2);
+  }
+  @media (min-width: 1280px) {
+    width: calc((100% - 32px * 2) / 3);
+  }
+`;
+
+export const Container = styled.div`
+  overflow: hidden;
+  padding: 0px 0px 12px;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 0 0 20px 20px;
 `;
 
 export const Line = styled.span`
-    margin-bottom: 14px;
-    display: block;
-    min-width: 280px;
-    height: 4px;
-    width: 100%;
-    border-radius: 40px;
-    background-image: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
-    @media (min-width: 768px) {
-      width: 336px;
-      height: 8px;
-    }
-    @media (min-width: 1280px) {
-      width: 394px;
-    }
+  margin-bottom: 14px;
+  display: block;
+  min-width: 280px;
+  height: 4px;
+  width: 100%;
+  border-radius: 40px;
+  background-image: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+
+  @media (min-width: 768px) {
+    width: 336px;
+    height: 8px;
+  }
+  @media (min-width: 1280px) {
+    width: 394px;
   }
 `;
 
@@ -62,11 +63,15 @@ export const Poster = styled.img`
 export const TextContent = styled.div`
   display: flex;
   flex-direction: column;
-  //justify-content: center;
+  justify-content: center;
   align-items: flex-start;
   height: auto;
   padding: 0px 12px;
   flex-grow: 2;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    min-height: 243px;
+  }
 `;
 
 export const NewsTitle = styled(EllipsisText)`
@@ -104,11 +109,11 @@ export const BottomInfoWrapper = styled.div`
 `;
 
 export const NewsDate = styled.p`
-  font-family: 'Manrope';
+  font-family: ${({ theme }) => theme.fonts.main.regular};
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: #888888;
+  color: ${({ theme }) => theme.colors.gray};
 `;
 
 export const NewsLink = styled.a`

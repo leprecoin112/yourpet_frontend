@@ -9,7 +9,7 @@ export const ItemContainer = styled.li`
   padding-bottom: 24px;
   stroke: #54adff;
 
-  background-color: ${({ theme }) => theme.colors.whight};
+  background-color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 0px 0px 40px 40px;
 
@@ -90,7 +90,6 @@ display:flex;
   }
 `;
 
-
 export const Filter = styled.div`
   position: absolute;
   display: flex;
@@ -127,8 +126,7 @@ export const FilterBtn = styled.button`
   border: none;
 
   &.active,
-  &:hover,
-  &:focus {
+  &:hover {
     transition: all ${({ theme }) => theme.duration.main}
       ${({ theme }) => theme.transition.main};
     background: ${({ theme }) => theme.colors.gradientBlue};

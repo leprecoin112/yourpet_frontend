@@ -10,12 +10,15 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   font-size: 32px;
   line-height: 1.38;
+  transition: all 250ms;
 
   font-family: ${({ theme }) => theme.fonts.main.regular};
   &.active {
     color: ${({ theme }) => theme.colors.yellow};
   }
+
   &:hover {
+    font-weight: 700;
     color: ${({ theme }) => theme.colors.yellow};
   }
 
@@ -27,6 +30,11 @@ export const Link = styled(NavLink)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     font-size: 20px;
     line-height: 1.35;
+
+    &:hover {
+      font-weight: 400;
+      color: ${({ theme }) => theme.colors.yellow};
+    }
   }
 `;
 

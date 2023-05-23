@@ -11,6 +11,7 @@ import {
   BottomInfoWrapper,
   NewsDate,
   NewsLink,
+  Container,
 } from './NewsItem.styled';
 
 export default function NewsItem({ title, url, date, imgUrl, text }) {
@@ -26,26 +27,29 @@ export default function NewsItem({ title, url, date, imgUrl, text }) {
   const formattedDate = formatDate(date);
 
   return (
-    <Item>
-      <DecorativeLine />
-      <Poster src={imgUrl} width="100" alt={title} />
+    <>
+      <Item>
+        <DecorativeLine />
+        <Container>
+          <Poster src={imgUrl} width="100" alt={title} />
+          <TextContent>
+            <NewsTitle
+              text={title}
+              tooltip={title}
+              length={Number(`${matches ? 50 : 35}`)}
+            />
+            <NewsBody text={text} length={230} />
 
-      <TextContent>
-        <NewsTitle
-          text={title}
-          tooltip={title}
-          length={Number(`${matches ? 50 : 35}`)}
-        />
-        <NewsBody text={text} length={230} />
-
-        <BottomInfoWrapper>
-          <NewsDate>{formattedDate}</NewsDate>
-          <NewsLink href={url} target="_blank" rel="noreferrer">
-            Read more
-          </NewsLink>
-        </BottomInfoWrapper>
-      </TextContent>
-    </Item>
+            <BottomInfoWrapper>
+              <NewsDate>{formattedDate}</NewsDate>
+              <NewsLink href={url} target="_blank" rel="noreferrer">
+                Read more
+              </NewsLink>
+            </BottomInfoWrapper>
+          </TextContent>
+        </Container>
+      </Item>
+    </>
   );
 }
 
