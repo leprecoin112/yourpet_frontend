@@ -5,11 +5,11 @@ export const userApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     getUser: builder.query({
       query: () => 'user',
-      providesTags: ['user', "pets"],
+      providesTags: ['user', 'pets'],
     }),
     getUserPets: builder.query({
       query: () => 'user/pets',
-      providesTags: ['user'],
+      providesTags: ['user', 'pets'],
     }),
     updateAvatars: builder.mutation({
       query(file) {
