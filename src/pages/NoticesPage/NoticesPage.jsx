@@ -24,6 +24,7 @@ import Container from '../../shared/components/Container/Container';
 import Filter from '../../shared/components/Filter';
 import Pagination from '../../shared/components/Pagination/Pagination';
 import { IconPlusBig, IconPlusSmall } from '../../shared/components/Icons';
+import { toast } from 'react-toastify';
 
 const NoticesPage = () => {
   const [category, setCategory] = useState('sell');
@@ -47,9 +48,16 @@ const NoticesPage = () => {
     case 'sell':
       query = useGetNoticesByParamsQuery;
       break;
+    default:
+      query = useGetNoticesByParamsQuery;
   }
 
-  const { data, isFetching } = query({ title, category, page, limit: 12 });
+  const { data, error, isFetching, isLoading } = query({
+    title,
+    category,
+    page,
+    limit: 12,
+  });
 
   const handleFormSubmit = value => {
     setTitle(value);
@@ -70,6 +78,15 @@ const NoticesPage = () => {
     setCategory(categoryName ?? '');
   }, [location]);
 
+  const isLoader = isLoading || isFetching;
+  if (!isLoader) {
+    if (error) {
+      if (error.status === 404) {
+        toast.error(error.data.message);
+      }
+    }
+  }
+
   return (
     <Section>
       <Container>
@@ -87,7 +104,7 @@ const NoticesPage = () => {
             </AddButton>
           </ButtonsWrapper>
         </FiltersWrapper>
-        {isFetching && <Loader />}
+        {isLoader && <Loader />}
         {data ? (
           <NoticesCategoriesList items={data.result} />
         ) : (
