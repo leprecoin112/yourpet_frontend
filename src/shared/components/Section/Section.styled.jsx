@@ -13,7 +13,7 @@ const Wrapper = styled.section`
   padding-top: 40px;
   padding-bottom: 40px;
   background-repeat: repeat;
-  overflow-x: hidden;
+  overflow: auto;
 
   background-image: url(${bgMob1});
   background-size: 100%;
@@ -38,7 +38,6 @@ const Wrapper = styled.section`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     background-image: url(${bgDesk1});
-    overflow: hidden;
 
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),

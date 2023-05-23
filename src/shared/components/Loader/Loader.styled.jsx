@@ -1,6 +1,16 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
+const Backdrop = styled.div`
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(60, 60, 60, 0.2);
+`;
+
 const shake = keyframes`
     50% { top: 6px; }
 `
@@ -423,4 +433,4 @@ const Outer = styled.div`
     border: 3px solid ${({ theme }) => theme.colors.gray};
     border-radius: 20px / 55px 55px 0 0;
 `
-export { Cat, Paw, Shake, Main, Head, Body, Leg, Face, Nose, Tail, MustacheCont, MustacheLeft, MustacheRight, Eye, BrowCont, Brow, EarLeft, InnerLeft, EarRight, InnerRight, Outer };
+export { Backdrop, Cat, Paw, Shake, Main, Head, Body, Leg, Face, Nose, Tail, MustacheCont, MustacheLeft, MustacheRight, Eye, BrowCont, Brow, EarLeft, InnerLeft, EarRight, InnerRight, Outer };

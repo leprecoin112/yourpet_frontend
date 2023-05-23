@@ -2,7 +2,7 @@ import { baseApi } from '../baseApi';
 
 export const noticesApi = baseApi.injectEndpoints({
   reducerPath: 'noticesApi',
-  tagTypes: ['notices'],
+  tagTypes: ['notices', 'favorites'],
   endpoints: builder => ({
     getOwnNotices: builder.query({
       query: ({ page = 1, limit = 12 }) =>
@@ -31,17 +31,17 @@ export const noticesApi = baseApi.injectEndpoints({
       query(id) {
         return { url: `notices/favorites/${id}`, method: 'POST' };
       },
-      invalidatesTags: ['notices'],
+      invalidatesTags: ['notices', 'favorites'],
     }),
     removeNoticeFromFavorites: builder.mutation({
       query(id) {
         return { url: `notices/favorites/${id}`, method: 'DELETE' };
       },
-      invalidatesTags: ['notices'],
+      invalidatesTags: ['notices', 'favorites'],
     }),
     getFavoriteNotices: builder.query({
       query: () => `notices/favorites`,
-      providesTags: ['notices'],
+      providesTags: ['notices', 'favorites'],
     }),
     findNoticeById: builder.query({
       query: id => `notices/${id}`,
@@ -50,7 +50,7 @@ export const noticesApi = baseApi.injectEndpoints({
       query(id) {
         return { url: `notices/${id}`, method: 'DELETE' };
       },
-      invalidatesTags: ['notices'],
+      invalidatesTags: ['notices', 'favorites'],
     }),
   }),
 });

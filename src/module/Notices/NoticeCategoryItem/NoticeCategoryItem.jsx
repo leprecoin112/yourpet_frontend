@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useAuth } from '../../../shared/hooks/useAuth';
 import {
   useAddNoticeToFavoritesMutation,
@@ -66,7 +67,6 @@ const NoticeCategoryItem = ({
   const isOwner = user?._id === owner;
 
   const isNoticeInFavorites = favorites?.result.some(el => el._id === id);
-  console.log(isNoticeInFavorites);
 
   const addToFavorites = async id => {
     await addNoticeToFavorites(id);
@@ -97,7 +97,10 @@ const NoticeCategoryItem = ({
     <ItemContainer key={id}>
       <CategoryLabel>{categoryTitle}</CategoryLabel>
       <UserBtns>
-        <Btns styled="like" onClick={() => onHeartClick(id)}>
+        <Btns
+          className={isNoticeInFavorites ? 'active' : ''}
+          onClick={() => onHeartClick(id)}
+        >
           <IconHeart />
         </Btns>
 
@@ -169,11 +172,24 @@ const NoticeCategoryItem = ({
           noticeId={id}
           onClose={toggleModal}
           favorites={favorites}
+          onHeart={onHeartClick}
         />
       )}
       <ToastContainer />
     </ItemContainer>
   );
+};
+
+NoticeCategoryItem.propTypes = {
+  id: PropTypes.string,
+  category: PropTypes.string,
+  title: PropTypes.string,
+  image: PropTypes.string,
+  sex: PropTypes.string,
+  location: PropTypes.string,
+  birthday: PropTypes.string,
+  owner: PropTypes.string,
+  favorites: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default NoticeCategoryItem;

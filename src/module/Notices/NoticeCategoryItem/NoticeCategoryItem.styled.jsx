@@ -9,7 +9,7 @@ export const ItemContainer = styled.li`
   padding-bottom: 24px;
   stroke: #54adff;
 
-  background-color: ${({ theme }) => theme.colors.whight};
+  background-color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 0px 0px 40px 40px;
 

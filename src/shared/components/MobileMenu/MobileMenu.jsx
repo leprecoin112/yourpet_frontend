@@ -14,7 +14,7 @@ import {
 import { IconCrossBig } from '../Icons';
 
 const MobileMenu = ({ onClick }) => {
-  const isLoggedIn = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <MobileWrapper>
