@@ -6,6 +6,7 @@ import {
   useDeleteNoticeByIdMutation,
   useRemoveNoticeFromFavoritesMutation,
 } from '../../../shared/redux/api/backend/notices/noticesApi';
+import { useGetUserQuery } from '../../../shared/redux/api/backend/user/userApi';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Btn from '../../../shared/components/Button/Button';
@@ -61,35 +62,36 @@ const NoticeCategoryItem = ({
   const [addNoticeToFavorites] = useAddNoticeToFavoritesMutation();
   const [deleteNoticeById] = useDeleteNoticeByIdMutation();
   const [removeNoticeFromFavorites] = useRemoveNoticeFromFavoritesMutation();
+  const { data } = useGetUserQuery();
 
   const { isLoggedIn, user } = useAuth();
   const age = agePet(birthday, 'parse');
-  const isOwner = user?._id === owner;
+  const isOwner = data?._id === owner;
 
   const isNoticeInFavorites = favorites?.result.some(el => el._id === id);
 
   const addToFavorites = async id => {
     await addNoticeToFavorites(id);
+    toast.info('Added to favorite');
   };
 
   const removeFromFavorites = async id => {
     await removeNoticeFromFavorites(id);
+    toast.info('Removed from favorite');
   };
 
-  const deleteNotice = async id => {
+  const deleteNotice = async (id, title) => {
     await deleteNoticeById(id);
+    toast.info(`Notice '${title}' deleted`);
   };
 
-  const toastMss = () => {
-    return toast.warning('Please login');
-  };
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
   const onHeartClick = id => {
-    if (!isLoggedIn) toastMss();
+    if (!isLoggedIn) return toast.warning('Please login');
     isNoticeInFavorites ? removeFromFavorites(id) : addToFavorites(id);
   };
 
@@ -108,7 +110,7 @@ const NoticeCategoryItem = ({
           <Btns
             styled="like"
             margin="16px 0 0"
-            onClick={() => deleteNotice(id)}
+            onClick={() => deleteNotice(id, title)}
           >
             <IconTrash />
           </Btns>
