@@ -52,7 +52,7 @@ const AddPetPage = () => {
       await AddNewNotice({ category: formData.category, notice: formData });
     }
 
-    navigate(location.state?.from ?? '/user');
+    navigate(location.state?.from ?? '/notices/sell');
   };
 
   // Значення полів з усіх форм записувати у state formData.

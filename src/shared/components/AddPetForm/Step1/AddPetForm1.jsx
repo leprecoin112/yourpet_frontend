@@ -31,7 +31,7 @@ export const ChooseOption = ({ formData, setFormData, nextStep, prevStep }) => {
   const location = useLocation();
 
   const handleForward = () => {
-    navigate(location.state?.from ?? '/user');
+    navigate(location.state?.from ?? '/notices/sell');
   };
   return (
     <Formik
