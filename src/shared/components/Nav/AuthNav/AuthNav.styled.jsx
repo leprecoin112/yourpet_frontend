@@ -34,11 +34,11 @@ const BaseLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSizes[2]};
   line-height: 1.38;
   letter-spacing: 0.04em;
+  transition: transform ${({ theme }) => theme.duration.main}
+    ${({ theme }) => theme.transition.main};
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 

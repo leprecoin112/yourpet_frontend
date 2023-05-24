@@ -11,7 +11,7 @@ import {
 } from './AddPetButton.styled';
 
 const AddPetButton = ({ user, children }) => {
-  const isLoggedIn = useAuth();
+  const {isLoggedIn} = useAuth();
   const navigate = useNavigate();
 
   const toastMss = () => {
@@ -24,7 +24,7 @@ const AddPetButton = ({ user, children }) => {
         <AddButton
           type="button"
           title="Add pet"
-          onClick={!isLogged ? () => toastMss() : () => navigate('/add-pet')}
+          onClick={!isLoggedIn ? () => toastMss() : () => navigate('/add-pet')}
         >
           <AddButtonLabel>Add pet</AddButtonLabel>
           <AddButtonIcon />

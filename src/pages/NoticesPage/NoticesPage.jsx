@@ -8,8 +8,11 @@ import {
 
 import NoticesCategoriesNav from '../../module/Notices/NoticesCategoriesNav';
 import NoticesCategoriesList from '../../module/Notices/NoticesCategoriesList';
+import AddPetModal from '../../shared/components/AddPetModal/AddPetModal';
+import { useAuth } from '../../shared/hooks/useAuth';
 
 import {
+  Heading,
   ErrorMessage,
   ButtonsWrapper,
   MobileAddButton,
@@ -18,7 +21,7 @@ import {
 } from './NoticesPage.styled';
 import Loader from '../../shared/components/Loader';
 import NoticesSearch from '../../shared/components/SearchComponent/NoticesSearch';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Section from '../../shared/components/Section/Section';
 import Container from '../../shared/components/Container/Container';
 import Filter from '../../shared/components/Filter';
@@ -30,7 +33,11 @@ const NoticesPage = () => {
   const [category, setCategory] = useState('sell');
   const [page, setPage] = useState(1);
   const [title, setTitle] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const { isLoggedIn } = useAuth();
 
   let query = useGetNoticesByParamsQuery;
 
@@ -63,6 +70,10 @@ const NoticesPage = () => {
     setTitle(value);
   };
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  }
+
   const onPageChange = currentPage => {
     if (page === currentPage) {
       return;
@@ -88,18 +99,20 @@ const NoticesPage = () => {
   return (
     <Section>
       <Container>
+        <Heading text={'Find your favorite pet'} />
         <NoticesSearch onFormSubmit={handleFormSubmit} />
         <FiltersWrapper>
           <NoticesCategoriesNav />
           <ButtonsWrapper>
-            <Filter />
+            {/* <Filter/> */}
             <MobileAddButton
-              state={{ from: location.pathname }}
-              to={'/add-pet'}
+              onClick={isLoggedIn ? () => navigate('/add-pet') : toggleModal}
             >
               <IconPlusBig /> Add pet
             </MobileAddButton>
-            <AddButton state={{ from: location.pathname }} to={'/add-pet'}>
+            <AddButton
+              onClick={isLoggedIn ? () => navigate('/add-pet') : toggleModal}
+            >
               Add Pet
               <IconPlusSmall />
             </AddButton>
@@ -113,13 +126,14 @@ const NoticesPage = () => {
             Ooops, there is no notices in this category
           </ErrorMessage>
         )}
-        {data?.totalPages && (
+        {data?.totalResult > 12 && (
           <Pagination
             currentPage={Number(page)}
             totalPagesCount={data?.totalPages}
             onPageChange={onPageChange}
           />
         )}
+        {isModalOpen && <AddPetModal toggleModal={toggleModal} />}
       </Container>
     </Section>
   );
