@@ -14,18 +14,11 @@ const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
   const query = searchParams.get('query') ?? '';
-  const { data, error, isFetching, isLoading } = useNewsQuery(
-    {
-      title: query,
-      page,
-      limit: 6,
-    },
-    {
-      selectFromResult: ({ data }) => ({
-        data: data ?? [],
-      }),
-    }
-  );
+  const { data, error, isFetching, isLoading } = useNewsQuery({
+    title: query,
+    page,
+    limit: 6,
+  });
 
   const handleFormSubmit = value => {
     if (query !== value) {
