@@ -80,7 +80,7 @@ export const NoticeModal = ({ onClose, noticeId, favorites, onHeart }) => {
                     </tr>
                     <tr>
                       <RawTitle>Birthday:</RawTitle>
-                      <RawData>{formatDate(data?.data.birthday)}</RawData>
+                      <RawData>{formatDate(data.data.birthday)}</RawData>
                     </tr>
                     <tr>
                       <RawTitle>Breed:</RawTitle>
@@ -119,9 +119,11 @@ export const NoticeModal = ({ onClose, noticeId, favorites, onHeart }) => {
               {data.data.comments}
             </CommentsWrapper>
             <ButtonWrapper>
-              <ContactButton href={`tel:${data.data.owner?.phone}`}>
-                Contact
-              </ContactButton>
+              {data.data.owner?.phone && (
+                <ContactButton href={`tel:${data.data.owner?.phone}`}>
+                  Contact
+                </ContactButton>
+              )}
               <AddToFavoriteButton onClick={() => onHeart(noticeId)}>
                 {isNoticeInFavorites ? 'Remove' : 'Add to'} <IconHeart />
               </AddToFavoriteButton>

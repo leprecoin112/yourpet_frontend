@@ -9,6 +9,7 @@ export const Overlay = styled.div`
   height: 100%;
 
   background-color: ${({ theme }) => theme.colors.backdrop};
+  backdrop-filter: blur(4px);
 `;
 
 export const ModalContainer = styled.div`

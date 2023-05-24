@@ -1,5 +1,13 @@
-import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
+import PageHeading from '../../shared/components/PageHeading';
+
+const Heading = styled(PageHeading)`
+    margin-top: 40px;
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}){
+        margin-top: 80px;
+    }
+`;
 
 const ErrorMessage = styled.p`
     margin-top: 40px;
@@ -38,7 +46,7 @@ const ButtonsWrapper = styled.div`
         gap: 12px;
     }
 `;
-const MobileAddButton = styled(Link)`
+const MobileAddButton = styled.button`
     position: fixed;
     top: 460px;
     right: 20px;
@@ -62,8 +70,6 @@ const MobileAddButton = styled(Link)`
     stroke: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.white};
 
-    text-decoration: none;
-
     font-family: ${({ theme }) => theme.fonts.main.semiBold};
     font-size: ${({ theme }) => theme.fontSizes[0]};
     line-height: ${({ theme }) => (16 / Number(theme.fontSizes[0].slice(0, 2))).toFixed(1)}; 
@@ -77,7 +83,7 @@ const MobileAddButton = styled(Link)`
     }
 `;
 
-const AddButton = styled(Link)`
+const AddButton = styled.button`
     display: none;
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -88,19 +94,28 @@ const AddButton = styled(Link)`
         height: 40px;
         padding: 9px 16px;
 
-        text-decoration: none;
         font-family: ${({ theme }) => theme.fonts.main.bold};
         font-size: ${({ theme }) => theme.fontSizes[2]};
         line-height: ${({ theme }) => (22 / Number(theme.fontSizes[2].slice(0, 2))).toFixed(1)}; 
         background: ${({ theme }) => theme.colors.blue};
         stroke: ${({ theme }) => theme.colors.white};
         color: ${({ theme }) => theme.colors.white};
+        border: none;
         border-radius: 40px;
+
+        cursor: pointer;
 
         &:hover {
             background: ${({ theme }) => theme.colors.gradientBlue};
         }
     }
-`
+`;
 
-export { ErrorMessage, ButtonsWrapper, MobileAddButton, AddButton, FiltersWrapper };
+export {
+    Heading,
+    ErrorMessage,
+    ButtonsWrapper,
+    MobileAddButton,
+    AddButton,
+    FiltersWrapper,
+};

@@ -2,13 +2,15 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const Backdrop = styled.div`
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(60, 60, 60, 0.2);
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(60, 60, 60, 0.2);
+
+  backdrop-filter: blur(4px);
 `;
 
 const shake = keyframes`
