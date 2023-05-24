@@ -11,6 +11,7 @@ import {
   AddFormButtonNext,
   AddFormButtonBack,
 } from '../../AddPetFormBtn/AddPetFormBtn';
+
 const validationSchema = yup.object().shape({
   name: yup
     .string()
@@ -30,6 +31,7 @@ const validationSchema = yup.object().shape({
     .min(2, 'The Breed must be longer than 2 letters')
     .max(16, 'Breed must be less than 16 letters'),
 });
+
 export const PersonalDetails = ({
   formData,
   setFormData,

@@ -317,6 +317,17 @@ const BtnWrapper = styled.div`
   }
 `;
 
+const Image = styled.img`
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 182px;
+    height: 182px;
+  }
+`;
+
 export {
   Container,
   Title,
@@ -335,4 +346,5 @@ export {
   ContainerForm,
   ContainerFirstBtn,
   BtnWrapper,
+  Image,
 };

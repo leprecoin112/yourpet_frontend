@@ -18,6 +18,7 @@ import {
   ContainerForm,
   ContainerFirstBtn,
   BtnWrapper,
+  Image,
 } from './MoreInfo.styled';
 import {
   AddFormButtonNext,
@@ -97,7 +98,7 @@ const MoreInfoToLost = ({
               <InputFileContainer className="to-lost">
                 <IconsPlusBig />
                 {photo && (
-                  <img alt="avatar pet" src={URL.createObjectURL(photo)} />
+                  <Image alt="avatar pet" src={URL.createObjectURL(photo)} />
                 )}
               </InputFileContainer>
               <InputFile

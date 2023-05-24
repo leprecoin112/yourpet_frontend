@@ -11,6 +11,7 @@ import {
   InputComents,
   ContainerForm,
   BtnWrapper,
+  Image,
 } from './MoreInfo.styled';
 import {
   AddFormButtonNext,
@@ -59,7 +60,7 @@ const MoreInfoToAdd = ({
               <InputFileContainer>
                 <IconsPlusBig />
                 {photo && (
-                  <img alt="avatar pet" src={URL.createObjectURL(photo)} />
+                  <Image alt="avatar pet" src={URL.createObjectURL(photo)} />
                 )}
               </InputFileContainer>
               <InputFile
