@@ -19,9 +19,9 @@ export const Wrapper = styled.div`
 `;
 
 export const NavWrapper = styled.div`
-  padding: 8px 0;
   display: none;
   letter-spacing: 0.04em;
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     display: block;
     margin-left: 159px;

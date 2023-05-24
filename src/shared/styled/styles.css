@@ -149,3 +149,7 @@ input {
   -webkit-appearance: none;
   border-radius: 0;
 }
+
+header {
+  padding: 8px 0;
+}
