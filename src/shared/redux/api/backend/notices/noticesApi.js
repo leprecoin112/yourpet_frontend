@@ -13,13 +13,13 @@ export const noticesApi = baseApi.injectEndpoints({
     getAllNotices: builder.query({
       query: ({ page = 1, limit = 12 }) =>
         `notices/all?page=${page}&limit=${limit}`,
-      providesTags: ['notices'],
+      providesTags: ['notices', 'favorites'],
     }),
 
     getNoticesByParams: builder.query({
       query: ({ title = '', category = '', page = 1, limit = 12 }) =>
         `notices/search?title=${title}&category=${category}&page=${page}&limit=${limit}`,
-      providesTags: ['notices'],
+      providesTags: ['notices', 'favorites'],
     }),
     addNewNotice: builder.mutation({
       query({ category, notice }) {
