@@ -63,7 +63,6 @@ const NoticeCategoryItem = ({
   const [deleteNoticeById] = useDeleteNoticeByIdMutation();
   const [removeNoticeFromFavorites] = useRemoveNoticeFromFavoritesMutation();
   const { data } = useGetUserQuery();
-  console.log(data)
 
   const { isLoggedIn, user } = useAuth();
   const age = agePet(birthday, 'parse');
