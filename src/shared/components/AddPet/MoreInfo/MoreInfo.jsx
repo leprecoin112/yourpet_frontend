@@ -18,6 +18,7 @@ import {
   ContainerForm,
   ContainerFirstBtn,
   BtnWrapper,
+  Image,
 } from './MoreInfo.styled';
 import { useState } from 'react';
 
@@ -107,7 +108,7 @@ export const MoreInfo = ({ formData, setFormData, prevStep, onSubmit }) => {
               <InputFileContainer>
                 <IconsPlusBig />
                 {photo && (
-                  <img alt="avatar pet" src={URL.createObjectURL(photo)} />
+                  <Image alt="avatar pet" src={URL.createObjectURL(photo)} />
                 )}
               </InputFileContainer>
               <InputFile

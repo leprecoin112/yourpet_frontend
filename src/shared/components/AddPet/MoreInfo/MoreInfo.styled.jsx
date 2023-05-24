@@ -317,6 +317,11 @@ const BtnWrapper = styled.div`
   }
 `;
 
+const Image = styled.img`
+  height: 100%;
+  object-fit: center;
+`;
+
 export {
   Container,
   Title,
@@ -335,4 +340,5 @@ export {
   ContainerForm,
   ContainerFirstBtn,
   BtnWrapper,
+  Image,
 };
