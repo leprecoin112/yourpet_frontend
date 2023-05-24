@@ -39,6 +39,12 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isRefreshing = false;
       })
+      .addMatcher(authApi.endpoints.logout.matchRejected, state => {
+        state.user = initialState.user;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isRefreshing = false;
+      })
       .addMatcher(authApi.endpoints.logout.matchFulfilled, state => {
         state.user = initialState.user;
         state.token = null;
